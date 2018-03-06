@@ -1,0 +1,27 @@
+<div class = "ultra-banner">
+			<div class = "left-ub">
+				<a href = "home.html"><img id = "left-logo" src = "images/ultra-banner.png" alt = "DFPPI Home"></a>
+			</div>
+			<div class = "right-ub">
+				<a href = "http://www.davaofibre.ph"><img id = "right-logo" src = "images/other.png" alt = "Employee Module"></a>
+			</div>
+		</div>
+		<div class = "line-sep">
+		</div>
+		<nav class="navbar navbar-default" id = "myNav">
+			<div class="container-fluid">
+				<ul class="nav navbar-nav">
+					<li><a id = "li-a" href = "customers.html">Customers and Orders</a></li>
+					<li><a id = "li-a" href = "employees.html">Employees</a></li>
+					<li><a id = "li-a" href = "deliveries.html">Deliveries</a></li>
+					<li><a id = "li-a" href = "products.html">Products</a></li>
+					<li><a id = "li-a" href = "supplier.html">Suppliers</a></li>
+					<li><a id = "li-a" href = "production.html">Production</a></li>
+					<li><a id = "li-a" href = "inventory.html">Inventory</a></li>
+					<li><a id = "li-a" href = "docs/manual.html"><i>Need Help?</i></a></li>
+				</ul>
+			</div>
+		</nav>
+		
+		<script src = "js/bootstrap.min.js"></script>
+		<script src = "js/jquery.min.js"></script>

@@ -1,0 +1,5 @@
+cd C:\xampp\mysql\bin
+
+mysql.exe -u root
+
+use 2101_final_project

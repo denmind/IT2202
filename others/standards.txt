@@ -1,0 +1,2 @@
+ID Number =  Hash of Lname + Fname
+Password (default) = ID Number

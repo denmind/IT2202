@@ -1,0 +1,395 @@
+/*
+
+Icons made by 
+
+1. Google Material Design
+2. Elegant Font
+3. Chanut Industries
+4. Chris Veigt
+5. Gregor Cresnar
+6. Smashicons
+7. Essential UI
+8. FreePik
+9. Vectors Market
+10. Prosymbols
+11. Dimitry Miroliubov
+12. Google
+13. Recep Kutuk
+14. Darius Dan
+
+
+from flaticon.com
+ 
+nav-color-p: #7c6d4e;
+main-color: #d4ba85;
+font-color: #665940;
+line-separator: #706146;
+menu: C2AC82
+*/
+
+
+/*main.html*/
+th{
+	font-size: 3vh;
+	text-align: center;
+	text-decoration: none;
+	padding: 4px;
+}
+th a{
+	color: #665940;
+}
+ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 1vh;
+}
+.main-form{
+	margin: 10% auto auto auto;
+	padding: 5vh;
+	height: 100%;
+	width: 20%;
+	background-color: #ffffff;
+	border: 1px solid #9b8861;
+	opacity: .9;
+	font-size: 22px;
+}
+.login-form{
+	padding: 3px;
+	margin: 1vh auto auto auto;
+	width: 100%;
+	font-family: serif;
+	font-size: 16px;
+}
+.login-form:hover{
+	border-color:#d4ba85;
+}
+.head-title{
+	margin: 2% auto 10% auto;
+	width: 100%;
+	height: 100%;
+}
+#home-banner{
+	width: 100%;
+}
+#go-form{
+	width: 50%;
+	border-color: black;
+	background-color: #96845e;
+}
+#go-form:hover{
+	cursor: pointer;
+	background-color: #7c6d4e;
+	color: #ffffff;
+	border: 1px solid black;
+}
+#login-button{
+	height: 3vh;
+	width: 100%;
+	margin: 2vh auto 2vh auto;
+}
+/*nav-bar*/
+#myNav{
+	background-color: #d4ba85;
+	width: 100%;
+}
+#logo{
+	width: 3.5vh;
+	height: 3.5vh;
+}
+#li-a{
+	color: #7c6d4e;
+	text-align: center;
+	padding: 1vh 2vh;
+	font-size: 25px;
+	font-family: sans-serif;
+	text-decoration: none;
+}
+.main-content{
+	width: 85%;
+	margin-top: 2%;
+	height: auto;
+	margin-right: auto;
+	margin-left: auto;
+	border: 2px dotted #d4ba85;
+}
+.main-text{
+	text-align: center;
+	font-size: 6vh;
+	font-weight: bold;
+}
+.main-content div{
+	width: 50%;
+	height: 100%;
+	cursor: pointer;
+	display: inline;
+	
+}
+.menu-content .bloke{
+	margin-right: 18%;
+}
+.menu-content .bloke .bloke-img{
+	height: 30vh;
+	width: 30vh;
+}
+#li-a:hover{
+	color: #ffffff;
+}
+/*Top most banner*/
+.ultra-banner{
+	width: 100%;
+	background-color: #ffffff;
+	height: 10vh;
+	margin-bottom: 1%;
+}
+.line-sep{
+	background-color:#706146;
+	width: 100%;
+	height: 0.4vh;
+}
+.left-ub,.right-ub{
+	display: inline;
+	width: 50%;
+	height: 100%;
+}
+.left-ub{
+	float: left;
+}
+#left-logo{
+	margin-top: 4vh;
+	margin-left: 4vh;
+}
+#right-logo{
+	float: right;
+	margin-top: 4vh;
+	margin-right: 4vh;
+}
+
+/*Displayed table for resultsets*/
+.tbl{
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	border-bottom: 2px dotted black;
+}
+
+.pagination li{
+	height: 4vh;
+	width: 4vh;
+	display: inline-block;
+	text-align: center;
+	border: 1px solid black;
+}
+/*input forms*/
+.div-form{
+	margin: 3% auto 3% auto;
+	width: 60%;
+	height: 100%;
+	border-bottom: 2px solid #7c6d4e;	
+
+}
+.top-form{
+	background-color: #D4BA85;
+	padding-top: 10px;
+	width: 100%;
+	height: 100%;
+	border: 2px solid #7c6d4e;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+}
+.top-form p,.warn-form p{
+	font-weight: bolder;
+	font-size: 30px;
+	font-family: serif;
+	margin-left: auto;
+	text-align: center;
+	color: #7c6d4e;
+}
+.mid-form , .bot-form , .warn-form{
+	width: 100%;
+	height: 100%;
+	border-left: 2px solid #7c6d4e;
+	border-right: 2px solid #7c6d4e;
+}
+.warn-form{
+	width: 100%;
+	height: 15vh;
+}
+input[placeholder]{
+	font-style: italic;
+}
+
+.mid-form{
+	padding: 3% 10% 3% 15%;
+	display: inline-block;
+}
+.bot-form{
+	border-top: 2px solid #7c6d4e;
+	background-color:  #D4BA85;
+}
+.bot-form:hover{
+
+}
+.input-form {
+	float:right;
+	width: 41%;
+}
+p.form-body{
+	font-size: 19px;
+	margin-top: 2vh;
+}
+.input-form{
+	border: 1px solid #7c6d4e;
+	padding: 3px;
+}
+.input-form:focus{
+	background-color: #ffedc9;
+}
+.input-submit{
+	width: 100%;
+	background-color:  #D4BA85;
+	border: none;
+	color: #7c6d4e;
+	font-size: 22px;
+}
+.warn-input{
+	width: 100% ;
+}
+.warn-main{
+	height: 100%;
+	width: 16vh;
+	margin: 2% auto 2% auto;
+}
+.input-submit:hover{
+	cursor: pointer;
+	background-color: #e2c78e;
+}
+
+.choices{
+	width: 100%;
+	padding-left: 10vh;
+	margin-left: auto;
+	margin-right: auto;
+}
+.bloke{
+	height: 30vh;
+	width: 30vh;
+	margin-right: 10%;
+}
+textarea{
+	font-style: italic;
+}
+.bloke-img{
+	width: 28vh;
+	height: 28vh;
+	margin-top: 5%;
+}
+#bloke-mod{
+	cursor: pointer;
+}
+.main-view{
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid black;
+	height: 100%;
+	width: 90%;
+}
+.pagination, .top-div, .mid-div{
+	width: 100%;
+}
+option#y,option#n{
+	
+	font-size: 24px;
+	background-color: #FFF;
+}
+option#y{
+	color: blue;
+}
+option#n{
+	color: red;
+}
+.table-set td{
+	width: auto;
+	border: 1px solid black;
+	cellspacing: 1px;
+	cellpadding: 3px;
+}
+
+.main-direct{
+	margin-left: auto;
+	margin-right: auto;
+}
+.head-direct, .proceed{
+	width: 100%;
+}
+.head-direct p{
+	text-align: center;
+}
+/*overlay*/
+.container {
+  margin-top: 3%;
+  display: inline-block;
+  position: relative;
+  width: 30vh;
+}
+
+#pics {
+  width: 28vh;
+  height: 28vh;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 33vh;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #d4ba85;
+  
+}
+#myTable{
+	width: 65%;
+	margin: 3% auto 5% auto;
+}
+#myTable .page-header{
+	text-align: center;
+}
+#myTable .page-header h1, #myTable .page-header h3{
+	font-weight: bolder;
+}
+#myTable .page-header h3{
+	margin: 1%;
+}
+#ourTable th{
+	text-align: left;
+	font-size: 2vh;
+}
+#ourTable td{
+	font-size: 2vh;
+}
+.container:hover .overlay {
+  opacity: 1;
+}
+#red{
+	color: red;
+}
+#green{
+	color: green;
+}
+
+.text {
+  color: #706146;
+  font-size: 5vh;
+  font-weight: bolder;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+input[placeholder]{
+	color: black;
+}

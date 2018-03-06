@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>DFPPI Customers</title>
+		<link rel = "icon" href = "images/logo.png">
+		<link rel = "stylesheet" href = "css/bootstrap.min.css" crossorigin = "anonymous">
+		<link rel = "stylesheet" href = "css/design.css">
+	</head>
+	
+	<body>
+		<div class = "ultra-banner">
+			<div class = "left-ub">
+				<a href = "http://www.davaofibre.ph"><img id = "left-logo" src = "images/other.png" alt = "DFPPI Main"></a>
+			</div>
+			<div class = "right-ub">
+				<img id = "right-logo" src = "images/ultra-banner.png" alt = "Employee Module">
+			</div>
+		</div>
+		<div class = "line-sep">
+		</div>
+		<nav class="navbar navbar-default" id = "myNav">
+			<div class="container-fluid">
+				<ul class="nav navbar-nav">
+					<li><a id = "li-a" href = "home.html"><img id = "logo" src = "images/home-interface.png" alt = "Back to Home"></a></li>
+					<li><a id = "li-a" href = "customers.html">Customers and Orders</a></li>
+					<li><a id = "li-a" href = "employees.html">Employees</a></li>
+					<li><a id = "li-a" href = "deliveries.html">Deliveries</a></li>
+					<li><a id = "li-a" href = "products.html">Products</a></li>
+					<li><a id = "li-a" href = "supplier.html">Suppliers</a></li>
+					<li><a id = "li-a" href = "production.html">Production</a></li>
+					<li><a id = "li-a" href = "inventory.html">Inventory</a></li>
+					<li><a id = "li-a" href = "docs/manual.html"><i>Need Help?</i></a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class = "main-body">
+			<p class = "success">Submission Successful!</p><br>
+			<a href = "products-add.php" class = "new-input">Submit new info</p>
+		</div>
+	</body>
+</html>
+<?php
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$database = "2101_final_project";
+
+
+	$link = mysqli_connect($servername,$username,$password,$database);
+	
+	if ($link){
+		$name = stripslashes($_POST["name"]);
+		$desc = stripslashes($_POST["descp"]);
+		$ty = stripslashes($_POST["type"]);
+		$we = stripslashes($_POST["weight"]);
+		$price = stripslashes($_POST["price"]);
+		
+		$query = "INSERT INTO `products` 
+				  (`p_Id`, `p_name`, `p_descp`, `p_type`, `p_weight`, `p_price`)
+				  VALUES (NULL, '{$name}', '{$desc}', '{$ty}', '{$we}', '{$price}')";
+				
+				  
+		mysqli_query($link,$query);
+		mysqli_close($link);
+	}
+?>

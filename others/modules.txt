@@ -1,0 +1,59 @@
+//for a certain date
+///default today
+7c6d4e
+
+Customers (client,orders,order_products)
+	-View/Search for Client
+	-View/Search in orders
+	-Add customer order
+	-Add Client info
+	-Remove customer order
+	-Remove customer info
+	
+Employee Personnel(faculty,faculty_attendance)
+	-View faculty attendance
+	-View faculty member's info
+	-Add faculty member
+	-Remove faculty member
+	
+	
+Delivery Schedules(delivery,delivery_orders)
+	-View all delivery schedules
+	-Add delivery schedule
+	-Remove delivery schedule
+	
+Products(products)
+	-View all products
+	-Add product 
+	-Remove product info
+	
+Supplier (supplier,supply_order)
+	-View/Search for a supplier
+	-View/Search a supply order
+	-Add supplier's info
+	-Add a supply order
+	-Remove supplier info
+	-Remove supply order
+	
+Production(production)
+	-View all production lines
+	-Add production line
+	-Remove production line
+	
+Inventory(raw_materials,storage)
+	-View materials
+	-View stored items
+	-Add material
+	-Add item to storage
+	-Remove material
+	-Remove a stored item/s
+
+	
+General functions (faculty,notifications)
+	-View your profile
+	-Send notification
+	-Delete notification
+	-View personal notification
+
+
+

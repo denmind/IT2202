@@ -1,0 +1,10 @@
+Validation and Clean-ups
+Data Visualization (Charts)
+Priv mode
+Make sure business operation works
+Documentation
+
+
+
+DONE:
+View Profile

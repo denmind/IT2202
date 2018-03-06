@@ -1,0 +1,11 @@
+body{
+	width: 70%;
+	margin: 1% auto 1% auto;
+}
+.main-content{
+	margin: 5% auto 5% auto;
+	width: 60%;
+}
+#myHead{
+	text-align: center;
+}
