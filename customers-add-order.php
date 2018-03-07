@@ -51,9 +51,9 @@
 					<p class = "form-header">Order Information</p>
 				</div>
 				<div class = "mid-form">
-					<p class = "form-body">Employee ID
-						<select name = "f_Id" class = "input-form">
-							<option>- - - - - - - - - - - -</option>
+					<p class = "form-body">Assign Employee
+						<select name = "f_Id" class = "input-form" data-validation="required">
+							<option></option>
 							<?php 
 								while($var = mysqli_fetch_assoc($fset)){
 									echo "<option value = '{$var["f_id"]}'>{$var["f_lastName"]}, {$var["f_firstName"]}</option>";
@@ -61,9 +61,9 @@
 							?>
 						</select>
 					</p>
-					<p class = "form-body">Customer ID
-						<select name = "c_Id" class = "input-form">
-							<option>- - - - - - - - - - - -</option>
+					<p class = "form-body">Who is the customer?
+						<select name = "c_Id" class = "input-form" data-validation="required">
+							<option></option>
 							<?php 
 								while($var = mysqli_fetch_assoc($cset)){
 									echo "<option value = '{$var["c_Id"]}'>{$var["c_LastName"]}, {$var["c_FirstName"]}</option>";
@@ -72,7 +72,7 @@
 						</select>	
 					</p>
 					<p class = "form-body">Address of Delivery
-					<textarea name = "o_add" required = "required" class = "input-form" maxlength = 64  autofocus placeholder = "+6394216709" >
+					<textarea name = "o_add" class = "input-form" data-validation="length required letternumeric" data-validation-allowing="#.()-" data-validation-length="min16 max128">
 					</textarea></p>
 				</div>
 				<div class = "bot-form">
@@ -83,3 +83,6 @@
 	</body>
 </html>
 <script src = "js/confirm-form.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.form-validator.js"></script>
+<script src="js/validate.js"></script>

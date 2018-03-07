@@ -4,19 +4,21 @@
 	require 'sql_connect.php';
 	
 	/*show all records for select option*/
-	$query = "SELECT o_Id,c.c_FirstName,c.c_LastName,f.f_firstName,f.f_lastName
-			FROM orders o 
-			JOIN faculty f 
-			ON f.f_id = o.f_Id
-			JOIN client c 
-			ON c.c_Id = o.c_Id
-			ORDER BY f.f_lastName";
+	$query = "SELECT op.*,o.o_orderDateTime,p.p_name,c.c_FirstName,c.c_LastName
+						FROM order_products op
+						JOIN products p
+						ON p.p_Id = op.p_Id
+						JOIN orders o 
+						ON o.o_Id = op.o_Id
+						JOIN client c 
+						ON o.c_Id = c.c_Id
+                        ORDER BY o.o_orderDateTime DESC";
 	
 	$set = mysqli_query($conn,$query);
 ?>
 <html>
 	<head>
-		<title>DFPPI Products</title>
+		<title>DFPPI Customers</title>
 		<link rel = "icon" href = "images/logo.png">
 		<link rel = "stylesheet" href = "css/bootstrap.min.css" crossorigin = "anonymous">
 		<link rel = "stylesheet" href = "css/design.css">
@@ -54,7 +56,7 @@
 			if(empty($_POST)){
 		?>
 			<div class = "div-form">
-				<form method = "post" autocomplete = "off" action = <?php echo $_SERVER["PHP_SELF"]?> onsubmit = "<?php $flg++ ?>" >
+				<form method = "post" autocomplete = "off" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
 					<div class = "top-form">
 					
 						<!--Change title-->
@@ -63,14 +65,14 @@
 					<div class = "mid-form">
 					
 						<!--Change names-->
-						<p class = "form-body">Client/Faculty Assigned
-							<select required name = "ia" class = "input-form" >
-								<option value = 999></option>
+						<p class = "form-body">Order Date/Customer Name
+							<select data-validation="required" name = "ia" class = "input-form" >
+								<option value = -999></option>
 								<?php 
 								
 									/*Change indexes*/
 									while($var = mysqli_fetch_assoc($set)){
-										echo "<option value = {$var["o_Id"]}>{$var["f_lastName"]},{$var["f_firstName"]} - - {$var["c_FirstName"]} {$var["c_LastName"]}</option>";
+										echo "<option value = {$var["op_Id"]}>[{$var["o_orderDateTime"]}] {$var["c_FirstName"]} {$var["c_LastName"]}</option>";
 									}
 								?>
 							</select>
@@ -82,25 +84,41 @@
 				</form>
 			</div>
 		<?php
-			}else if(!empty($_POST)){
+			}else if(($_POST["ia"]) != -999){
 				/*Change FROM .... */
-				$find = "SELECT o.*,f.f_id,f.f_firstName,f.f_lastName,c.c_Id,c.c_FirstName,c.c_LastName
+				$x = "SELECT op.*,o.o_Id,o.o_orderDateTime,p.p_Id,p.p_name,c.c_FirstName,c.c_LastName
+						FROM order_products op
+						JOIN products p
+						ON p.p_Id = op.p_Id
+						JOIN orders o 
+						ON o.o_Id = op.o_Id
+						JOIN client c 
+						ON o.c_Id = c.c_Id
+						WHERE op.op_Id = '{$_POST["ia"]}'";
+						
+				$y = "SELECT o_Id,o_orderDateTime,c.c_Id,c.c_FirstName,c.c_LastName
 						FROM orders o
 						JOIN client c 
 						ON c.c_Id = o.c_Id
-						JOIN faculty f 
-						ON f.f_id = o.f_Id WHERE o_id = '{$_POST["ia"]}'";
-				$r = mysqli_fetch_assoc(mysqli_query($conn,$find));
+						ORDER BY o_orderDateTime DESC";
+						
+				$z = "SELECT p_Id,p_name,p_type
+						FROM products p
+						ORDER BY p_name";
+						
+				$r = mysqli_fetch_assoc(mysqli_query($conn,$x));
+				$s = mysqli_query($conn,$y);
+				$t = mysqli_query($conn,$z);
 		?>
 			<div class = "div-form">
 				<!--action-->
-				<form method = "post" autocomplete = "off" action = "remove-orders.php" >
+				<form method = "post" autocomplete = "off" action = "remove-op.php" onsubmit = "return check();">
 					<div class = "top-form">
 						<?php	
 							echo "<p class = 'form-header'>";
 							
 							/*Change form title*/
-							echo "({$r["f_lastName"]},  {$r["f_firstName"]} / {$r["c_FirstName"]} {$r["c_LastName"]}) Order Info";
+							echo "{$r["c_FirstName"]} {$r["c_LastName"]} [{$r["o_orderDateTime"]}] Info";
 							echo "</p>";
 							
 							/*Change to index current ide*/
@@ -110,52 +128,63 @@
 					<div class = "mid-form">
 						<!-- input names and indexes change-->
 						<p class = "form-body">ID
-						<input type = "text" name = "o_Id" disabled class = "input-form" maxlength = 11  value = <?php echo $r['o_Id']?> ></p>
-						<p class = "form-body">Order Date
-						<input type = "date" name = "o_orderDateTime " required = "required" class = "input-form" maxlength = 32  value = <?php echo $r['o_orderDateTime ']?> ></p>
-						<p class = "form-body">Order Time
-						<input type = "date" name = "o_orderDateTime " required = "required" class = "input-form" maxlength = 32  value = <?php echo $r['o_orderDateTime ']?> ></p>
-						<p class = "form-body">Product Weight (kgs)
-						<input type = "number" name = "p_weight" required = "required" class = "input-form" maxlength = 8 value = <?php echo $r['p_weight']?> ></p>
-						<p class = "form-body">Product Pricing (Php)
-						<input type = "number" name = "p_price" required = "required" class = "input-form" maxlength = 32 value = <?php echo $r['p_price']?> ></p>
-						<p class = "form-body">Product Type
-							<select required name = "p_type" class = "input-form">
-								<option value = "Container" <?php if($r['p_type'] == 'Container') echo "selected = 'selected'"?> >Container</option>
-								<option value = "Vacuum Pack" <?php if($r['p_type'] == 'Vacuum Pack') echo "selected = 'selected'"?> >Vacuum Pack</option>
-								<option value = "Strap" <?php if($r['p_type'] == 'Strap') echo "selected = 'selected'"?> >Strap</option>
-								<option value = "Sticker" <?php if($r['p_type'] == 'Sticker') echo "selected = 'selected'"?> >Sticker</option>
-								<option value = "Post" <?php if($r['p_type'] == 'Post') echo "selected = 'selected'"?> >Post</option>
-								<option value = "General" <?php if($r['p_type'] == 'General') echo "selected = 'selected'"?> >General Merchandise</option>
+						<input type = "text" name = "o_Id" disabled class = "input-form" value = <?php echo $r['o_Id']?> ></p>
+						<p class = "form-body">Product Quantity
+						<input type = "text" name = "op_quantity" class = "input-form" autofocus data-validation="number required" data-validation-allowing="positive range[1;10000]" value = <?php echo $r['op_quantity']?>></p>
+						<p class = "form-body">Order ID
+							<select name = "o_Id" class = "input-form" data-validation="required">
+								<?php
+									while($key = mysqli_fetch_assoc($s)){
+								?>
+										<option value = "<?php echo $key['o_Id']?>" <?php if($key['o_Id'] == $r['o_Id']) echo 'selected = "selected"'?>  >	
+											<?php 
+												echo "[";
+												echo $key['o_orderDateTime'];
+												echo "] ";
+												echo $key['c_FirstName'];
+												echo " ";
+												echo $key['c_LastName'];
+											?>
+										</option>
+								<?php
+									}
+								?>
+							</select>
+						</p>
+						<p class = "form-body">Product ID
+							<select name = "p_Id" class = "input-form" data-validation="required">
+								<?php
+									while($key = mysqli_fetch_assoc($t)){
+								?>
+										<option value = "<?php echo $key['p_Id']?>" <?php if($key['p_Id'] == $r['p_Id']) echo 'selected = "selected"'?>  >	
+											<?php 
+												echo $key['p_name'];
+												echo " [";
+												echo $key['p_type'];
+												echo "]";
+											?>
+										</option>
+								<?php
+									}
+								?>
 							</select>
 						</p>
 					</div>
-					<?php
-						if($_SESSION["privilege"] == "Production"){
-					?>
-							<div class = "line-sep">
-							</div>
-							<div class = "warn-form"><p>PRODUCT'S CURRENT STATUS</p>
-								<div class = "warn-main">
-									<select name = "status" class = "warn-input">
-										<option id = 'y' value = "Outdated" <?php if($r['status'] == 'Outdated') echo "selected = 'selected'"?> >Outdated</option>
-										<option id = 'n' value = "In-use" <?php if($r['status'] == 'In-use') echo "selected = 'selected'"?> >In-use</option>
-									</select>
-								</div>
-							</div>
-					<?php
-						}
-					?>
 					<div class = "bot-form">
 						<input type = "submit" value = "Submit Form" class = "input-submit">
 					</div>
 				</form>
 			</div>
 			<?php
-				}
-				if(!empty($_POST)){
-					
+				}else{
+			?>
+					<meta http-equiv='refresh' content='0; url=<?php echo $_SERVER["PHP_SELF"]; ?>' />
+			<?php
 				}
 			?>
 	</body>
 </html>
+<script src = "js/confirm-form.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.form-validator.js"></script>
+<script src="js/validate.js"></script>

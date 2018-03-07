@@ -4,8 +4,13 @@
 	
 	require 'sql_connect.php';
 	
-	$pq = "SELECT * FROM products ORDER BY p_name";
-	$cq = "SELECT orders.o_orderDateTime,client.c_Id,client.c_LastName,client.c_FirstName FROM orders  JOIN client ON client.c_Id = orders.c_Id ORDER BY o_orderDateTime DESC";
+	$pq = "SELECT * FROM products WHERE status = 'In-use' ORDER BY p_name";
+	$cq = "SELECT orders.o_Id,orders.o_orderDateTime,client.c_Id,client.c_LastName,client.c_FirstName 
+		FROM orders  
+		JOIN client 
+		ON client.c_Id = orders.c_Id
+		WHERE o_status = 'Not started' 
+		ORDER BY o_orderDateTime DESC";
 		
 	$pr = mysqli_query($conn,$pq);
 	$cr = mysqli_query($conn,$cq);
@@ -52,28 +57,27 @@
 				</div>
 				<div class = "mid-form">
 					<p class = "form-body">Product Quantity
-					<input type = "number" name = "op_quantity" required = "required" class = "input-form" maxlength = 32 autofocus></p>
+					<input type = "text" name = "op_quantity" class = "input-form" autofocus data-validation="number required" data-validation-allowing="positive range[1;10000]"></p>
 					<p class = "form-body">Product Name
-						<select name = "p_Id" class = "input-form">
+						<select name = "p_Id" class = "input-form" data-validation="required">
 							<option></option>
 							<?php 
 								while($var = mysqli_fetch_assoc($pr)){
-									echo "<option value = '{$var["p_Id"]}'>{$var["p_name"]}</option>";
+									echo "<option value = '{$var["p_Id"]}'>{$var["p_name"]} [{$var["p_type"]}]</option>";
 								}
 							?>
 						</select>
 					</p>
 					<p class = "form-body">Order Date/Client Name
-						<select name = "o_Id" class = "input-form">
+						<select name = "o_Id" class = "input-form" >
 							<option></option>
 							<?php 
 								while($var = mysqli_fetch_assoc($cr)){
-									echo "<option value = '{$var["c_Id"]}'>{$var["o_orderDateTime"]} - {$var["c_LastName"]},{$var["c_FirstName"]}</option>";
+									echo "<option value = '{$var["o_Id"]}'>{$var["o_orderDateTime"]} - {$var["c_LastName"]}, {$var["c_FirstName"]}</option>";
 								}
 							?>
 						</select>
 					</p>
-					
 				</div>
 				<div class = "bot-form">
 					<input type = "submit" value = "Submit Form" class = "input-submit">
@@ -81,5 +85,8 @@
 			</form>
 		</div>
 	</body>
-	<script src = "js/confirm-form.js"></script>
 </html>
+<script src = "js/confirm-form.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.form-validator.js"></script>
+<script src="js/validate.js"></script>

@@ -54,6 +54,14 @@
 						 </div>
 					</div>
 				</a>
+				<a href = "customers-view-op.php" class = "bloke">
+					<div class = "container">
+						<img class = "bloke-img" src = "images/price-tag.png" alt = "View/Search ordered products" title = "View/Search ordered products">
+						<div class="overlay">
+							<div class="text">View/Search ordered products</div>
+						 </div>
+					</div>
+				</a>
 				<?php if($_SESSION['privilege'] == 'Sales & Finances' || $_SESSION['privilege'] == 'All'){ ?>
 					<a href = "customers-add-customer.php" class = "bloke">
 						<div class = "container">

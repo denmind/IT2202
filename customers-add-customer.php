@@ -42,11 +42,12 @@
 				</div>
 				<div class = "mid-form">
 					<p class = "form-body">First Name 
-					<input type = "text" name = "fn" required = "required" class = "input-form" maxlength = 32 autofocus placeholder = "Francis"></p>
+					<input type = "text" name = "fn" data-validation="length required alphanumeric" data-validation-length="max32" class = "input-form"></p>
 					<p class = "form-body">Last Name
-					<input type = "text" name = "ln" required = "required" class = "input-form" maxlength = 32 placeholder = "Caboyo"></p>
+					<input type = "text" name = "ln" data-validation="length required alphanumeric" data-validation-length="max16" class = "input-form"></p>
+					
 					<p class = "form-body">Contact Information
-					<input type = "text" name = "c_info" required = "required" class = "input-form" maxlength = 64 placeholder = "+6394216709"></p>
+					<input type = "text" name = "c_info" data-validation="length required alphanumeric" data-validation-length="max64" data-validation-allowing="(-@.)" class = "input-form"></p>
 				</div>
 				<div class = "bot-form">
 					<input type = "submit" value = "Submit Form" class = "input-submit">
@@ -54,5 +55,8 @@
 			</form>
 		</div>
 	</body>
-	<script src = "js/confirm-form.js"></script>
 </html>
+<script src = "js/confirm-form.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.form-validator.js"></script>
+<script src="js/validate.js"></script>

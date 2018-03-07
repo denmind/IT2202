@@ -10,7 +10,7 @@
 			ON f.f_id = o.f_Id
 			JOIN client c 
 			ON c.c_Id = o.c_Id
-			ORDER BY f.f_lastName";
+			ORDER BY o.o_orderDateTime DESC";
 	
 	$set = mysqli_query($conn,$query);
 ?>
@@ -20,11 +20,6 @@
 		<link rel = "icon" href = "images/logo.png">
 		<link rel = "stylesheet" href = "css/bootstrap.min.css" crossorigin = "anonymous">
 		<link rel = "stylesheet" href = "css/design.css">
-		<script src = "js/bootstrap.min.js"></script>
-		<script src = "js/jquery.min.js"></script>	
-		<script src = "js/confirm-form.js"></script>
-		<script src = "js/bootstrap-datetimepicker.js"></script>
-		<script src = "js/bootstrap-datetimepicker.css"></script>
 	</head>
 	
 	<body>
@@ -65,14 +60,14 @@
 					<div class = "mid-form">
 					
 						<!--Change names-->
-						<p class = "form-body">Faculty Assigned / Client Name
-							<select required name = "ia" class = "input-form" >
-								<option value = 999></option>
+						<p class = "form-body">Order Date / Client Name
+							<select required name = "ia" class = "input-form" data-validation="required">
+								<option value = -999></option>
 								<?php 
 								
 									/*Change indexes*/
 									while($var = mysqli_fetch_assoc($set)){
-										echo "<option value = {$var["o_Id"]}>{$var["f_lastName"]},{$var["f_firstName"]} - - {$var["c_FirstName"]} {$var["c_LastName"]}</option>";
+										echo "<option value = {$var["o_Id"]}>[{$var["o_orderDateTime"]}] {$var["c_FirstName"]} {$var["c_LastName"]}</option>";
 									}
 								?>
 							</select>
@@ -84,7 +79,7 @@
 				</form>
 			</div>
 		<?php
-			}else if(!empty($_POST)){
+			}else if(($_POST["ia"]) != -999){
 				/*Change FROM .... */
 				$find = "SELECT o.*,f.f_id,f.f_firstName,f.f_lastName,c.c_Id,c.c_FirstName,c.c_LastName
 						FROM orders o
@@ -95,7 +90,10 @@
 						
 				$client = "SELECT c_Id,c_FirstName,c_LastName FROM client ORDER BY c_LastName";
 				
-				$faculty = "SELECT f_Id,f_firstName,f_lastName FROM faculty  WHERE f_department = 'Sales & Finances' AND f_status = 'Okay' ORDER BY f_lastName";
+				$faculty = "SELECT f_Id,f_firstName,f_lastName 
+				FROM faculty  
+				WHERE f_department = 'Sales & Finances' AND f_status = 'Okay' 
+				ORDER BY f_lastName";
 				
 				$r = mysqli_fetch_assoc(mysqli_query($conn,$find));
 				$s = mysqli_query($conn,$client);
@@ -106,13 +104,13 @@
 		?>
 			<div class = "div-form">
 				<!--action-->
-				<form method = "post" autocomplete = "off" action = "remove-orders.php" >
+				<form method = "post" autocomplete = "off" action = "remove-orders.php" onsubmit = "return check();" >
 					<div class = "top-form">
 						<?php	
 							echo "<p class = 'form-header'>";
 							
 							/*Change form title*/
-							echo "({$r["f_lastName"]},  {$r["f_firstName"]} / {$r["c_FirstName"]} {$r["c_LastName"]}) Order Info";
+							echo "({$r["f_lastName"]},  {$r["f_firstName"]} / {$r["c_FirstName"]} {$r["c_LastName"]})";
 							echo "</p>";
 							
 							/*Change to index current ide*/
@@ -122,11 +120,11 @@
 					<div class = "mid-form">
 						<!-- input names and indexes change-->
 						<p class = "form-body">ID
-						<input type = "text" name = "o_Id" re class = "input-form" maxlength = 11  value = <?php echo $r['o_Id']?> ></p>
+						<input type = "text" name = "o_Id" class = "input-form" disabled value = <?php echo $r['o_Id']?> ></p>
 						<p class = "form-body">Order Date
-						<input type = "date" name = "o_orderDateTime" required = "required" class = "input-form" maxlength = 32  value = <?php echo $r['o_orderDateTime']?> ></p>
-						<p class = "form-body">Faculty Assignment
-							<select name = "f_Id" class = "input-form">
+						<input type = "date"  name = "o_orderDateTime"class = "input-form" data-validation="date" value = <?php echo $r['o_orderDateTime']?> ></p>
+						<p class = "form-body">Assign Employee
+							<select name = "f_Id" class = "input-form" data-validation="required">
 								<?php
 									while($key = mysqli_fetch_assoc($t)){
 								?>
@@ -142,8 +140,8 @@
 								?>
 							</select>
 						</p>
-						<p class = "form-body">Client
-							<select name = "c_Id" class = "input-form">
+						<p class = "form-body">Who is the customer?
+							<select name = "c_Id" class = "input-form" data-validation="required">
 								<?php
 									while($key = mysqli_fetch_assoc($s)){
 								?>
@@ -160,7 +158,7 @@
 							</select>
 						</p>
 						<p class = "form-body">Address of Delivery
-						<textarea name = "add" required = "required" class = "input-form" maxlength = 128 ><?php echo $r['o_addressOfDelivery']?></textarea></p>
+						<textarea name = "add" class = "input-form" data-validation="length required letternumeric" data-validation-allowing="#.()-" data-validation-length="min16 max128" ><?php echo $r['o_addressOfDelivery']?></textarea></p>
 					</div>
 							<div class = "line-sep">
 							</div>
@@ -179,7 +177,15 @@
 				</form>
 			</div>
 			<?php
+				}else{
+			?>
+					<meta http-equiv='refresh' content='0; url=<?php echo $_SERVER["PHP_SELF"]; ?>' />
+			<?php
 				}
 			?>
 	</body>
 </html>
+<script src = "js/confirm-form.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.form-validator.js"></script>
+<script src="js/validate.js"></script>

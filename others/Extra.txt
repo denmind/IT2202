@@ -1,0 +1,45 @@
+
+
+echo "<pre>";
+		echo var_dump($_POST);
+		echo "</pre>";
+	
+session_start();
+require 'sql_connect.php';
+
+echo (mysqli_query($conn,$query)) ? "Submit Success!" : "Failure in submission!";
+
+echo (mysqli_query($conn,$query)) ? "Edit Success!" : "Failure in editing!";
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>DFPPI Customers</title>
+		<link rel = "icon" href = "images/logo.png">
+		<meta http-equiv="refresh" content="1; url=customers.php" />
+	</head>
+</html>
+
+$_POST = array();
+mysqli_close($conn);
+
+<script src = "js/confirm-form.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.form-validator.js"></script>
+<script src="js/validate.js"></script>
+
+onsubmit = "return check();"
+
+<meta http-equiv="refresh" content="1; url=customers.php" />
+<option value = -999></option>
+}else if(($_POST["ia"]) != -999){
+
+			<?php
+				}else{
+			?>
+					<meta http-equiv='refresh' content='0; url=<?php echo $_SERVER["PHP_SELF"]; ?>' />
+			<?php
+				}
+			?>
+			
+			data-validation="required"

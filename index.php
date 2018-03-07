@@ -37,10 +37,11 @@
 						<img id = "home-banner" src = "images/ultra-banner.png" alt = "DFPPI Data Bank">
 					</div>
 					<form  method = "post" action = "index.php" autocomplete = "off">
-						Employee ID <br><input class = "login-form" maxlength="8" id="e_Id" name = "user" type = "text" title = "Please enter your designated ID number" autofocus required = "required"><br><br>
-						Password <br><input class = "login-form" name = "pass" title = "Please enter your password" type = "password" required = "required"><br><br>
+						Employee ID <br><input type="text" class = "login-form" id="e_Id" name = "user"  autofocus data-validation="alphanumeric required" maxlength="8" ><br><br>
+						Password <br><input type = "password"  class = "login-form" name = "pass" title = "Please enter your password" data-validation="alphanumeric required" maxlength="8"><br><br>
 						<input id = "go-form" title = "Login Account" type = "submit" value = "Login" >
 					</form>
+					
 				</div>
 			</div>
 		</body>
@@ -97,7 +98,7 @@
 					*/
 					echo "<meta http-equiv='refresh' content='0; url=home.php'/>";
 				
-}else{
+	}else{
 					echo "(NOT)Invalid Access";
 				}
 			}
@@ -106,3 +107,6 @@
 		}
 	}
 ?>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.form-validator.js"></script>
+<script src="js/validate.js"></script>

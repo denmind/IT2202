@@ -29,6 +29,9 @@ menu: C2AC82
 
 
 /*main.html*/
+#viewTableOnly{
+	width: 70%;
+}
 th{
 	font-size: 3vh;
 	text-align: center;

@@ -10,17 +10,19 @@
 	require "sql_connect.php";
 	
 	if ($conn){
-		$y = stripslashes($_POST["op_quantity"]);
-		$z = stripslashes($_POST["o_Id"]);
-		$a = stripslashes($_POST["p_Id"]);
+		$x = $_POST["op_quantity"];
+		$y = $_POST["o_Id"];
+		$z = $_POST["p_Id"];
 		
 		
-		$query = "INSERT INTO `order_products` (`op_Id`, `op_quantity`, `o_Id`, `p_Id`) VALUES (NULL, {$y},  {$z},  {$a})";
+		$query = "INSERT INTO `order_products` 
+				(`op_Id`, `op_quantity`, `o_Id`, `p_Id`)
+				VALUES (NULL,{$x},{$y},{$z})";
 				  
 		
 		echo (mysqli_query($conn,$query)) ? "Submit Success!" : "Failure in submission!";
 		
+		$_POST = array();
 		mysqli_close($conn);
 	}
-	
 ?>

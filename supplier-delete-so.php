@@ -163,17 +163,7 @@
 			?>
 	</body>
 </html>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/bootstrap-datetimepicker.min.js"></script>
 <script src = "js/confirm-form.js"></script>
-<script>
-  $('#form_datetime').datetimepicker({
-        weekStart: 1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		forceParse: 0,
-        showMeridian: 1
-    });
-</script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.form-validator.js"></script>
+<script src="js/validate.js"></script>

@@ -58,8 +58,8 @@
 					
 						<!--Change names-->
 						<p class = "form-body">Customer Names
-							<select required name = "ia" class = "input-form" >
-								<option value = 999></option>
+							<select name = "ia" class = "input-form" data-validation="required">
+								<option value = -999></option>
 								<?php 
 								
 									/*Change indexes*/
@@ -76,7 +76,7 @@
 				</form>
 			</div>
 		<?php
-			}else if(($_POST["ia"]) != 999){
+			}else if(($_POST["ia"]) != -999){
 				/*Change FROM .... and WHERE ... */
 				$find = "SELECT * FROM client WHERE c_Id = '{$_POST["ia"]}'";
 				$r = mysqli_fetch_assoc(mysqli_query($conn,$find));
@@ -99,13 +99,13 @@
 					<div class = "mid-form">
 						<!-- input names and indexes change-->
 						<p class = "form-body">ID
-						<input type = "text" name = "c_Id" disabled class = "input-form" maxlength = 11  value = <?php echo $r['c_Id']?> ></p>
+						<input type = "text" name = "c_Id" disabled class = "input-form" value = <?php echo $r['c_Id']?> ></p>
 						<p class = "form-body">First Name 
-						<input type = "text" name = "c_FirstName" required = "required" class = "input-form" maxlength = 32  value = <?php echo $r['c_FirstName']?> ></p>
+						<input type = "text" name = "c_FirstName" class = "input-form" data-validation="length required alphanumeric" data-validation-length="max32" autofocus  value = <?php echo $r['c_FirstName']?> ></p>
 						<p class = "form-body">Last Name
-						<input type = "text" name = "c_LastName" required = "required" class = "input-form" maxlength = 32 value = <?php echo $r['c_LastName']?> ></p>
+						<input type = "text" name = "c_LastName" class = "input-form" data-validation="length required alphanumeric" data-validation-length="max16" value = <?php echo $r['c_LastName']?> ></p>
 						<p class = "form-body">Contact Information
-						<input type = "text" name = "c_contactInfo" required = "required" class = "input-form" maxlength = 64 value = <?php echo $r['c_contactInfo']?> ></p>
+						<input type = "text" name = "c_contactInfo" class = "input-form" data-validation="length required alphanumeric" data-validation-length="max64" data-validation-allowing="(-@.)" value = <?php echo $r['c_contactInfo']?> ></p>
 					</div>
 					<div class = "bot-form">
 						<input type = "submit" value = "Submit Form" class = "input-submit">
@@ -113,12 +113,9 @@
 				</form>
 			</div>
 			<?php
-				}else if($_POST["ia"] == 999){
+				}else{
 			?>
-				<div class = "warn">
-					<p>Properly select a record</p>
-					<a href = "<?php echo $_SERVER['PHP_SELF']?>">Try Again</a>
-				</div>
+					<meta http-equiv='refresh' content='0; url=<?php echo $_SERVER["PHP_SELF"]; ?>' />
 			<?php
 				}
 			?>
