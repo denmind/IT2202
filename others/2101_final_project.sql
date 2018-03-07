@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2018 at 09:33 AM
+-- Generation Time: Mar 07, 2018 at 08:23 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -42,7 +42,7 @@ CREATE TABLE `client` (
 INSERT INTO `client` (`c_Id`, `c_FirstName`, `c_LastName`, `c_contactInfo`) VALUES
 (1, 'Sophia', 'Smith', '552-351-5151'),
 (2, 'Jackson', 'Star', 'jSt@r@yahoo.com'),
-(3, 'Emanuel', 'College', '135-523-113'),
+(3, 'Emanuel', 'Grandio', '+1-202-555-0114'),
 (4, 'Emma', 'Lucas', '513-851-411'),
 (5, 'Olivia', 'Aidan', '951-158-311'),
 (6, 'Ava', 'Lucas', 'AVA5005LUCAS@gmail.com'),
@@ -57,11 +57,20 @@ INSERT INTO `client` (`c_Id`, `c_FirstName`, `c_LastName`, `c_contactInfo`) VALU
 (15, 'Charlotte', 'Jack', 'jack36@myspace.com'),
 (16, 'Aubrey', 'Luke', '551-311-681'),
 (17, 'Avery', 'Michael', '951-781-581'),
-(18, 'Abigail', 'Benjamin', '858-584-113'),
+(18, 'Timothy', 'Benjamin', 'humming@aol.com'),
 (19, 'Kaylee', 'Alexander', 'kyleeAlexander61@gmail.com'),
 (20, 'Layla', 'James', 'conradsworthy@yahoo.com'),
 (21, 'Carla E.', 'Thomas', '1-800-EDISON'),
-(49, 'Billy', 'Joel', 'billy_joel12@ma.com');
+(49, 'Billy', 'Joel', 'billy_joel12@ma.com'),
+(50, 'Mark', 'Posner', 'mrkPosner@yahoo.com'),
+(51, 'Catharina', 'Emilia', '1-123-661-231'),
+(52, 'Peter', 'Lop', 'pl@m.com'),
+(53, 'Peter', 'Lop', 'pl@m.com'),
+(54, 'Johnny', 'Mckinley', '09191213546'),
+(55, 'Johnny', 'Mckinley', '09191213546'),
+(56, 'Johnny', 'Mckinley', '09191213546'),
+(57, 'Peter', 'Porter', 'peters.porter@aol.com'),
+(58, 'Richard', 'Philipps', '+1-202-555-0103');
 
 -- --------------------------------------------------------
 
@@ -72,7 +81,7 @@ INSERT INTO `client` (`c_Id`, `c_FirstName`, `c_LastName`, `c_contactInfo`) VALU
 CREATE TABLE `delivery` (
   `d_Id` int(11) NOT NULL,
   `d_deliverySchedule` date NOT NULL,
-  `d_status` enum('Not started','Finished','','') NOT NULL DEFAULT 'Not started',
+  `d_status` enum('Not started','Finished') NOT NULL DEFAULT 'Not started',
   `f_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -93,7 +102,7 @@ INSERT INTO `delivery` (`d_Id`, `d_deliverySchedule`, `d_status`, `f_id`) VALUES
 (10, '2017-10-10', 'Not started', 13),
 (11, '2017-10-12', 'Not started', 19),
 (12, '2017-10-14', 'Not started', 13),
-(13, '2017-10-20', 'Not started', 19),
+(13, '2018-02-01', 'Not started', 13),
 (14, '2017-10-17', 'Not started', 13),
 (15, '2017-10-09', 'Not started', 19),
 (16, '2017-10-20', 'Not started', 4),
@@ -101,7 +110,9 @@ INSERT INTO `delivery` (`d_Id`, `d_deliverySchedule`, `d_status`, `f_id`) VALUES
 (18, '2017-10-17', 'Not started', 19),
 (19, '2017-10-31', 'Not started', 19),
 (20, '2017-10-09', 'Not started', 19),
-(26, '2018-02-09', 'Not started', 4);
+(26, '2018-02-11', 'Not started', 4),
+(27, '2018-02-16', 'Finished', 19),
+(28, '2018-02-23', 'Not started', 19);
 
 -- --------------------------------------------------------
 
@@ -174,7 +185,7 @@ CREATE TABLE `faculty` (
   `f_lastName` varchar(32) NOT NULL,
   `f_dateHired` date NOT NULL,
   `f_sex` varchar(16) NOT NULL,
-  `f_religion` varchar(16) NOT NULL,
+  `f_religion` varchar(32) NOT NULL,
   `f_address` varchar(128) NOT NULL,
   `f_mobileNo` varchar(32) NOT NULL,
   `f_email` varchar(32) NOT NULL,
@@ -185,7 +196,7 @@ CREATE TABLE `faculty` (
   `f_position` varchar(32) NOT NULL,
   `f_salary` int(11) NOT NULL,
   `f_department` varchar(32) NOT NULL,
-  `f_status` varchar(25) NOT NULL DEFAULT 'Okay' COMMENT 'Okay/Terminated/Fired'
+  `f_status` enum('Okay','Terminated') NOT NULL DEFAULT 'Okay' COMMENT 'Okay/Terminated'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -196,31 +207,26 @@ INSERT INTO `faculty` (`f_id`, `f_firstName`, `f_midInitial`, `f_lastName`, `f_d
 (1, 'Harper', 'A', 'Jayce', '2017-10-02', 'Female', 'Christian', '8545 North Philmont Ave. \r\nLa Porte, IN 46350', '(251) 546-9442', 'harperjayce@icloud.com', '1988-05-04', 'San Antonio,Texas', 'Married', 'English', 'Packaging', 9211, 'Production', 'Okay'),
 (2, 'Ella', 'B', 'Caleb', '2017-10-02', 'Female', 'Christian', '8674 Plumb Branch St. \r\nAshtabula, OH 44004', '(630) 446-8851', 'monopole@sbcglobal.net', '1977-12-24', 'Miami,Florida', 'Married', 'English,Spanish', 'Supervisor', 5029, 'Human Resources', 'Okay'),
 (3, 'Amelia', 'C', 'Connor', '2017-10-04', 'Female', 'Christian', '59 Joy Ridge St. \r\nSatellite Beach, FL 32937', '(549) 178-3181', 'mbalazin@msn.com', '1968-07-12', 'Sacramento,California', 'Divorced', 'English,French', 'Supervisor', 7514, 'Human Resources', 'Okay'),
-(4, 'Ella', 'D', 'Caleb', '2017-10-04', 'Female', 'Christian', '958 Miles Street Centreville, VA 20120', '(103) 870-8098', 'eimear@outlook.com', '1969-01-21', 'Anaheim,California', 'Single', 'English,Spanish', 'Driver', 2481, 'Delivery & Transportation', 'Okay'),
+(4, 'Carol', 'D', 'Wozniack', '2017-10-04', 'Male', 'Christian', '958 Miles Street Centreville, VA 20120', '(103)', 'eimear@outlook.com', '1969-01-21', 'Anaheim,California', 'Single', 'English,Spanish', 'Driver', 2481, 'Delivery & Transportation', 'Okay'),
 (5, 'William', 'G', 'Clayton', '2017-10-05', 'Male', 'Christian', '7256 Alton Lane \r\nAnoka, MN 55303', '(546) 250-8714', 'rhavyn@aol.com', '1987-06-07', 'Raleigh,North Carolina', 'Single', 'English,Portuguese', 'Director', 9866, 'Sales & Finances', 'Okay'),
 (6, 'Riley', 'Q', 'Reins', '2017-10-23', 'Male', 'Christian', '9761 Greenrose Drive \r\nBradenton, FL 34203', '(589) 176-1355', 'joglo@aol.com', '1969-02-02', 'Corpus Christi,Texas', 'Married', 'English,Spanish', 'Employee', 1884, 'Inventory', 'Okay'),
-(7, 'Carter', 'I', 'Sean', '2017-10-07', 'Male', 'Christian', '59 Sulphur Springs Ave. \r\nTualatin, OR 97062', '(884) 746-4483', 'seano@gmail.com', '1989-07-01', 'Pittsburgh,Pennsylvania', 'Single', 'English,Spanish', 'Materials Inspector', 9822, 'Production', 'Okay'),
+(7, 'Carter', 'I', 'Sean', '2017-10-07', 'Male', 'Sikhism', '59 Sulphur Springs Ave. \r\nTualatin, OR 97062', '(884)', 'seano@gmail.com', '1989-06-30', 'Pittsburgh,Pennsylvania', 'Single', 'English,Spanish', 'Materials', 9822, 'Production', 'Okay'),
 (8, 'Aria', 'P', 'Roth', '2017-10-04', 'Female', 'Islam', '72 Depot Avenue \r\nWatertown, MA 02472', '(610) 841-9218', 'keutzer@sbcglobal.net', '1985-04-23', 'Scottsdale,Arizona', 'Single', 'English', 'Sales Representative', 3461, 'Sales & Finances', 'Okay'),
 (9, 'Ryan', 'I', 'Robbins', '2017-10-04', 'Male', 'Islam', '170 NW. Foster Ave. \r\nRaleigh, NC 27603', '(792) 192-8869', 'raides@live.com', '1979-08-20', 'Detroit,Michigan', 'Divorced', 'English,Chinese', 'Materials Inspector', 7836, 'Production', 'Okay'),
 (10, 'Hailey', 'F', 'James', '2017-10-04', 'Female', 'Islam', '7182 Center Rd. \r\nTiffin, OH 44883', '(676) 802-4232', 'luvirini@verizon.net', '1975-08-14', 'Long Beach,California', 'Widowed', 'English,Spanish', 'Inspection', 8798, 'Inventory', 'Okay'),
-(11, 'Landon', 'B', 'Brando', '2017-10-05', 'Male', 'Islam', '7659 Hillcrest Lane \r\nBel Air, MD 21014', '(742) 816-0655', 'kmself@optonline.net', '1983-11-02', 'Arlington,Arizona', 'Married', 'English,Filipino', 'Accountant', 484, 'Sales & Finances', 'Okay'),
+(11, 'Landon', 'B', 'Brando', '2017-10-05', 'Male', 'Islam', '7659 Hillcrest Lane \r\nBel Air, MD 21014', '(742)', 'kmself@optonline.net', '1983-11-02', 'Arlington,Arizona', 'Married', 'English,Filipino', 'Accountant', 484, 'Sales & Finances', 'Okay'),
 (12, 'Nora', 'W', 'Isaac', '2017-10-04', 'Female', 'Islam', '8339 Elizabeth Drive \r\nStaunton, VA 24401', '(436) 213-2791', 'avalon@aol.com', '1974-04-18', 'Chicago,Illinois', 'Married', 'English,Chinese', 'Materials Inspector', 6024, 'Production', 'Okay'),
-(13, 'Sebastian', 'Q', 'Addison', '2017-10-04', 'Male', 'Islam', '8 Tailwater Ave. \r\nMurfreesboro, TN 37128', '(330) 123-8721', 'moonlapse@aol.com', '1979-09-07', 'Virginia Beach,Virginia', 'Divorced', 'English', 'Driver', 8670, 'Delivery & Transportation', 'Okay'),
-(14, 'Hannah', 'H', 'Brooklyn', '2017-10-07', 'Female', 'Islam', '65A Littleton Ave. \r\nLansdale, PA 19446', '(950) 143-2831', 'bancboy@aol.com', '1988-08-20', '', 'Single', 'English,Niponggo', 'Superintendent', 5278, 'Human Resources', 'Okay'),
+(13, 'Amanda', 'Q', 'Arspen', '2018-02-01', 'Female', 'Hinduism', '8 Tailwater Ave. \r\nMurfreesboro, TN 371282', '(330)', 'moonlapse@aol.com', '1985-02-09', 'Virginia', 'Single', 'English', 'Driver', 8670, 'Delivery & Transportation', 'Okay'),
+(14, 'Tina', 'H', 'Brooklyn', '2017-10-07', 'Female', 'Islam', '65A Littleton Ave. \r\nLansdale, PA 19446', '(950)', 'bancboy@aol.com', '1988-08-20', '#55 Augustin Avenue', 'Single', 'English,Niponggo', 'Superintendent', 5278, 'Human Resources', 'Okay'),
 (15, 'Muhammad', 'F', 'El Sharawi', '2017-10-12', 'Male', 'Islam', '740 W. Broad St. \r\nSewell, NJ 08080', '(443) 337-0394', 'miyop@sbcglobal.net', '1984-09-05', 'Lincoln,Nebraska', 'Married', 'English,Korean', 'Notary Personnel', 379, 'Sales & Finances', 'Okay'),
-(16, 'Cameron', 'G', 'Agustus', '2017-10-17', 'Male', 'Hinduism', '7709 Rockaway Court \r\nMenasha, WI 54952', '(578) 978-0334', 'kewley@comcast.net', '1989-06-05', 'Indianapolis,Indiana', 'Single', 'English,Mandarin', 'Manager', 6062, 'Production', 'Okay'),
+(16, 'Cameron', 'G', 'Agustus', '2017-10-17', 'Male', 'Hinduism', '7709 Rockaway Court \r\nMenasha, WI 54952', '(578)', 'kewley@comcast.net', '1989-06-05', 'Indianapolis,Indiana', 'Single', 'English,Mandarin', 'Manager', 6062, 'Production', 'Okay'),
 (17, 'Mila', 'D', 'Jancovich', '2017-10-22', 'Female', 'Hinduism', '672 Ivy Street \r\nJeffersonville, IN 47130', '(986) 224-6780', 'bjornk@icloud.com', '1975-04-02', 'Fort Wayne,Indiana', 'Married', 'English,Spanish', 'Manager', 9173, 'Inventory', 'Okay'),
 (18, 'Leah', 'C', 'Barnes', '2017-10-18', 'Female', 'Buddhism', '18 Vale St. \r\nBurbank, IL 60459', '(772) 836-4053', 'nicktrig@verizon.net', '1976-09-15', 'Modesto,California', 'Divorced', 'English', 'Assistant Director', 7678, 'Human Resources', 'Okay'),
 (19, 'Wyatt', 'B', 'Brianston', '2017-10-12', 'Male', 'Sikhism', '630 E. Selby St. \r\nMadisonville, KY 42431', '(699) 700-5914', 'ehood@optonline.net', '1973-11-15', 'Chesapeake,Virginia', 'Widowed', 'English,French', 'Driver', 873, 'Delivery & Transportation', 'Okay'),
 (20, 'Elizabeth', 'A', 'Dylan', '2017-10-04', 'Female', 'Baptist', '7553 Miller St. \r\nStamford, CT 06902', '(894) 517-5277', 'storerm@sbcglobal.net', '1975-12-05', 'Mesa,Arizona', 'Married', 'English,German', 'Cashier', 1330, 'Sales & Finances', 'Okay'),
-(21, 'Francis', 'J', 'Caboyo', '0000-00-00', 'Male', 'Roman Catholic', '#Hidden Valley, Barangay Talamban, Cebu City, Cebu 6000', '+6394216709', 'fcaboyo@gmail.com', '1998-07-24', 'General Santos City', 'Single', 'Filipino, English', 'Intern', 5000, 'Production', 'Okay'),
-(22, 'Francis', 'J', 'Caboyo', '2018-01-24', 'Male', 'Roman Catholic', '#Hidden Valley, Barangay Talamban, Cebu City, Cebu 6000', '+6394216709', 'fcaboyo@gmail.com', '1998-07-24', 'General Santos City', 'Single', 'Filipino, English', 'Intern', 5000, 'Production', 'Okay'),
-(23, '', '', '', '2018-01-24', '', '', '', '', '', '0000-00-00', '', '', '', '', 0, '', 'Okay'),
-(24, 'Francis', 'J', 'Caboyo', '2018-01-25', '', 'Ro', 'asd21312', '12j312ij3i', 'j23@com', '1998-12-24', '2131321', '', '123', '12312', 123123, '', 'Okay'),
-(25, 'asd', 'sadsd', 'sadsad', '2018-01-25', '', 'asdas', 'asd', 'asdasd', 'sadas@sd', '2018-01-01', 'sadsad', '', 'asdsa', 'dsadas', 0, '', 'Okay'),
-(26, 'Francis', 'D', 'Lopez', '2018-01-25', 'Female', 'Pagan', 'Here', '552-32456', 'fcaboyo@gmail.asd', '1654-12-24', 'Eup', 'Single', 'Ismala', 'Intern', 500, 'None', 'Okay'),
-(28, 'ss', 's', 's', '2018-01-29', 'ss', 's', 's', 's', 's@gmai', '2018-01-10', 's', 's', 's', 's', 3, 's', 'Okay'),
-(29, 'Teresa', 'F', 'Beal', '2018-02-09', 'Female', 'Islam', '514 S. Magnolia St.\r\nOrlando, FL 32806', '989-596-2502', 'tbeal@gmail.com', '1995-12-02', 'Wyoming', 'Married', 'English', 'Manager', 32267, 'Human Resources', 'Okay');
+(21, 'Francis', 'J', 'Caboyo', '2018-02-06', 'Male', 'Roman Catholic', 'Hidden Valley, Barangay Talamban, Cebu City, Cebu 6000', '+6394216709', 'fcaboyo@gmail.com', '1998-07-24', 'General', 'Single', 'Filipino', 'Intern', 21000, 'Human Resources', 'Terminated'),
+(29, 'Teresa', 'F', 'Beal', '2018-02-09', 'Female', 'Islam', '514 S. Magnolia St.\r\nOrlando, FL 32806', '989-596-2502', 'tbeal@gmail.com', '1995-12-02', 'Wyoming', 'Married', 'English', 'Manager', 32267, 'Human Resources', 'Okay'),
+(30, 'Chris', 'M', 'Marlon', '2018-03-02', 'Male', 'Christian', '940 N. El Dorado St.\r\nHyde Park, MA 02136', '+1-202-555-0138', 'marlonchris@ymail.com', '1988-02-28', 'Pond, New Jersey', 'Married', 'English', 'Distributor', 1200, 'Sales & Finances', 'Okay');
 
 -- --------------------------------------------------------
 
@@ -284,71 +290,12 @@ INSERT INTO `faculty_attendance` (`fa_Id`, `fa_In`, `fa_Out`, `f_Id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `notify_delivery`
---
-
-CREATE TABLE `notify_delivery` (
-  `n_Id` int(11) NOT NULL,
-  `n_dateTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'When was the notification sent',
-  `d_Id` int(11) NOT NULL,
-  `f_Id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `notify_delivery`
---
-
-INSERT INTO `notify_delivery` (`n_Id`, `n_dateTime`, `d_Id`, `f_Id`) VALUES
-(1, '2017-10-05 04:12:20', 4, 2),
-(2, '2017-10-12 07:17:30', 19, 16),
-(3, '2017-10-21 07:21:18', 13, 2),
-(4, '2017-10-12 09:23:19', 13, 16),
-(5, '2017-10-12 07:17:17', 19, 2),
-(6, '2017-10-04 11:23:22', 19, 16),
-(7, '2017-10-06 07:19:20', 13, 2),
-(8, '2017-10-14 08:18:15', 13, 16),
-(9, '2017-10-02 08:17:20', 19, 2),
-(10, '2017-10-05 10:29:30', 19, 16),
-(11, '2017-10-07 13:28:26', 4, 2),
-(12, '2017-10-05 05:29:11', 4, 16),
-(13, '2017-10-03 16:40:27', 19, 2),
-(14, '2017-10-05 11:23:30', 19, 16),
-(15, '2017-10-03 08:20:19', 13, 2),
-(16, '2017-10-20 08:21:24', 4, 16),
-(17, '2017-10-07 09:37:26', 19, 2),
-(18, '2017-10-05 09:16:20', 19, 16),
-(19, '2017-10-06 07:15:17', 4, 2),
-(20, '2017-10-10 08:21:23', 13, 16),
-(21, '2017-10-08 07:20:27', 4, 3),
-(22, '2017-10-21 09:18:20', 13, 17),
-(23, '2017-10-25 08:19:23', 13, 3),
-(24, '2017-10-06 07:17:16', 13, 17),
-(25, '2017-10-12 08:21:23', 4, 3),
-(26, '2017-10-05 11:25:19', 13, 17),
-(27, '2017-10-19 10:24:23', 4, 3),
-(28, '2017-10-14 08:28:28', 4, 17),
-(29, '2017-10-03 07:20:25', 4, 3),
-(30, '2017-10-05 09:27:26', 19, 17),
-(31, '2017-10-06 07:18:18', 19, 3),
-(32, '2017-10-07 06:24:20', 19, 17),
-(33, '2017-10-13 07:20:16', 19, 3),
-(34, '2017-10-05 06:12:20', 4, 17),
-(35, '2017-10-13 10:25:24', 13, 3),
-(36, '2017-10-05 04:25:22', 19, 17),
-(37, '2017-10-14 11:22:19', 19, 3),
-(38, '2017-10-05 07:17:17', 19, 17),
-(39, '2017-10-25 08:19:21', 13, 3),
-(40, '2017-10-17 08:29:25', 13, 17);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `orders`
 --
 
 CREATE TABLE `orders` (
   `o_Id` int(11) NOT NULL,
-  `o_orderDateTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `o_orderDateTime` date NOT NULL,
   `o_addressOfDelivery` varchar(128) NOT NULL,
   `c_Id` int(11) NOT NULL,
   `f_Id` int(11) NOT NULL,
@@ -360,51 +307,56 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`o_Id`, `o_orderDateTime`, `o_addressOfDelivery`, `c_Id`, `f_Id`, `o_status`) VALUES
-(1, '2017-10-10 15:16:25', '37 Tanglewood Street \r\nKennesaw, GA 30144', 18, 5, 'Not started'),
-(2, '2017-10-14 07:11:12', '209 Hilltop Ave. \r\nLockport, NY 14094', 15, 5, 'Not started'),
-(3, '2017-10-13 09:25:20', '29 Devon Street \r\nWarner Robins, GA 31088', 15, 5, 'Not started'),
-(4, '2017-10-17 08:19:17', '8812 West Golf Road \r\nHolyoke, MA 01040', 17, 5, 'Not started'),
-(5, '2017-10-20 07:15:20', '763 Roosevelt St. \r\nRiverside, NJ 08075', 2, 5, 'Not started'),
-(6, '2017-10-10 10:17:15', '8173 Westport Ave. \r\nRahway, NJ 07065', 2, 5, 'Not started'),
-(7, '2017-10-21 07:19:20', '687 High Ridge Ave. \r\nFt Mitchell, KY 41017', 3, 5, 'Not started'),
-(8, '2017-10-10 07:17:20', '652 Bohemia Road \r\nEast Northport, NY 11731', 11, 5, 'Not started'),
-(9, '2017-10-20 07:23:27', '9657 Madison Ave. \r\nRoyal Oak, MI 48067', 4, 8, 'Not started'),
-(10, '2017-10-20 11:22:25', '89 Princeton Road \r\nAmes, IA 50010', 9, 8, 'Not started'),
-(11, '2017-10-13 09:19:17', '15 Tailwater St. \r\nLancaster, NY 14086', 11, 8, 'Not started'),
-(12, '2017-10-30 07:24:24', '97 Wayne St. \r\nRockville Centre, NY 11570', 7, 8, 'Not started'),
-(13, '2017-10-26 06:17:18', '773 Hill Field Drive \r\nDelaware, OH 43015', 5, 8, 'Not started'),
-(14, '2017-10-12 04:10:14', '20 Sycamore St. \r\nAnn Arbor, MI 48103', 2, 8, 'Not started'),
-(15, '2017-10-05 09:23:17', '83 Tanglewood Lane \r\nLatrobe, PA 15650', 15, 8, 'Not started'),
-(16, '2017-10-22 07:16:21', '85 Piper Circle \r\nApex, NC 27502', 8, 8, 'Not started'),
-(17, '2017-10-06 14:14:19', '93 Park Drive \r\nIndianapolis, IN 46201', 17, 11, 'Not started'),
-(18, '2017-10-27 11:28:26', '577 Greystone Drive \r\nMerrimack, NH 03054', 1, 11, 'Not started'),
-(19, '2017-10-06 10:19:19', '9449 Lafayette Dr. \r\nNewport News, VA 23601', 13, 11, 'Not started'),
-(20, '2017-10-13 08:20:20', '98 Glenwood St. Lowell, MA 01851', 2, 11, 'Not started'),
-(21, '2017-10-14 13:23:19', '736 Hickory St. \r\nWestlake, OH 44145', 13, 11, 'Not started'),
-(22, '2017-10-07 08:28:24', '5 Hilldale Rd. \r\nDanbury, CT 06810', 17, 11, 'Not started'),
-(23, '2017-10-23 08:19:26', '1 Wintergreen Road \r\nRosedale, NY 11422', 5, 11, 'Not started'),
-(24, '2017-10-07 07:18:19', '8139 Foster Drive \r\nElk River, MN 55330', 13, 11, 'Not started'),
-(25, '2017-10-20 07:17:23', '9656 Beaver Ridge St. \r\nCincinnati, OH 45211', 12, 15, 'Not started'),
-(26, '2017-10-10 09:23:29', '11 Wintergreen Street \r\nNew Hyde Park, NY 11040', 20, 15, 'Not started'),
-(27, '2017-10-24 07:21:24', '3 Briarwood Street \r\nIndianapolis, IN 46201', 2, 15, 'Not started'),
-(28, '2017-10-15 08:18:18', '7700 Meadow Road \r\nSouthgate, MI 48195', 13, 15, 'Not started'),
-(29, '2017-10-21 10:21:27', '821 Blackburn Ave. \r\nSkokie, IL 60076', 18, 15, 'Not started'),
-(30, '2017-10-20 10:24:19', '931 Griffin St. \r\nNiagara Falls, NY 14304', 12, 15, 'Not started'),
-(31, '2017-10-15 11:25:21', '11 Madison Court \r\nVernon Rockville, CT 06066', 6, 15, 'Not started'),
-(32, '2017-10-18 10:25:15', '509 Locust St. \r\nFond Du Lac, WI 54935', 13, 15, 'Not started'),
-(33, '2017-10-09 10:24:23', '971 South Mill Pond Ave. \r\nGalloway, OH 43119', 6, 20, 'Not started'),
-(34, '2017-10-05 09:22:23', '8535 Hawthorne Dr. \r\nDerry, NH 03038', 13, 20, 'Not started'),
-(35, '2017-10-06 07:19:19', '9095 Meadowbrook Ave. \r\nLake Jackson, TX 77566', 6, 20, 'Not started'),
-(36, '2017-10-14 08:22:19', '118 Applegate Ave. \r\nLeesburg, VA 20175', 11, 20, 'Not started'),
-(37, '2017-10-17 09:15:19', '572C West William St. \r\nMcallen, TX 78501', 17, 20, 'Not started'),
-(38, '2017-10-28 08:24:21', '47 S. Howard Dr. \r\nSimpsonville, SC 29680', 10, 20, 'Not started'),
-(39, '2017-10-10 06:16:15', '7170 College St. \r\nWestmont, IL 60559', 1, 20, 'Not started'),
-(40, '2017-10-09 07:20:20', '157 Oak Valley Ave. \r\nCheshire, CT 06410', 15, 20, 'Not started'),
-(123, '2018-02-05 14:11:15', '', 6, 25, 'Not started'),
-(126, '2018-02-05 14:18:15', 'HERE', 11, 23, 'Not started'),
-(127, '2018-02-08 23:29:15', '					3', 5, 2, 'Not started'),
-(128, '2018-02-08 23:54:04', '44 Shirley Ave.\r\nWest Chicago, IL 60185', 18, 18, 'Not started'),
-(129, '2018-02-08 23:54:46', '44 Shirley Ave.\r\nWest Chicago, IL 60185', 18, 18, 'Not started');
+(1, '2017-10-10', '37 Tanglewood Street \r\nKennesaw, GA 30144', 18, 5, 'Not started'),
+(2, '2017-10-14', '209 Hilltop Ave. \r\nLockport, NY 14094', 15, 5, 'Not started'),
+(3, '2017-10-13', '29 Devon Street \r\nWarner Robins, GA 31088', 15, 5, 'Not started'),
+(4, '2017-10-17', '8812 West Golf Road \r\nHolyoke, MA 01040', 17, 5, 'Not started'),
+(5, '2017-10-20', '763 Roosevelt St. \r\nRiverside, NJ 08075', 2, 5, 'Not started'),
+(6, '2017-10-10', '8173 Westport Ave. \r\nRahway, NJ 07065', 2, 5, 'Not started'),
+(7, '2017-10-21', '687 High Ridge Ave. \r\nFt Mitchell, KY 41017', 3, 5, 'Not started'),
+(8, '2017-10-10', '652 Bohemia Road \r\nEast Northport, NY 11731', 11, 5, 'Not started'),
+(9, '2017-10-20', '9657 Madison Ave. \r\nRoyal Oak, MI 48067', 4, 8, 'Not started'),
+(10, '2017-10-20', '89 Princeton Road \r\nAmes, IA 50010', 9, 8, 'Not started'),
+(11, '2017-10-13', '15 Tailwater St. \r\nLancaster, NY 14086', 11, 8, 'Not started'),
+(12, '2017-10-30', '97 Wayne St. \r\nRockville Centre, NY 11570', 7, 8, 'Not started'),
+(13, '2017-10-26', '773 Hill Field Drive \r\nDelaware, OH 43015', 5, 8, 'Not started'),
+(14, '2017-10-12', '20 Sycamore St. \r\nAnn Arbor, MI 48103', 2, 8, 'Not started'),
+(15, '2017-10-05', '83 Tanglewood Lane \r\nLatrobe, PA 15650', 15, 8, 'Not started'),
+(16, '2017-10-22', '85 Piper Circle \r\nApex, NC 27502', 8, 8, 'Not started'),
+(17, '2017-10-06', '93 Park Drive \r\nIndianapolis, IN 46201', 17, 11, 'Not started'),
+(18, '2017-10-27', '577 Greystone Drive \r\nMerrimack, NH 03054', 1, 11, 'Not started'),
+(19, '2017-10-06', '9449 Lafayette Dr. \r\nNewport News, VA 23601', 13, 11, 'Not started'),
+(20, '2017-10-13', '98 Glenwood St. Lowell, MA 01851', 2, 11, 'Not started'),
+(21, '2017-10-14', '736 Hickory St. \r\nWestlake, OH 44145', 13, 11, 'Not started'),
+(22, '2017-10-07', '5 Hilldale Rd. \r\nDanbury, CT 06810', 17, 11, 'Not started'),
+(23, '2017-10-23', '1 Wintergreen Road \r\nRosedale, NY 11422', 5, 11, 'Not started'),
+(24, '2017-10-07', '8135 Foster Drive \r\nElk River, MN 55330', 52, 11, 'In production'),
+(25, '2017-10-20', '9656 Beaver Ridge St. \r\nCincinnati, OH 45211', 12, 15, 'Not started'),
+(26, '2017-10-10', '11 Wintergreen Street \r\nNew Hyde Park, NY 11040', 20, 15, 'Not started'),
+(27, '2017-10-24', '3 Briarwood Street \r\nIndianapolis, IN 46201', 2, 15, 'Not started'),
+(28, '2017-10-15', '7700 Meadow Road \r\nSouthgate, MI 48195', 13, 15, 'Not started'),
+(29, '2017-10-21', '821 Blackburn Ave. \r\nSkokie, IL 60076', 18, 15, 'Not started'),
+(30, '2017-10-20', '931 Griffin St. \r\nNiagara Falls, NY 14304', 12, 15, 'Not started'),
+(31, '2017-10-15', '11 Madison Court \r\nVernon Rockville, CT 06066', 6, 15, 'Not started'),
+(32, '2017-10-18', '509 Locust St. \r\nFond Du Lac, WI 54935', 13, 15, 'Not started'),
+(33, '2017-10-09', '971 South Mill Pond Ave. \r\nGalloway, OH 43119', 6, 20, 'Not started'),
+(34, '2017-10-05', '8535 Hawthorne Dr. \r\nDerry, NH 03038', 13, 20, 'Not started'),
+(35, '2017-10-06', '9095 Meadowbrook Ave. \r\nLake Jackson, TX 77566', 6, 20, 'Not started'),
+(36, '2017-10-14', '118 Applegate Ave. \r\nLeesburg, VA 20175', 11, 20, 'Not started'),
+(37, '2017-10-17', '572C West William St. \r\nMcallen, TX 78501', 17, 20, 'Not started'),
+(38, '2017-10-28', '47 S. Howard Dr. \r\nSimpsonville, SC 29680', 10, 20, 'Not started'),
+(39, '2017-10-10', '7170 College St. \r\nWestmont, IL 60559', 1, 20, 'Not started'),
+(40, '2017-10-09', '157 Oak Valley Ave. \r\nCheshire, CT 06410', 15, 20, 'Not started'),
+(41, '2018-02-28', '70 Bowman St.\r\nSouth Windsor, CT 06074', 9, 5, 'Not started'),
+(42, '2018-02-28', '70 Bowman St.\r\nSouth Windsor, CT 06074', 9, 5, 'Not started'),
+(43, '2018-02-28', '514 S. Magnolia St.\r\nOrlando, FL 32806', 5, 11, 'Not started'),
+(44, '2018-02-28', '71 Pilgrim Avenue\r\nChevy Chase, MD 20815', 4, 20, 'Not started'),
+(45, '2018-02-28', '71 Pilgrim Avenue\r\nChevy Chase, MD 20815', 4, 20, 'Not started'),
+(46, '2018-02-28', '148 Catherine Street\r\nWaynesboro, PA 17268', 5, 15, 'Not started'),
+(47, '2018-02-28', '148 Catherine Street\r\nWaynesboro, PA 17268', 5, 15, 'Not started'),
+(48, '2018-03-02', '7633 Lafayette Street\r\nLos Banos, CA 93635', 10, 15, 'Not started'),
+(49, '2018-03-02', '53 South Cardinal St.\r\nChester, PA 19013', 18, 20, 'Not started'),
+(50, '2018-03-02', '870 Crowfield Road', 14, 11, 'Not started');
 
 -- --------------------------------------------------------
 
@@ -463,69 +415,16 @@ INSERT INTO `order_products` (`op_Id`, `op_quantity`, `o_Id`, `p_Id`) VALUES
 (37, 61, 34, 7),
 (38, 34, 23, 17),
 (39, 49, 38, 5),
-(40, 41, 12, 6);
+(40, 41, 12, 6),
+(41, 32, 1, 16);
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `production`
 --
-
-CREATE TABLE `production` (
-  `prdn_Id` int(11) NOT NULL,
-  `prdn_date` date NOT NULL,
-  `prdn_quantity` int(11) NOT NULL,
-  `status` enum('Not started','Finished','','') NOT NULL DEFAULT 'Not started',
-  `f_Id` int(11) NOT NULL,
-  `p_Id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `production`
---
-
-INSERT INTO `production` (`prdn_Id`, `prdn_date`, `prdn_quantity`, `status`, `f_Id`, `p_Id`) VALUES
-(1, '2017-10-04', 43, 'Not started', 1, 5),
-(2, '2017-10-15', 92, 'Not started', 1, 17),
-(3, '2017-10-04', 54, 'Not started', 1, 3),
-(4, '2017-10-11', 2, 'Not started', 1, 15),
-(5, '2017-10-05', 60, 'Not started', 1, 16),
-(6, '2017-10-07', 19, 'Not started', 1, 11),
-(7, '2017-10-01', 18, 'Not started', 1, 5),
-(8, '2017-10-03', 78, 'Not started', 1, 2),
-(9, '2017-10-03', 21, 'Not started', 7, 14),
-(10, '2017-10-01', 89, 'Not started', 7, 7),
-(11, '2017-10-07', 8, 'Not started', 7, 7),
-(12, '2017-10-23', 50, 'Not started', 7, 9),
-(13, '2017-10-11', 84, 'Not started', 7, 16),
-(14, '2017-10-22', 40, 'Not started', 7, 13),
-(15, '2017-10-15', 99, 'Not started', 7, 1),
-(16, '2017-10-07', 28, 'Not started', 7, 5),
-(17, '2017-10-04', 48, 'Not started', 9, 12),
-(18, '2017-10-12', 61, 'Not started', 9, 4),
-(19, '2017-10-08', 23, 'Not started', 9, 10),
-(20, '2017-10-18', 81, 'Not started', 9, 11),
-(21, '2017-10-11', 27, 'Not started', 9, 15),
-(22, '2017-10-19', 92, 'Not started', 9, 7),
-(23, '2017-10-01', 10, 'Not started', 9, 8),
-(24, '2017-10-03', 62, 'Not started', 9, 19),
-(25, '2017-10-03', 92, 'Not started', 12, 15),
-(26, '2017-10-01', 94, 'Not started', 12, 10),
-(27, '2017-10-18', 58, 'Not started', 12, 9),
-(28, '2017-10-02', 49, 'Not started', 12, 2),
-(29, '2017-10-26', 6, 'Not started', 12, 20),
-(30, '2017-10-20', 73, 'Not started', 12, 14),
-(31, '2017-10-17', 29, 'Not started', 12, 8),
-(32, '2017-10-11', 1, 'Not started', 12, 18),
-(33, '2017-10-18', 54, 'Not started', 16, 19),
-(34, '2017-10-03', 20, 'Not started', 16, 2),
-(35, '2017-10-08', 88, 'Not started', 16, 2),
-(36, '2017-10-01', 92, 'Not started', 16, 6),
-(37, '2017-10-19', 64, 'Not started', 16, 7),
-(38, '2017-10-28', 86, 'Not started', 16, 5),
-(39, '2017-10-27', 63, 'Not started', 16, 9),
-(40, '2017-10-04', 23, 'Not started', 16, 18),
-(53, '2018-02-07', 1, 'Not started', 16, 24);
+-- Error reading structure for table 2101_final_project.production: #1932 - Table '2101_final_project.production' doesn't exist in engine
+-- Error reading data for table 2101_final_project.production: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `2101_final_project`.`production`' at line 1
 
 -- --------------------------------------------------------
 
@@ -540,7 +439,7 @@ CREATE TABLE `products` (
   `p_type` enum('Container','Vacuum Pack','Strap','Sticker','Post','General') NOT NULL DEFAULT 'General',
   `p_weight` int(11) NOT NULL COMMENT 'Weight of each product',
   `p_price` double NOT NULL,
-  `status` enum('Outdated','In-use','','') NOT NULL
+  `status` enum('Outdated','In-use') NOT NULL DEFAULT 'In-use'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -548,32 +447,29 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`p_Id`, `p_name`, `p_descp`, `p_type`, `p_weight`, `p_price`, `status`) VALUES
-(1, 'Light Sanstrong', 'Lightweight Container', 'Vacuum Pack', 32, 1112.56, 'Outdated'),
-(2, 'Lottip', 'High quality container', 'Container', 32, 2531.31, 'Outdated'),
-(3, 'Randex', 'Low priced label', 'Sticker', 22, 725.31, 'Outdated'),
-(4, 'Zamsaohold', 'Durable and Versatile Vacuum Pack', 'Vacuum Pack', 12, 325.31, 'Outdated'),
-(5, 'Santone', 'Low priced strap', 'Strap', 42, 525.31, 'Outdated'),
-(6, 'Silver Remtom', 'Extremely weather resistant', 'Strap', 23, 2547.31, 'Outdated'),
-(7, 'Techstring', 'High quality label', 'Sticker', 26, 2253.21, 'Outdated'),
-(8, 'Lam Nimlux', 'Child and Animal Friendly', 'Sticker', 21, 2225.31, 'Outdated'),
-(9, 'Holdla', 'Extremely weather resistant', 'Post', 27, 3181.31, 'Outdated'),
-(10, 'Candex', 'Water and Grease Proof', 'Strap', 16, 2615.31, 'Outdated'),
-(11, 'Zunla', 'Long lasting', 'Post', 18, 4225.31, 'Outdated'),
-(12, 'Zen-Job', 'Durable and Versatile', 'Vacuum Pack', 57, 1416.31, 'Outdated'),
-(13, 'Tamplex', 'Environmentally safe', 'Strap', 42, 1225.31, 'Outdated'),
-(14, 'Fintip', 'Child and Animal Friendly', 'Container', 49, 925.31, 'Outdated'),
-(15, 'Gold-Tech', 'CFC Free', 'Vacuum Pack', 21, 2215.31, 'Outdated'),
-(16, 'Dong Sildom', 'No poisonous materials', 'Container', 16, 1125.31, 'Outdated'),
-(17, 'Danfix', 'Durable and Versatile', 'Sticker', 41, 525.31, 'Outdated'),
-(18, 'Tempfan', 'High quality', 'Vacuum Pack', 38, 4125.31, 'Outdated'),
-(19, 'Inch-Strong', 'Industrial usage', 'Post', 33, 7125.31, 'Outdated'),
-(20, 'Unoplus', 'Water and Grease Proof', 'Vacuum Pack', 27, 1825.31, 'Outdated'),
-(21, 'Product', 'Good item', '', 0, 512, 'Outdated'),
-(22, 'Inch-long', 'Good', '', 0, 951, 'Outdated'),
-(23, 'Priact', 'Good item', 'Container', 91, 882, 'Outdated'),
-(24, 'Blue Pills', 'Good thing', '', 12, 918, 'Outdated'),
-(25, 'Box', 'Goods', 'Container', 12, 91, 'Outdated'),
-(32, 'fasdsd', 'Asdsd', 'Container', 66123, 23123, 'Outdated');
+(1, 'Light Sanstrong', 'Lightweight Container', 'Vacuum Pack', 32, 1112.56, 'In-use'),
+(2, 'Lottip', 'High quality container', 'Container', 32, 2531.31, 'In-use'),
+(3, 'Randex', 'Low priced label', 'Sticker', 22, 725.31, 'In-use'),
+(4, 'Zamsaohold', 'Durable and Versatile Vacuum Pack', 'Vacuum Pack', 12, 325.31, 'In-use'),
+(5, 'Santone', 'Low priced strap', 'Strap', 42, 525.31, 'In-use'),
+(6, 'Silver Remtom', 'Extremely weather resistant', 'Strap', 23, 2547.31, 'In-use'),
+(7, 'Techstring', 'High quality label', 'Sticker', 26, 2253.21, 'In-use'),
+(8, 'Lam Nimlux', 'Child and Animal Friendly', 'Sticker', 21, 2225.31, 'In-use'),
+(9, 'Holdla', 'Extremely weather resistant', 'Post', 27, 3181.31, 'In-use'),
+(10, 'Candex', 'Water and Grease Proof', 'Strap', 16, 2615.31, 'In-use'),
+(11, 'Zunla', 'Long lasting', 'Post', 18, 4225.31, 'In-use'),
+(12, 'Zen-Job', 'Durable and Versatile', 'Vacuum Pack', 57, 1416.31, 'In-use'),
+(13, 'Tamplex', 'Environmentally safe', 'Strap', 42, 1225.31, 'In-use'),
+(14, 'Fintip', 'Child and Animal Friendly', 'Container', 49, 925.31, 'In-use'),
+(15, 'Gold-Tech', 'CFC Free', 'Vacuum Pack', 21, 2215.31, 'In-use'),
+(16, 'Dong Sildom', 'No poisonous materials', 'Container', 16, 1125.31, 'In-use'),
+(17, 'Danfix', 'Durable and Versatile', 'Sticker', 41, 525.31, 'In-use'),
+(18, 'Tempfan', 'High quality', 'Vacuum Pack', 38, 4125.31, 'In-use'),
+(19, 'Inch-Strong', 'Industrial usage', 'Post', 33, 7125.31, 'In-use'),
+(20, 'Unoplus', 'Water and Grease Proof', 'Vacuum Pack', 27, 1825.31, 'In-use'),
+(23, 'Priact', 'Good item', 'Container', 91, 882, 'In-use'),
+(25, 'Box', 'Goods', 'Container', 12, 91, 'In-use'),
+(32, 'Valdern', 'Asdsd', 'Container', 3, 23, 'In-use');
 
 -- --------------------------------------------------------
 
@@ -843,69 +739,16 @@ INSERT INTO `supplier` (`supp_Id`, `supp_name`, `supp_address`, `supp_contact`, 
 (19, 'Anvux', '71 N. Creek Ave. \r\nMadison, AL 35758', 'crypt@live.com', 'On-contract'),
 (20, 'Fingenic', '9737 Hill Court \r\nHialeah, FL 33010', '(583) 227-9238', 'On-contract'),
 (21, 'Thesee', 'Anywhere,Anytime', 'drags@ymail.com', 'On-contract'),
-(22, 'new', 'popo\r\n', '123', 'On-contract');
+(22, 'new', 'popo\r\n', '123', 'On-contract'),
+(23, 'Irvin', '4473 Rainy Day Drive', '602-763-6986', 'On-contract');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `supply_orders`
 --
-
-CREATE TABLE `supply_orders` (
-  `so_Id` int(11) NOT NULL,
-  `so_DateTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `so_quantityOrdered` int(11) NOT NULL,
-  `status` enum('Not started','Finished','','') NOT NULL,
-  `f_Id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `supply_orders`
---
-
-INSERT INTO `supply_orders` (`so_Id`, `so_DateTime`, `so_quantityOrdered`, `status`, `f_Id`) VALUES
-(1, '2017-10-05 09:22:18', 38, 'Not started', 5),
-(2, '2017-10-13 08:19:19', 22, 'Not started', 5),
-(3, '2017-10-14 07:14:20', 96, 'Not started', 5),
-(4, '2017-10-20 12:20:21', 13, 'Not started', 5),
-(5, '2017-10-21 14:18:23', 60, 'Not started', 5),
-(6, '2017-10-19 06:17:19', 80, 'Not started', 5),
-(7, '2017-10-07 16:25:25', 62, 'Not started', 5),
-(8, '2017-10-03 08:26:25', 27, 'Not started', 5),
-(9, '2017-10-10 08:19:22', 61, 'Not started', 8),
-(10, '2017-10-05 10:21:21', 17, 'Not started', 8),
-(11, '2017-10-05 10:21:20', 60, 'Not started', 8),
-(12, '2017-10-19 15:27:21', 25, 'Not started', 8),
-(13, '2017-10-17 12:26:28', 43, 'Not started', 8),
-(14, '2017-10-04 15:28:19', 71, 'Not started', 8),
-(15, '2017-10-05 10:25:23', 4, 'Not started', 8),
-(16, '2017-10-20 15:32:26', 48, 'Not started', 8),
-(17, '2017-10-25 12:17:16', 61, 'Not started', 11),
-(18, '2017-10-21 13:23:23', 74, 'Not started', 11),
-(19, '2017-10-09 15:27:25', 18, 'Not started', 11),
-(20, '2017-10-07 16:29:26', 68, 'Not started', 11),
-(21, '2017-10-25 14:25:28', 1, 'Not started', 11),
-(22, '2017-10-24 17:23:20', 20, 'Not started', 11),
-(23, '2017-10-02 09:26:28', 53, 'Not started', 11),
-(24, '2017-10-30 14:30:30', 96, 'Not started', 11),
-(25, '2017-10-07 11:27:27', 47, 'Not started', 15),
-(26, '2017-10-19 10:24:17', 18, 'Not started', 15),
-(27, '2017-10-26 09:18:23', 51, 'Not started', 15),
-(28, '2017-10-14 13:29:20', 59, 'Not started', 15),
-(29, '2017-10-05 13:27:24', 13, 'Not started', 15),
-(30, '2017-10-09 10:08:12', 37, 'Not started', 15),
-(31, '2017-10-20 13:27:27', 11, 'Not started', 15),
-(32, '2017-10-03 06:15:15', 11, 'Not started', 15),
-(33, '2017-10-11 12:21:17', 54, 'Not started', 20),
-(34, '2017-10-08 11:24:27', 11, 'Not started', 20),
-(35, '2017-10-10 11:21:21', 27, 'Not started', 20),
-(36, '2017-10-24 08:20:19', 3, 'Not started', 20),
-(37, '2017-10-19 13:22:20', 87, 'Not started', 20),
-(38, '2017-10-07 14:27:27', 42, 'Not started', 20),
-(39, '2017-10-04 13:27:26', 61, 'Not started', 20),
-(40, '2017-10-19 10:27:18', 44, 'Not started', 20),
-(41, '2018-02-08 15:14:40', 23, 'Not started', 11),
-(42, '2018-02-08 15:18:14', 132, 'Not started', 10);
+-- Error reading structure for table 2101_final_project.supply_orders: #1932 - Table '2101_final_project.supply_orders' doesn't exist in engine
+-- Error reading data for table 2101_final_project.supply_orders: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `2101_final_project`.`supply_orders`' at line 1
 
 --
 -- Indexes for dumped tables
@@ -946,14 +789,6 @@ ALTER TABLE `faculty_attendance`
   ADD KEY `fa_f_Id` (`f_Id`);
 
 --
--- Indexes for table `notify_delivery`
---
-ALTER TABLE `notify_delivery`
-  ADD PRIMARY KEY (`n_Id`),
-  ADD KEY `n_f_Id` (`f_Id`),
-  ADD KEY `n_d_Id` (`d_Id`);
-
---
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
@@ -968,14 +803,6 @@ ALTER TABLE `order_products`
   ADD PRIMARY KEY (`op_Id`),
   ADD KEY `op_o_id` (`o_Id`),
   ADD KEY `op_p_id` (`p_Id`);
-
---
--- Indexes for table `production`
---
-ALTER TABLE `production`
-  ADD PRIMARY KEY (`prdn_Id`),
-  ADD KEY `prdn_f_Id` (`f_Id`),
-  ADD KEY `prdn_p_Id` (`p_Id`);
 
 --
 -- Indexes for table `products`
@@ -1022,13 +849,6 @@ ALTER TABLE `supplier`
   ADD PRIMARY KEY (`supp_Id`);
 
 --
--- Indexes for table `supply_orders`
---
-ALTER TABLE `supply_orders`
-  ADD PRIMARY KEY (`so_Id`),
-  ADD KEY `so_f_Id` (`f_Id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1036,12 +856,12 @@ ALTER TABLE `supply_orders`
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `c_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `c_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 --
 -- AUTO_INCREMENT for table `delivery`
 --
 ALTER TABLE `delivery`
-  MODIFY `d_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `d_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `delivery_orders`
 --
@@ -1051,32 +871,22 @@ ALTER TABLE `delivery_orders`
 -- AUTO_INCREMENT for table `faculty`
 --
 ALTER TABLE `faculty`
-  MODIFY `f_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `f_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `faculty_attendance`
 --
 ALTER TABLE `faculty_attendance`
   MODIFY `fa_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
--- AUTO_INCREMENT for table `notify_delivery`
---
-ALTER TABLE `notify_delivery`
-  MODIFY `n_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
---
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `o_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+  MODIFY `o_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT for table `order_products`
 --
 ALTER TABLE `order_products`
-  MODIFY `op_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
---
--- AUTO_INCREMENT for table `production`
---
-ALTER TABLE `production`
-  MODIFY `prdn_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `op_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT for table `products`
 --
@@ -1106,12 +916,7 @@ ALTER TABLE `storage_products`
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `supp_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
---
--- AUTO_INCREMENT for table `supply_orders`
---
-ALTER TABLE `supply_orders`
-  MODIFY `so_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `supp_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- Constraints for dumped tables
 --
@@ -1136,13 +941,6 @@ ALTER TABLE `faculty_attendance`
   ADD CONSTRAINT `fa_f_Id` FOREIGN KEY (`f_Id`) REFERENCES `faculty` (`f_id`);
 
 --
--- Constraints for table `notify_delivery`
---
-ALTER TABLE `notify_delivery`
-  ADD CONSTRAINT `n_d_Id` FOREIGN KEY (`d_Id`) REFERENCES `delivery` (`d_Id`),
-  ADD CONSTRAINT `n_f_Id` FOREIGN KEY (`f_Id`) REFERENCES `faculty` (`f_id`);
-
---
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
@@ -1155,13 +953,6 @@ ALTER TABLE `orders`
 ALTER TABLE `order_products`
   ADD CONSTRAINT `op_o_id` FOREIGN KEY (`o_Id`) REFERENCES `orders` (`o_Id`),
   ADD CONSTRAINT `op_p_id` FOREIGN KEY (`p_Id`) REFERENCES `products` (`p_Id`);
-
---
--- Constraints for table `production`
---
-ALTER TABLE `production`
-  ADD CONSTRAINT `prdn_f_Id` FOREIGN KEY (`f_Id`) REFERENCES `faculty` (`f_id`),
-  ADD CONSTRAINT `prdn_p_Id` FOREIGN KEY (`p_Id`) REFERENCES `products` (`p_Id`);
 
 --
 -- Constraints for table `raw_materials`
@@ -1185,12 +976,6 @@ ALTER TABLE `storage_delivery_products`
 ALTER TABLE `storage_products`
   ADD CONSTRAINT `sp_p_Id` FOREIGN KEY (`p_Id`) REFERENCES `products` (`p_Id`),
   ADD CONSTRAINT `sp_s_Id` FOREIGN KEY (`s_Id`) REFERENCES `storage` (`s_Id`);
-
---
--- Constraints for table `supply_orders`
---
-ALTER TABLE `supply_orders`
-  ADD CONSTRAINT `so_f_Id` FOREIGN KEY (`f_Id`) REFERENCES `faculty` (`f_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
