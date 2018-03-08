@@ -64,7 +64,7 @@
 				</div>
 			</a>
 			
-			<?php if($_SESSION['privilege'] == 'Delivery & Transportation' || $_SESSION['privilege'] == 'All'){ ?>
+			<?php if($_SESSION['privilege'] == 'Inventory' || $_SESSION['privilege'] == 'All'){ ?>
 				<!---
 				<a href = "inventory-add-materials.php" class = "bloke">
 					<div class = "container">
