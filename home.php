@@ -49,52 +49,234 @@
 			</div>
 		</nav>
 		<p class="main-text">Reports and Information<p>
-		<div class="main-content" id="today"></div>
-		<div class="main-content" id="today"></div>
+		<div id="all-time">
+			<div class="main-content" id="one"></div>
+			<div class="main-content" id="two"></div>
+			<div class="main-content" id="thr"></div>
+			<div class="main-content" id="fou"></div>
+		</div>
 	</body>
 </html>
 <script>
 	//$home_t1
+	 Highcharts.setOptions({
+		 colors: ['#e0c288',
+				  '#bca271',
+				  '#aa9261',
+				  '#87744d',
+				  '#6d5e3f',
+				  '#4f442d',
+				  '#6b5831',
+				  '#755f31']
+	});
+		
+	var chart;
+	
 	$(function () {
-		Highcharts.chart('today', {
+		chart = Highcharts.chart('one', {
+				chart: {
+					type: 'pie',
+					options3d: {
+						enabled: true,
+						alpha: 45,
+						beta: 0
+					}
+				},
+				title: {
+					text: 'Amount invested per product type'
+				},
+				subtitle: {
+					text: 'Percentages shown only'
+				},
+				tooltip: {
+					pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+				},
+				plotOptions: {
+					pie: {
+						allowPointSelect: true,
+						cursor: 'pointer',
+						depth: 35,
+						dataLabels: {
+							enabled: true,
+							format: '{point.name}'
+						}
+					}
+				},
+				series: [{
+					type: 'pie',
+					name: 'Percentage: ',
+					data: [
+						<?php
+							$result = mysqli_query($conn,$home_t1);
+							
+							while($key = mysqli_fetch_assoc($result)){
+								echo "['{$key['p_type']}',{$key['x']}],";
+							}
+						?>
+					]
+				}]
+			});
+		});
+		
+	//$emp_num
+	$(function () {
+		Highcharts.chart('two', {
 			chart: {
-				type: 'pie',
-				options3d: {
-					enabled: true,
-					alpha: 45,
-					beta: 0
-				}
+				type: 'column'
 			},
 			title: {
-				text: 'Amount invested per product type'
+				text: 'Number of Employees per Department'
 			},
-			tooltip: {
-				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+			subtitle: {
+				text: 'All-time record of all personnel hired and assigned'
 			},
-			plotOptions: {
-				pie: {
-					allowPointSelect: true,
-					cursor: 'pointer',
-					depth: 35,
-					dataLabels: {
-						enabled: true,
-						format: '{point.name}'
-					}
-				}
-			},
-			series: [{
-				type: 'pie',
-				name: 'Percentage: ',
-				data: [
+			xAxis: {
+				categories: [
 					<?php
-						$result = mysqli_query($conn,$home_t1);
+						$result = mysqli_query($conn,$emp_num);
 						
 						while($key = mysqli_fetch_assoc($result)){
-							echo "['{$key['p_type']}',{$key['x']}],";
+							echo "'{$key["f_department"]}',";
 						}
 					?>
-				]
-			}]
+				],
+				crosshair: true
+			},
+			yAxis: {
+				min: 0,
+				title: {
+					text: 'n'
+				}
+			},
+			plotOptions: {
+				column: {
+					pointPadding: 0.2,
+					borderWidth: 0
+				}
+			},
+			series: [
+				{
+					name: 'Population',
+					color: '#a08d65',
+					data: [
+						<?php
+							$result = mysqli_query($conn,$emp_num);
+							
+							while($key = mysqli_fetch_assoc($result)){
+								echo "{$key["x"]},";
+							}
+						?>
+						]
+				}
+			]
+		});
+	});
+	
+	//$emp_num
+	$(function () {
+		Highcharts.chart('thr', {
+			chart: {
+				type: 'column'
+			},
+			title: {
+				text: 'Top 7 Most Ordered Products'
+			},
+			subtitle: {
+				text: 'Products that are highly desired by our customers'
+			},
+			xAxis: {
+				categories: [
+					<?php
+						$result = mysqli_query($conn,$op_six);
+					
+						while($key = mysqli_fetch_assoc($result)){
+							echo "'{$key["p_name"]}',";
+						}
+						
+						$result = mysqli_query($conn,$op_six);
+					?>
+				],
+				crosshair: true
+			},
+			yAxis: {
+				min: 0,
+				title: {
+					text: 'n'
+				}
+			},
+			plotOptions: {
+				column: {
+					pointPadding: 0.2,
+					borderWidth: 0
+				}
+			},
+			series: [
+				{
+					name: 'Times Ordered',
+					color: '#a08d65',
+					data: [
+							<?php
+								while($key = mysqli_fetch_assoc($result)){
+									echo "{$key["x"]},";
+								}
+							?>
+						]
+				}
+			]
+		});
+	});
+	
+	//$emp_num
+	$(function () {
+		Highcharts.chart('fou', {
+			chart: {
+				type: 'column'
+			},
+			title: {
+				text: 'Top 7 Most Productive Employees'
+			},
+			subtitle: {
+				text: 'In the "Sales & Finances" Department'
+			},
+			xAxis: {
+				categories: [
+					<?php
+						$result = mysqli_query($conn,$emp_ord);
+					
+						while($key = mysqli_fetch_assoc($result)){
+							echo "'{$key["f_firstName"]} {$key["f_lastName"]}',";
+						}
+						
+						$result = mysqli_query($conn,$emp_ord);
+					?>
+				],
+				crosshair: true
+			},
+			yAxis: {
+				min: 0,
+				title: {
+					text: 'n'
+				}
+			},
+			plotOptions: {
+				column: {
+					pointPadding: 0.2,
+					borderWidth: 0
+				}
+			},
+			series: [
+				{
+					name: 'Sales Count',
+					color: '#a08d65',
+					data: [
+							<?php
+								while($key = mysqli_fetch_assoc($result)){
+									echo "{$key["x"]},";
+								}
+							?>
+						]
+				}
+			]
 		});
 	});
 </script>

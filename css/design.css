@@ -110,10 +110,13 @@ ul{
 .main-content{
 	width: 45%;
 	margin-top: 1%;
-	height: 60vh;
+	height: 50vh;
 	margin-left: 2%;
 	border-top: 2px dotted #d4ba85;
 	display: inline-block;
+}
+#ourNav{
+	position: bottom;
 }
 .main-text{
 	text-align: center;
