@@ -9,6 +9,15 @@ body{
 	margin: 5% auto 5% auto;
 	width: 60%;
 }
-#myHead{
+#myHead,#center{
 	text-align: center;
+}
+#myTable{
+	width: 80%; 
+}
+input[placeholder]{
+	font-style: italic;
+}
+#green,#red{
+	font-weight: bolder;
 }

@@ -53,8 +53,9 @@ ul{
 	width: 20%;
 	background-color: #ffffff;
 	border: 1px solid #9b8861;
+	border-radius: 4vh;
 	opacity: .9;
-	font-size: 22px;
+	font-size: 3vh;
 }
 .login-form{
 	padding: 3px;

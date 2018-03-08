@@ -34,7 +34,6 @@
 					<th>#</th>
 					<th>Status</th>
 					<th>User ID</th>
-					<th>Password</th>
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>D.O.R</th>
@@ -47,7 +46,6 @@
 						echo "<td>{$x[0]}</td>";
 						echo "<td>{$x[1]}</td>";
 						echo "<td>{$x[2]}</td>";
-						echo "<td>{$x[3]}</td>";
 						echo "<td>{$x[4]}</td>";
 						echo "<td>{$x[5]}</td>";
 						echo "<td>{$x[6]}</td>";

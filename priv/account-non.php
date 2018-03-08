@@ -5,7 +5,7 @@
 	$main = mysqli_connect("localhost","root","","2101_final_project");
 	
 	if($dfp && $main){
-		$f_q = "SELECT f_firstName,f_lastName FROM faculty ORDER BY f_lastName";
+		$f_q = "SELECT f_firstName,f_lastName,f_department FROM faculty ORDER BY f_lastName";
 		$u_q = "SELECT fn,ln FROM users ORDER BY ln";
 		
 		$f_res = mysqli_query($main,$f_q);
@@ -45,6 +45,7 @@
 						echo "<tr>";
 							echo "<th>First Name</th>";
 							echo "<th>Last Name</th>";
+							echo "<th>Department</th>";
 						echo "</tr>";
 					echo "</thead>";
 					echo "<tbody>";
@@ -63,6 +64,7 @@
 						echo "<tr>";
 						echo "<td>{$f_var["f_firstName"]}</td>"; 
 						echo "<td>{$f_var["f_lastName"]}</td>";
+						echo "<td>{$f_var["f_department"]}</td>";
 						echo "</tr>";
 					}
 				}

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2018 at 08:04 PM
+-- Generation Time: Mar 08, 2018 at 07:29 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -70,7 +70,9 @@ INSERT INTO `client` (`c_Id`, `c_FirstName`, `c_LastName`, `c_contactInfo`) VALU
 (55, 'Johnny', 'Mckinley', '09191213546'),
 (56, 'Johnny', 'Mckinley', '09191213546'),
 (57, 'Peter', 'Porter', 'peters.porter@aol.com'),
-(58, 'Richard', 'Philipps', '+1-202-555-0103');
+(58, 'Richard', 'Philipps', '+1-202-555-0103'),
+(59, 'Mark', 'Valdermann', '1-2305-1221'),
+(60, 'Darwin', 'Caboyo', 'dcaboyo@yahoo.com');
 
 -- --------------------------------------------------------
 
@@ -224,7 +226,7 @@ INSERT INTO `faculty` (`f_id`, `f_firstName`, `f_midInitial`, `f_lastName`, `f_d
 (18, 'Leah', 'C', 'Barnes', '2017-10-18', 'Female', 'Buddhism', '18 Vale St. \r\nBurbank, IL 60459', '(772) 836-4053', 'nicktrig@verizon.net', '1976-09-15', 'Modesto,California', 'Divorced', 'English', 'Assistant Director', 7678, 'Human Resources', 'Okay'),
 (19, 'Wyatt', 'B', 'Brianston', '2017-10-12', 'Male', 'Sikhism', '630 E. Selby St. \r\nMadisonville, KY 42431', '(699) 700-5914', 'ehood@optonline.net', '1973-11-15', 'Chesapeake,Virginia', 'Widowed', 'English,French', 'Driver', 873, 'Delivery & Transportation', 'Okay'),
 (20, 'Elizabeth', 'A', 'Dylan', '2017-10-04', 'Female', 'Baptist', '7553 Miller St. \r\nStamford, CT 06902', '(894) 517-5277', 'storerm@sbcglobal.net', '1975-12-05', 'Mesa,Arizona', 'Married', 'English,German', 'Cashier', 1330, 'Sales & Finances', 'Okay'),
-(21, 'Francis', 'J', 'Caboyo', '2018-02-06', 'Male', 'Roman', 'Hidden Valley, Barangay Talamban, Cebu City, Cebu 6000', '+6394216709', 'fcaboyo@gmail.com', '1998-07-24', 'General', 'Single', 'Filipino,', 'Intern', 5000, 'Human Resources', 'Okay'),
+(21, 'Anthony', 'J', 'Caboyo', '2018-02-06', 'Male', 'Roman', 'Hidden Valley, Barangay Talamban, Cebu City, Cebu 6000', '+6394216709', 'fcaboyo@gmail.com', '1998-07-24', 'General', 'Single', 'Filipino,', 'Intern', 5000, 'Sales & Finances', 'Okay'),
 (29, 'Teresa', 'F', 'Beal', '2018-02-09', 'Female', 'Islam', '514 S. Magnolia St.\r\nOrlando, FL 32806', '989-596-2502', 'tbeal@gmail.com', '1995-12-02', 'Wyoming', 'Married', 'English', 'Manager', 32267, 'Human Resources', 'Okay'),
 (30, 'Chris', 'M', 'Marlon', '2018-03-02', 'Male', 'Christian', '940 N. El Dorado St.\r\nHyde Park, MA 02136', '+1-202-555-0138', 'marlonchris@ymail.com', '1988-02-28', 'Pond, New Jersey', 'Married', 'English', 'Distributor', 1200, 'Sales & Finances', 'Okay');
 
@@ -356,7 +358,8 @@ INSERT INTO `orders` (`o_Id`, `o_orderDateTime`, `o_addressOfDelivery`, `c_Id`, 
 (47, '2018-02-28', '148 Catherine Street\r\nWaynesboro, PA 17268', 5, 15, 'Not started'),
 (48, '2018-03-02', '7633 Lafayette Street\r\nLos Banos, CA 93635', 10, 15, 'Not started'),
 (49, '2018-03-02', '53 South Cardinal St.\r\nChester, PA 19013', 18, 20, 'Not started'),
-(50, '2018-03-02', '870 Crowfield Road', 14, 11, 'Not started');
+(50, '2018-03-02', '870 Crowfield Road', 14, 11, 'Not started'),
+(51, '2018-03-08', '#34 Sampaloc St., General Santos City, General Santos', 60, 15, 'Not started');
 
 -- --------------------------------------------------------
 
@@ -416,7 +419,8 @@ INSERT INTO `order_products` (`op_Id`, `op_quantity`, `o_Id`, `p_Id`) VALUES
 (38, 34, 23, 17),
 (39, 49, 38, 5),
 (40, 41, 12, 6),
-(41, 32, 1, 16);
+(41, 32, 1, 16),
+(42, 125, 51, 20);
 
 -- --------------------------------------------------------
 
@@ -726,7 +730,7 @@ INSERT INTO `storage_products` (`sp_Id`, `sp_quantity`, `sp_dateTimeStored`, `s_
 (12, 88, '2017-10-06 17:36:21', 6, 19),
 (13, 93, '2017-10-30 07:17:20', 8, 6),
 (14, 49, '2017-10-05 08:18:16', 12, 12),
-(15, 78, '2017-10-27 11:25:23', 11, 10),
+(15, 52, '2017-10-27 11:25:23', 11, 10),
 (16, 79, '2017-10-20 07:17:27', 7, 6),
 (17, 6, '2017-10-04 06:16:21', 10, 5),
 (18, 17, '2017-10-12 14:19:27', 10, 19),
@@ -982,7 +986,7 @@ ALTER TABLE `supply_orders`
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `c_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `c_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 --
 -- AUTO_INCREMENT for table `delivery`
 --
@@ -1007,12 +1011,12 @@ ALTER TABLE `faculty_attendance`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `o_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `o_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT for table `order_products`
 --
 ALTER TABLE `order_products`
-  MODIFY `op_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `op_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT for table `production`
 --
@@ -1042,7 +1046,7 @@ ALTER TABLE `storage_delivery_products`
 -- AUTO_INCREMENT for table `storage_products`
 --
 ALTER TABLE `storage_products`
-  MODIFY `sp_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `sp_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `supplier`
 --

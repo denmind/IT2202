@@ -37,8 +37,8 @@
 						<img id = "home-banner" src = "images/ultra-banner.png" alt = "DFPPI Data Bank">
 					</div>
 					<form  method = "post" action = "index.php" autocomplete = "off">
-						Employee ID <br><input type="text" class = "login-form" id="e_Id" name = "user"  autofocus data-validation="alphanumeric required" maxlength="8" ><br><br>
-						Password <br><input type = "password"  class = "login-form" name = "pass" title = "Please enter your password" data-validation="alphanumeric required" maxlength="8"><br><br>
+						Employee ID <br><input type="text" class = "login-form" id="e_Id" name = "user"  autofocus data-validation="required alphanumeric" maxlength="8" ><br><br>
+						Password <br><input type = "password"  class = "login-form" name = "pass" title = "Please enter your password" data-validation="required alphanumeric" maxlength="8"><br><br>
 						<input id = "go-form" title = "Login Account" type = "submit" value = "Login" >
 					</form>
 					
