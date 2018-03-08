@@ -46,7 +46,14 @@
 						 </div>
 					</div>
 				</a>
-				
+				<a href = "deliveries-dop-view.php" class = "bloke">
+					<div class = "container">
+						<img class = "bloke-img" src = "images/dop-view.png" alt = "View/Search for a delivery order" title = "View/Search for a delivery order">
+						<div class="overlay">
+							<div class="text">View/Search for a delivery order</div>
+						 </div>
+					</div>
+				</a>
 				<?php if($_SESSION['privilege'] == 'Delivery & Transportation' || $_SESSION['privilege'] == 'All'){ ?>
 					<a href = "deliveries-add.php" class = "bloke">
 						<div class = "container">
@@ -56,11 +63,27 @@
 							 </div>
 						</div>
 					</a>
+					<a href = "deliveries-dop-add.php" class = "bloke">
+						<div class = "container">
+							<img class = "bloke-img" src = "images/dop-add.png" alt = "Add a delivery order" title = "Add a delivery order">
+							<div class="overlay">
+								<div class="text">Add a delivery order</div>
+							 </div>
+						</div>
+					</a>
 					<a href = "deliveries-delete.php" class = "bloke">
 						<div class = "container">
 							<img class = "bloke-img" src = "images/round-delete.png" alt = "Update schedules" title = "Remove schedules">
 							<div class="overlay">
 								<div class="text">Update schedules</div>
+							 </div>
+						</div>
+					</a>
+					<a href = "deliveries-dop-upd.php" class = "bloke">
+						<div class = "container">
+							<img class = "bloke-img" src = "images/dop-min.png" alt = "Update a delivery order" title = "Update a delivery order">
+							<div class="overlay">
+								<div class="text">Update a delivery order</div>
 							 </div>
 						</div>
 					</a>

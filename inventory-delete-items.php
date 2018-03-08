@@ -67,7 +67,7 @@
 								<?php 
 									/*Change indexes*/
 									while($var = mysqli_fetch_assoc($set)){
-										echo "<option value = {$var["sp_Id"]}>{$var["sp_dateTimeStored"]} / [{$var["s_isleLoc"]}][{$var["s_rowLoc"]}][{$var["s_colLoc"]}] / {$var["p_name"]}</option>";
+										echo "<option value = {$var["sp_Id"]}>{$var["sp_dateTimeStored"]} / {$var["s_isleLoc"]} {$var["s_rowLoc"]} {$var["s_colLoc"]} / {$var["p_name"]}</option>";
 									}
 								?>
 							</select>
