@@ -3,6 +3,19 @@
 	session_start();
 	$fl = $_SESSION["first_name"][0];
 	$ln = $_SESSION["last_name"];
+	
+	require 'sql_connect.php';
+	
+	$s1 = "SELECT COUNT(*),p.p_name
+				FROM order_products op
+				RIGHT JOIN products p
+				ON p.p_Id = op.p_Id
+				GROUP BY p_name
+				ORDER BY (p_name)";
+	$s2 = "SELECT p_name FROM products ORDER BY p_name";
+	
+	$t1 = mysqli_query($conn,$s1);
+	$t2 = mysqli_query($conn,$s2);
 ?>
 <html>
 	<head>
@@ -10,11 +23,10 @@
 		<link rel = "icon" href = "images/logo.png">
 		<link rel = "stylesheet" href = "css/bootstrap.min.css" crossorigin = "anonymous">
 		<link rel = "stylesheet" href = "css/design.css">
-		<script src = "js/jquery.min.js"></script>
-		<script src = "js/bootstrap.min.js"></script>
-		<script src = "js/highcharts.js"></script>
+		<script src="js/jquery.js"></script>
+		<script src="js/highcharts.js"></script>
+		<script src="js/exporting.js"></script>
 	</head>
-	
 	<body>
 		<div class = "ultra-banner">
 			<div class = "left-ub">
@@ -45,21 +57,6 @@
 		<p class="main-text">Reports and Information<p>
 		<div class = "main-content">
 			<div id="today"></div>
-			<div id="today2"></div>
 		</div>
 	</body>
 </html>
-<?php
-	require 'sql_connect.php';
-	
-	$s1 = "SELECT COUNT(*),p.p_name
-				FROM order_products op
-				RIGHT JOIN products p
-				ON p.p_Id = op.p_Id
-				GROUP BY p_name
-				ORDER BY (p_name)";
-	$s2 = "SELECT p_name FROM products ORDER BY p_name";
-	
-	$t1 = mysqli_query($conn,$s1);
-	$t2 = mysqli_query($conn,$s2);
-?>

@@ -53,7 +53,7 @@
 		<div class = "div-form">
 			<form method = "post" autocomplete = "off" action = "add-op.php" onsubmit = "return check();">
 				<div class = "top-form">
-					<p class = "form-header">Customer Information</p>
+					<p class = "form-header">Order Product Information</p>
 				</div>
 				<div class = "mid-form">
 					<p class = "form-body">Product Quantity
