@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2018 at 08:23 AM
+-- Generation Time: Mar 02, 2018 at 08:04 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -185,7 +185,7 @@ CREATE TABLE `faculty` (
   `f_lastName` varchar(32) NOT NULL,
   `f_dateHired` date NOT NULL,
   `f_sex` varchar(16) NOT NULL,
-  `f_religion` varchar(32) NOT NULL,
+  `f_religion` varchar(16) NOT NULL,
   `f_address` varchar(128) NOT NULL,
   `f_mobileNo` varchar(32) NOT NULL,
   `f_email` varchar(32) NOT NULL,
@@ -210,21 +210,21 @@ INSERT INTO `faculty` (`f_id`, `f_firstName`, `f_midInitial`, `f_lastName`, `f_d
 (4, 'Carol', 'D', 'Wozniack', '2017-10-04', 'Male', 'Christian', '958 Miles Street Centreville, VA 20120', '(103)', 'eimear@outlook.com', '1969-01-21', 'Anaheim,California', 'Single', 'English,Spanish', 'Driver', 2481, 'Delivery & Transportation', 'Okay'),
 (5, 'William', 'G', 'Clayton', '2017-10-05', 'Male', 'Christian', '7256 Alton Lane \r\nAnoka, MN 55303', '(546) 250-8714', 'rhavyn@aol.com', '1987-06-07', 'Raleigh,North Carolina', 'Single', 'English,Portuguese', 'Director', 9866, 'Sales & Finances', 'Okay'),
 (6, 'Riley', 'Q', 'Reins', '2017-10-23', 'Male', 'Christian', '9761 Greenrose Drive \r\nBradenton, FL 34203', '(589) 176-1355', 'joglo@aol.com', '1969-02-02', 'Corpus Christi,Texas', 'Married', 'English,Spanish', 'Employee', 1884, 'Inventory', 'Okay'),
-(7, 'Carter', 'I', 'Sean', '2017-10-07', 'Male', 'Sikhism', '59 Sulphur Springs Ave. \r\nTualatin, OR 97062', '(884)', 'seano@gmail.com', '1989-06-30', 'Pittsburgh,Pennsylvania', 'Single', 'English,Spanish', 'Materials', 9822, 'Production', 'Okay'),
+(7, 'Carter', 'I', 'Sean', '2017-10-07', 'Male', 'Christian', '59 Sulphur Springs Ave. \r\nTualatin, OR 97062', '(884)', 'seano@gmail.com', '1989-06-30', 'Pittsburgh,Pennsylvania', 'Single', 'English,Spanish', 'Materials', 9822, 'Production', 'Okay'),
 (8, 'Aria', 'P', 'Roth', '2017-10-04', 'Female', 'Islam', '72 Depot Avenue \r\nWatertown, MA 02472', '(610) 841-9218', 'keutzer@sbcglobal.net', '1985-04-23', 'Scottsdale,Arizona', 'Single', 'English', 'Sales Representative', 3461, 'Sales & Finances', 'Okay'),
 (9, 'Ryan', 'I', 'Robbins', '2017-10-04', 'Male', 'Islam', '170 NW. Foster Ave. \r\nRaleigh, NC 27603', '(792) 192-8869', 'raides@live.com', '1979-08-20', 'Detroit,Michigan', 'Divorced', 'English,Chinese', 'Materials Inspector', 7836, 'Production', 'Okay'),
 (10, 'Hailey', 'F', 'James', '2017-10-04', 'Female', 'Islam', '7182 Center Rd. \r\nTiffin, OH 44883', '(676) 802-4232', 'luvirini@verizon.net', '1975-08-14', 'Long Beach,California', 'Widowed', 'English,Spanish', 'Inspection', 8798, 'Inventory', 'Okay'),
 (11, 'Landon', 'B', 'Brando', '2017-10-05', 'Male', 'Islam', '7659 Hillcrest Lane \r\nBel Air, MD 21014', '(742)', 'kmself@optonline.net', '1983-11-02', 'Arlington,Arizona', 'Married', 'English,Filipino', 'Accountant', 484, 'Sales & Finances', 'Okay'),
 (12, 'Nora', 'W', 'Isaac', '2017-10-04', 'Female', 'Islam', '8339 Elizabeth Drive \r\nStaunton, VA 24401', '(436) 213-2791', 'avalon@aol.com', '1974-04-18', 'Chicago,Illinois', 'Married', 'English,Chinese', 'Materials Inspector', 6024, 'Production', 'Okay'),
 (13, 'Amanda', 'Q', 'Arspen', '2018-02-01', 'Female', 'Hinduism', '8 Tailwater Ave. \r\nMurfreesboro, TN 371282', '(330)', 'moonlapse@aol.com', '1985-02-09', 'Virginia', 'Single', 'English', 'Driver', 8670, 'Delivery & Transportation', 'Okay'),
-(14, 'Tina', 'H', 'Brooklyn', '2017-10-07', 'Female', 'Islam', '65A Littleton Ave. \r\nLansdale, PA 19446', '(950)', 'bancboy@aol.com', '1988-08-20', '#55 Augustin Avenue', 'Single', 'English,Niponggo', 'Superintendent', 5278, 'Human Resources', 'Okay'),
+(14, 'Hannah', 'H', 'Brooklyn', '2017-10-07', 'Female', 'Islam', '65A Littleton Ave. \r\nLansdale, PA 19446', '(950) 143-2831', 'bancboy@aol.com', '1988-08-20', '', 'Single', 'English,Niponggo', 'Superintendent', 5278, 'Human Resources', 'Okay'),
 (15, 'Muhammad', 'F', 'El Sharawi', '2017-10-12', 'Male', 'Islam', '740 W. Broad St. \r\nSewell, NJ 08080', '(443) 337-0394', 'miyop@sbcglobal.net', '1984-09-05', 'Lincoln,Nebraska', 'Married', 'English,Korean', 'Notary Personnel', 379, 'Sales & Finances', 'Okay'),
 (16, 'Cameron', 'G', 'Agustus', '2017-10-17', 'Male', 'Hinduism', '7709 Rockaway Court \r\nMenasha, WI 54952', '(578)', 'kewley@comcast.net', '1989-06-05', 'Indianapolis,Indiana', 'Single', 'English,Mandarin', 'Manager', 6062, 'Production', 'Okay'),
 (17, 'Mila', 'D', 'Jancovich', '2017-10-22', 'Female', 'Hinduism', '672 Ivy Street \r\nJeffersonville, IN 47130', '(986) 224-6780', 'bjornk@icloud.com', '1975-04-02', 'Fort Wayne,Indiana', 'Married', 'English,Spanish', 'Manager', 9173, 'Inventory', 'Okay'),
 (18, 'Leah', 'C', 'Barnes', '2017-10-18', 'Female', 'Buddhism', '18 Vale St. \r\nBurbank, IL 60459', '(772) 836-4053', 'nicktrig@verizon.net', '1976-09-15', 'Modesto,California', 'Divorced', 'English', 'Assistant Director', 7678, 'Human Resources', 'Okay'),
 (19, 'Wyatt', 'B', 'Brianston', '2017-10-12', 'Male', 'Sikhism', '630 E. Selby St. \r\nMadisonville, KY 42431', '(699) 700-5914', 'ehood@optonline.net', '1973-11-15', 'Chesapeake,Virginia', 'Widowed', 'English,French', 'Driver', 873, 'Delivery & Transportation', 'Okay'),
 (20, 'Elizabeth', 'A', 'Dylan', '2017-10-04', 'Female', 'Baptist', '7553 Miller St. \r\nStamford, CT 06902', '(894) 517-5277', 'storerm@sbcglobal.net', '1975-12-05', 'Mesa,Arizona', 'Married', 'English,German', 'Cashier', 1330, 'Sales & Finances', 'Okay'),
-(21, 'Francis', 'J', 'Caboyo', '2018-02-06', 'Male', 'Roman Catholic', 'Hidden Valley, Barangay Talamban, Cebu City, Cebu 6000', '+6394216709', 'fcaboyo@gmail.com', '1998-07-24', 'General', 'Single', 'Filipino', 'Intern', 21000, 'Human Resources', 'Terminated'),
+(21, 'Francis', 'J', 'Caboyo', '2018-02-06', 'Male', 'Roman', 'Hidden Valley, Barangay Talamban, Cebu City, Cebu 6000', '+6394216709', 'fcaboyo@gmail.com', '1998-07-24', 'General', 'Single', 'Filipino,', 'Intern', 5000, 'Human Resources', 'Okay'),
 (29, 'Teresa', 'F', 'Beal', '2018-02-09', 'Female', 'Islam', '514 S. Magnolia St.\r\nOrlando, FL 32806', '989-596-2502', 'tbeal@gmail.com', '1995-12-02', 'Wyoming', 'Married', 'English', 'Manager', 32267, 'Human Resources', 'Okay'),
 (30, 'Chris', 'M', 'Marlon', '2018-03-02', 'Male', 'Christian', '940 N. El Dorado St.\r\nHyde Park, MA 02136', '+1-202-555-0138', 'marlonchris@ymail.com', '1988-02-28', 'Pond, New Jersey', 'Married', 'English', 'Distributor', 1200, 'Sales & Finances', 'Okay');
 
@@ -423,8 +423,62 @@ INSERT INTO `order_products` (`op_Id`, `op_quantity`, `o_Id`, `p_Id`) VALUES
 --
 -- Table structure for table `production`
 --
--- Error reading structure for table 2101_final_project.production: #1932 - Table '2101_final_project.production' doesn't exist in engine
--- Error reading data for table 2101_final_project.production: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `2101_final_project`.`production`' at line 1
+
+CREATE TABLE `production` (
+  `prdn_Id` int(11) NOT NULL,
+  `prdn_date` date NOT NULL,
+  `prdn_quantity` int(11) NOT NULL,
+  `status` enum('Not started','Finished','Started') NOT NULL DEFAULT 'Not started',
+  `f_Id` int(11) NOT NULL,
+  `p_Id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `production`
+--
+
+INSERT INTO `production` (`prdn_Id`, `prdn_date`, `prdn_quantity`, `status`, `f_Id`, `p_Id`) VALUES
+(1, '2017-10-04', 43, 'Not started', 1, 5),
+(2, '2017-10-15', 92, 'Not started', 1, 17),
+(3, '2017-10-04', 54, 'Not started', 1, 3),
+(4, '2017-10-11', 2, 'Not started', 1, 15),
+(5, '2017-10-05', 60, 'Not started', 1, 16),
+(6, '2017-10-07', 19, 'Not started', 1, 11),
+(7, '2017-10-01', 18, 'Not started', 1, 5),
+(8, '2017-10-03', 78, 'Not started', 1, 2),
+(9, '2017-10-03', 21, 'Not started', 7, 14),
+(10, '2017-10-01', 89, 'Not started', 7, 7),
+(11, '2017-10-07', 8, 'Not started', 7, 7),
+(12, '2017-10-23', 50, 'Not started', 7, 9),
+(13, '2017-10-11', 84, 'Not started', 7, 16),
+(14, '2017-10-22', 40, 'Not started', 7, 13),
+(15, '2017-10-15', 99, 'Not started', 7, 1),
+(16, '2017-10-07', 28, 'Not started', 7, 5),
+(17, '2017-10-04', 48, 'Not started', 9, 12),
+(18, '2017-10-12', 61, 'Not started', 9, 4),
+(19, '2017-10-08', 23, 'Not started', 9, 10),
+(20, '2017-10-18', 81, 'Not started', 9, 11),
+(21, '2017-10-11', 27, 'Not started', 9, 15),
+(22, '2017-10-19', 92, 'Not started', 9, 7),
+(23, '2017-10-01', 10, 'Not started', 9, 8),
+(24, '2017-10-03', 62, 'Not started', 9, 19),
+(25, '2017-10-03', 92, 'Not started', 12, 15),
+(26, '2017-10-01', 94, 'Not started', 12, 10),
+(27, '2017-10-18', 58, 'Not started', 12, 9),
+(28, '2017-10-02', 49, 'Not started', 12, 2),
+(29, '2017-10-26', 6, 'Started', 12, 20),
+(30, '2017-10-20', 73, 'Not started', 12, 14),
+(31, '2017-10-17', 29, 'Not started', 12, 8),
+(32, '2017-10-11', 1, 'Not started', 12, 18),
+(33, '2017-10-18', 54, 'Not started', 16, 19),
+(34, '2017-10-03', 20, 'Not started', 16, 2),
+(35, '2017-10-08', 88, 'Not started', 16, 2),
+(36, '2017-10-01', 92, 'Not started', 16, 6),
+(37, '2017-10-19', 64, 'Not started', 16, 7),
+(38, '2017-10-28', 86, 'Not started', 16, 5),
+(39, '2017-10-27', 63, 'Not started', 16, 9),
+(40, '2017-10-04', 23, 'Not started', 16, 18),
+(41, '2018-03-07', 12, 'Not started', 20, 13);
 
 -- --------------------------------------------------------
 
@@ -469,7 +523,7 @@ INSERT INTO `products` (`p_Id`, `p_name`, `p_descp`, `p_type`, `p_weight`, `p_pr
 (20, 'Unoplus', 'Water and Grease Proof', 'Vacuum Pack', 27, 1825.31, 'In-use'),
 (23, 'Priact', 'Good item', 'Container', 91, 882, 'In-use'),
 (25, 'Box', 'Goods', 'Container', 12, 91, 'In-use'),
-(32, 'Valdern', 'Asdsd', 'Container', 3, 23, 'In-use');
+(32, 'Valdern', 'High Quality Container', 'Container', 3, 23, 'Outdated');
 
 -- --------------------------------------------------------
 
@@ -556,7 +610,7 @@ CREATE TABLE `storage` (
 
 INSERT INTO `storage` (`s_Id`, `s_isleLoc`, `s_rowLoc`, `s_colLoc`) VALUES
 (1, 'A3', 3, 5),
-(2, 'B3', 9, 4),
+(2, 'AX3', 10, 7),
 (3, 'C1', 6, 4),
 (4, 'D3', 5, 4),
 (5, 'E9', 9, 4),
@@ -657,6 +711,7 @@ CREATE TABLE `storage_products` (
 --
 
 INSERT INTO `storage_products` (`sp_Id`, `sp_quantity`, `sp_dateTimeStored`, `s_Id`, `p_Id`) VALUES
+(0, 123, '2018-02-02 11:35:19', 2, 13),
 (1, 23, '2017-10-13 10:24:19', 17, 13),
 (2, 98, '2017-10-11 07:28:26', 4, 20),
 (3, 83, '2017-10-19 11:09:28', 1, 17),
@@ -696,8 +751,7 @@ INSERT INTO `storage_products` (`sp_Id`, `sp_quantity`, `sp_dateTimeStored`, `s_
 (37, 55, '2017-10-10 07:17:34', 8, 6),
 (38, 50, '2017-10-19 13:26:25', 13, 17),
 (39, 68, '2017-10-04 05:14:14', 13, 6),
-(40, 26, '2017-10-04 06:15:18', 12, 6),
-(42, 123, '2018-02-08 17:18:19', 2, 9);
+(40, 26, '2017-10-04 06:15:18', 12, 6);
 
 -- --------------------------------------------------------
 
@@ -739,7 +793,7 @@ INSERT INTO `supplier` (`supp_Id`, `supp_name`, `supp_address`, `supp_contact`, 
 (19, 'Anvux', '71 N. Creek Ave. \r\nMadison, AL 35758', 'crypt@live.com', 'On-contract'),
 (20, 'Fingenic', '9737 Hill Court \r\nHialeah, FL 33010', '(583) 227-9238', 'On-contract'),
 (21, 'Thesee', 'Anywhere,Anytime', 'drags@ymail.com', 'On-contract'),
-(22, 'new', 'popo\r\n', '123', 'On-contract'),
+(22, 'Melonetworks', '44 Shirley Ave.\r\nWest Chicago, IL 60185', '(678)219-2877', 'On-contract'),
 (23, 'Irvin', '4473 Rainy Day Drive', '602-763-6986', 'On-contract');
 
 -- --------------------------------------------------------
@@ -747,8 +801,65 @@ INSERT INTO `supplier` (`supp_Id`, `supp_name`, `supp_address`, `supp_contact`, 
 --
 -- Table structure for table `supply_orders`
 --
--- Error reading structure for table 2101_final_project.supply_orders: #1932 - Table '2101_final_project.supply_orders' doesn't exist in engine
--- Error reading data for table 2101_final_project.supply_orders: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `2101_final_project`.`supply_orders`' at line 1
+
+CREATE TABLE `supply_orders` (
+  `so_Id` int(11) NOT NULL,
+  `so_DateTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `so_quantityOrdered` int(11) NOT NULL,
+  `status` enum('Not started','Finished') NOT NULL,
+  `f_Id` int(11) NOT NULL,
+  `p_Id` int(11) NOT NULL,
+  `supp_Id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `supply_orders`
+--
+
+INSERT INTO `supply_orders` (`so_Id`, `so_DateTime`, `so_quantityOrdered`, `status`, `f_Id`, `p_Id`, `supp_Id`) VALUES
+(1, '2017-10-05 09:22:18', 38, 'Not started', 5, 0, 0),
+(2, '2017-10-13 08:19:19', 22, 'Not started', 5, 0, 0),
+(3, '2017-10-14 07:14:20', 96, 'Not started', 5, 0, 0),
+(4, '2017-10-20 12:20:21', 13, 'Not started', 5, 0, 0),
+(5, '2017-10-21 14:18:23', 60, 'Not started', 5, 0, 0),
+(6, '2017-10-19 06:17:19', 80, 'Not started', 5, 0, 0),
+(7, '2017-10-07 16:25:25', 62, 'Not started', 5, 0, 0),
+(8, '2017-10-03 08:26:25', 27, 'Not started', 5, 0, 0),
+(9, '2017-10-10 08:19:22', 61, 'Not started', 8, 0, 0),
+(10, '2017-10-05 10:21:21', 17, 'Not started', 8, 0, 0),
+(11, '2017-10-05 10:21:20', 60, 'Not started', 8, 0, 0),
+(12, '2017-10-19 15:27:21', 25, 'Not started', 8, 0, 0),
+(13, '2017-10-17 12:26:28', 43, 'Not started', 8, 0, 0),
+(14, '2017-10-04 15:28:19', 71, 'Not started', 8, 0, 0),
+(15, '2017-10-05 10:25:23', 4, 'Not started', 8, 0, 0),
+(16, '2017-10-20 15:32:26', 48, 'Not started', 8, 0, 0),
+(17, '2017-10-25 12:17:16', 61, 'Not started', 9, 0, 0),
+(18, '2017-10-21 13:23:23', 74, 'Not started', 11, 0, 0),
+(19, '2017-10-09 15:27:25', 18, 'Not started', 11, 0, 0),
+(20, '2017-10-07 16:29:26', 68, 'Not started', 11, 0, 0),
+(21, '2017-10-25 14:25:28', 1, 'Not started', 11, 0, 0),
+(22, '2017-10-24 17:23:20', 20, 'Not started', 11, 0, 0),
+(23, '2017-10-02 09:26:28', 53, 'Not started', 11, 0, 0),
+(24, '2017-10-30 14:30:30', 96, 'Not started', 11, 0, 0),
+(25, '2017-10-07 11:27:27', 47, 'Not started', 15, 0, 0),
+(26, '2017-10-19 10:24:17', 18, 'Not started', 15, 0, 0),
+(27, '2017-10-26 09:18:23', 51, 'Not started', 15, 0, 0),
+(28, '2017-10-14 13:29:20', 59, 'Not started', 15, 0, 0),
+(29, '2017-10-05 13:27:24', 13, 'Not started', 15, 0, 0),
+(30, '2017-10-09 10:08:12', 37, 'Not started', 15, 0, 0),
+(31, '2017-10-20 13:27:27', 11, 'Not started', 15, 0, 0),
+(32, '2017-10-03 06:15:15', 11, 'Not started', 15, 0, 0),
+(33, '2017-10-11 12:21:17', 54, 'Not started', 20, 0, 0),
+(34, '2017-10-08 11:24:27', 11, 'Not started', 20, 0, 0),
+(35, '2017-10-10 11:21:21', 27, 'Not started', 20, 0, 0),
+(36, '2017-10-24 08:20:19', 3, 'Not started', 20, 0, 0),
+(37, '2017-10-19 13:22:20', 87, 'Not started', 20, 0, 0),
+(38, '2017-10-07 14:27:27', 42, 'Not started', 20, 0, 0),
+(39, '2017-10-04 13:27:26', 61, 'Not started', 20, 0, 0),
+(40, '2017-10-19 10:27:18', 44, 'Not started', 20, 0, 0),
+(41, '2018-02-08 15:14:40', 23, 'Not started', 11, 0, 0),
+(42, '2018-02-08 15:18:14', 132, 'Not started', 10, 0, 0),
+(43, '2018-03-02 23:18:57', 3, 'Not started', 12, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -805,6 +916,14 @@ ALTER TABLE `order_products`
   ADD KEY `op_p_id` (`p_Id`);
 
 --
+-- Indexes for table `production`
+--
+ALTER TABLE `production`
+  ADD PRIMARY KEY (`prdn_Id`),
+  ADD KEY `prdn_f_Id` (`f_Id`),
+  ADD KEY `prdn_p_Id` (`p_Id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -849,6 +968,13 @@ ALTER TABLE `supplier`
   ADD PRIMARY KEY (`supp_Id`);
 
 --
+-- Indexes for table `supply_orders`
+--
+ALTER TABLE `supply_orders`
+  ADD PRIMARY KEY (`so_Id`),
+  ADD KEY `so_f_Id` (`f_Id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -888,6 +1014,11 @@ ALTER TABLE `orders`
 ALTER TABLE `order_products`
   MODIFY `op_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
+-- AUTO_INCREMENT for table `production`
+--
+ALTER TABLE `production`
+  MODIFY `prdn_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
@@ -917,6 +1048,11 @@ ALTER TABLE `storage_products`
 --
 ALTER TABLE `supplier`
   MODIFY `supp_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+--
+-- AUTO_INCREMENT for table `supply_orders`
+--
+ALTER TABLE `supply_orders`
+  MODIFY `so_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- Constraints for dumped tables
 --
@@ -955,6 +1091,13 @@ ALTER TABLE `order_products`
   ADD CONSTRAINT `op_p_id` FOREIGN KEY (`p_Id`) REFERENCES `products` (`p_Id`);
 
 --
+-- Constraints for table `production`
+--
+ALTER TABLE `production`
+  ADD CONSTRAINT `prdn_f_Id` FOREIGN KEY (`f_Id`) REFERENCES `faculty` (`f_id`),
+  ADD CONSTRAINT `prdn_p_Id` FOREIGN KEY (`p_Id`) REFERENCES `products` (`p_Id`);
+
+--
 -- Constraints for table `raw_materials`
 --
 ALTER TABLE `raw_materials`
@@ -976,6 +1119,12 @@ ALTER TABLE `storage_delivery_products`
 ALTER TABLE `storage_products`
   ADD CONSTRAINT `sp_p_Id` FOREIGN KEY (`p_Id`) REFERENCES `products` (`p_Id`),
   ADD CONSTRAINT `sp_s_Id` FOREIGN KEY (`s_Id`) REFERENCES `storage` (`s_Id`);
+
+--
+-- Constraints for table `supply_orders`
+--
+ALTER TABLE `supply_orders`
+  ADD CONSTRAINT `so_f_Id` FOREIGN KEY (`f_Id`) REFERENCES `faculty` (`f_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

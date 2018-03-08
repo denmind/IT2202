@@ -5,27 +5,21 @@
 	$ln = $_SESSION["last_name"];
 	
 	require 'sql_connect.php';
-	
-	$s1 = "SELECT COUNT(*),p.p_name
-				FROM order_products op
-				RIGHT JOIN products p
-				ON p.p_Id = op.p_Id
-				GROUP BY p_name
-				ORDER BY (p_name)";
-	$s2 = "SELECT p_name FROM products ORDER BY p_name";
-	
-	$t1 = mysqli_query($conn,$s1);
-	$t2 = mysqli_query($conn,$s2);
+	require 'php/queries.php';
 ?>
 <html>
 	<head>
 		<title>DFPPI Home</title>
+		
 		<link rel = "icon" href = "images/logo.png">
 		<link rel = "stylesheet" href = "css/bootstrap.min.css" crossorigin = "anonymous">
 		<link rel = "stylesheet" href = "css/design.css">
+		
 		<script src="js/jquery.js"></script>
 		<script src="js/highcharts.js"></script>
+		<script src="js/highcharts-3d.js"></script>
 		<script src="js/exporting.js"></script>
+		
 	</head>
 	<body>
 		<div class = "ultra-banner">
@@ -49,14 +43,58 @@
 					<li><a id = "li-a" href = "production.php">Production</a></li>
 					<li><a id = "li-a" href = "inventory.php">Inventory</a></li>
 					<li><a id = "li-a" href = "docs/manual.html"><i>Help?</i></a></li>
-					<li><a id = 'li-a' href = 'home-profile.php'><?php echo $fl,$ln ?></a></li>;
+					<li><a id = "li-a" href = "home-profile.php"><?php echo $fl,$ln ?></a></li>;
 					<li><a id = "li-a" href = "index.php"><b>Sign Out</b></a></li>
 				</ul>
 			</div>
 		</nav>
 		<p class="main-text">Reports and Information<p>
-		<div class = "main-content">
-			<div id="today"></div>
-		</div>
+		<div class="main-content" id="today"></div>
+		<div class="main-content" id="today"></div>
 	</body>
 </html>
+<script>
+	//$home_t1
+	$(function () {
+		Highcharts.chart('today', {
+			chart: {
+				type: 'pie',
+				options3d: {
+					enabled: true,
+					alpha: 45,
+					beta: 0
+				}
+			},
+			title: {
+				text: 'Amount invested per product type'
+			},
+			tooltip: {
+				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+			},
+			plotOptions: {
+				pie: {
+					allowPointSelect: true,
+					cursor: 'pointer',
+					depth: 35,
+					dataLabels: {
+						enabled: true,
+						format: '{point.name}'
+					}
+				}
+			},
+			series: [{
+				type: 'pie',
+				name: 'Percentage: ',
+				data: [
+					<?php
+						$result = mysqli_query($conn,$home_t1);
+						
+						while($key = mysqli_fetch_assoc($result)){
+							echo "['{$key['p_type']}',{$key['x']}],";
+						}
+					?>
+				]
+			}]
+		});
+	});
+</script>

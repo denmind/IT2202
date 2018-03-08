@@ -1,0 +1,11 @@
+/*Listed below are the purpose and definitions
+of the graphical presentations of certain
+values for the homepage*/
+
+1. Display and calculate the total amount invested per product type.
+
+	QUERY: "The invested amount is the total price for all products belonging to
+			a group, is then compared to other types"
+	 
+	AIM: "To present management what product group the company
+		  has allocated most of its resources into"

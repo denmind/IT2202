@@ -108,12 +108,12 @@ ul{
 	text-decoration: none;
 }
 .main-content{
-	width: 85%;
-	margin-top: 2%;
-	height: auto;
-	margin-right: auto;
-	margin-left: auto;
-	border: 2px dotted #d4ba85;
+	width: 45%;
+	margin-top: 1%;
+	height: 60vh;
+	margin-left: 2%;
+	border-top: 2px dotted #d4ba85;
+	display: inline-block;
 }
 .main-text{
 	text-align: center;
@@ -121,7 +121,7 @@ ul{
 	font-weight: bold;
 }
 .main-content div{
-	width: 50%;
+	width: 100%;
 	height: 100%;
 	cursor: pointer;
 	display: inline;
