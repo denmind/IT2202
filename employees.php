@@ -37,6 +37,7 @@
 			</div>
 		</nav>
 		<div class = "choices">
+				<!--
 				<a href = "employees-attendance.php" class = "bloke">
 					<div class = "container">
 						<img class = "bloke-img" src = "images/calendar.png" alt = "View faculty attendance" title = "View faculty attendance">
@@ -44,7 +45,7 @@
 							<div class="text">View faculty attendance</div>
 						 </div>
 					</div>
-				</a>
+				</a>-->
 				<a href = "employees-view.php" class = "bloke">
 					<div class = "container">
 						<img class = "bloke-img" src = "images/id-card.png" alt = "View faculty's information" title = "View faculty's information">

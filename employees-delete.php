@@ -59,8 +59,8 @@
 					</div>
 					<div class = "mid-form">
 						<p class = "form-body">Faculty Names
-							<select name = "ia" class = "input-form" required = "required">
-								<option value = 999></option>
+							<select name = "ia" class = "input-form" data-validation = "required">
+								<option value = -999></option>
 								<?php 
 									while($var = mysqli_fetch_assoc($set)){
 										echo "<option value = {$var["f_id"]}>{$var["f_lastName"]}, {$var["f_firstName"]}</option>";
@@ -75,7 +75,7 @@
 				</form>
 			</div>
 		<?php
-			}else if(($_POST["ia"]) != 999){
+			}else if(($_POST["ia"]) != -999){
 				$xid =  $_POST["ia"];
 				$find = "SELECT * FROM faculty WHERE f_Id = '{$_POST["ia"]}'";
 				$r = mysqli_fetch_assoc(mysqli_query($link,$find));
@@ -94,29 +94,29 @@
 						<p class = "form-body">ID
 						<input type = "text" name = "pid" disabled class = "input-form" maxlength = 11  value = <?php echo $r['f_id']?> ></p>
 						<p class = "form-body">First Name 
-						<input type = "text" name = "fn" required = "required" class = "input-form" maxlength = 32  value = <?php echo $r['f_firstName']?> ></p>
+						<input type = "text" name = "fn" data-validation = "required alphanumeric" data-validation-allowing=" " class = "input-form" maxlength = 32  value = <?php echo $r['f_firstName']?> ></p>
 						<p class = "form-body">Middle Initial
-						<input type = "text" name = "mi" required = "required" class = "input-form" maxlength = 8 value = <?php echo $r['f_midInitial']?> ></p>
+						<input type = "text" name = "mi" data-validation = "required alphanumeric" class = "input-form" maxlength = 8 value = <?php echo $r['f_midInitial']?> ></p>
 						<p class = "form-body">Last Name
-						<input type = "text" name = "ln" required = "required" class = "input-form" maxlength = 32 value = <?php echo $r['f_lastName']?> ></p>
-						<p class = "form-body">Gender
+						<input type = "text" name = "ln" data-validation = "required alphanumeric" class = "input-form" maxlength = 32 value = <?php echo $r['f_lastName']?> ></p>
+						<p class = "form-body" data-validation = "required">Gender
 							<select name = "sx" class = "input-form">
 								<option value = "Female" <?php if($r['f_sex'] == 'Female') echo "selected = 'selected'"?> >Female</option>
 								<option value = "Male" <?php if($r['f_sex'] == 'Male') echo "selected = 'selected'"?> >Male</option>
 							</select>
 						</p>
 						<p class = "form-body">Religion
-						<input type = "text" name = "re" required = "required" class = "input-form" maxlength = 32 value = "<?php echo $r['f_religion']?>" ></p>
+						<input type = "text" name = "re" data-validation = "required alphanumeric" data-validation-allowing=" " class = "input-form" maxlength = 32 value = "<?php echo $r['f_religion']?>" ></p>
 						<p class = "form-body">Mobile Number
-						<input type = "text" name = "mn" required = "required" class = "input-form" maxlength = 32 value = <?php echo $r['f_mobileNo']?> ></p>
+						<input type = "text" name = "mn" data-validation = "required alphanumeric" data-validation-allowing="+()-" class = "input-form" maxlength = 32 value = <?php echo $r['f_mobileNo']?> ></p>
 						<p class = "form-body">Email
-						<input type = "email" name = "em" required = "required" class = "input-form" maxlength = 32 value = <?php echo $r['f_email']?> ></p>
+						<input type = "text" name = "em" data-validation = "required email" class = "input-form" maxlength = 32 value = <?php echo $r['f_email']?> ></p>
 						<p class = "form-body">Date of Birth
-						<input type = "date" name = "dob" required = "required" class = "input-form" value = <?php echo $r['f_dateOfBirth']?> ></p>
+						<input type = "date" name = "dob" data-validation = "required date" class = "input-form" value = <?php echo $r['f_dateOfBirth']?> ></p>
 						<p class = "form-body">Place of Birth
-						<input type = "text" name = "pob" required = "required" class = "input-form" maxlength = 64 value = <?php echo $r['f_placeOfBirth']?> ></p>
+						<input type = "text" name = "pob" data-validation = "required alphanumeric" data-validation-allowing=" #@()-." class = "input-form" maxlength = 64 value = <?php echo $r['f_placeOfBirth']?> ></p>
 						<p class = "form-body">Civil Status
-							<select name = "cs" class = "input-form">
+							<select name = "cs" class = "input-form" data-validation = "required">
 								<option value = "Single" <?php if($r['f_civilStatus'] == 'Single') echo "selected = 'selected'"?> >Single</option>
 								<option value = "Married" <?php if($r['f_civilStatus'] == 'Married') echo "selected = 'selected'"?> >Married</option>
 								<option value = "Divorced" <?php if($r['f_civilStatus'] == 'Divorced') echo "selected = 'selected'"?> >Divorced</option>
@@ -124,15 +124,16 @@
 							</select>
 						</p>
 						<p class = "form-body">Languages Spoken
-						<input type = "text" name = "ls" required = "required" class = "input-form" maxlength = 32 value = "<?php echo $r['f_langSpoken']?>" ></p>
+						<input type = "text" name = "ls" data-validation = "required alphanumeric" data-validation-allowing=", " class = "input-form" maxlength = 32 value = "<?php echo $r['f_langSpoken']?>" ></p>
 						<p class = "form-body">Date Hired
-						<input type = "date" name = "doh" required = "required" class = "input-form" value = <?php echo $r['f_dateHired']?> ></p>
+						<input type = "date" name = "doh" data-validation="required date" class = "input-form" value = <?php echo $r['f_dateHired']?> ></p>
 						<p class = "form-body">Position
-						<input type = "text" name = "pos" required = "required" class = "input-form" maxlength = 16 value = <?php echo $r['f_position']?> ></p>
+						<input type = "text" name = "pos" data-validation = "required alphanumeric" data-validation-allowing=". " class = "input-form" maxlength = 16 value = <?php echo $r['f_position']?> ></p>
 						<p class = "form-body">Salary
-						<input type = "text" name = "sal" required = "required" class = "input-form" maxlength = 16 value = <?php echo $r['f_salary']?> ></p>
+						<input type = "text" name = "sal" data-validation = "required numbers" data-validation-allowing="float" class = "input-form" maxlength = 16 value = <?php echo $r['f_salary']?> ></p>
+						
 						<p class = "form-body">Department
-							<select name = "dept" class = "input-form">
+							<select name = "dept" class = "input-form" data-validation = "required">
 								<option value = "Production" <?php if($r['f_department'] == 'Production') echo "selected = 'selected'"?> >Production</option>
 								<option value = "Sales & Finances" <?php if($r['f_department'] == 'Sales & Finances') echo "selected = 'selected'"?> >Sales & Finances</option>
 								<option value = "Human Resources" <?php if($r['f_department'] == 'Human Resources') echo "selected = 'selected'"?> >Human Resources</option>
@@ -140,8 +141,10 @@
 								<option value = "Inventory" <?php if($r['f_department'] == 'Inventory') echo "selected = 'selected'"?> >Inventory</option>
 							</select>
 						</p>
+						
 						<p class = "form-body">Complete Address
-						<textarea name = "add" required = "required" class = "input-form" maxlength = 128 ><?php echo $r['f_address']?></textarea></p>
+						<textarea name = "add" data-validation = "required alphanumeric" data-validation-allowing="#@()-. " class = "input-form" maxlength = 128 ><?php echo $r['f_address']?></textarea></p>
+						
 					</div>
 						<div class = "line-sep">
 						</div>
@@ -170,3 +173,7 @@
 			?>
 	</body>
 </html>
+<script src = "js/confirm-form.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.form-validator.js"></script>
+<script src="js/validate.js"></script>

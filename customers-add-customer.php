@@ -40,9 +40,9 @@
 				</div>
 				<div class = "mid-form">
 					<p class = "form-body">First Name 
-					<input type = "text" name = "fn" data-validation="length required alphanumeric" data-validation-length="max32" class = "input-form"></p>
+					<input type = "text" name = "fn" data-validation="required length alphanumeric" data-validation-length="max32" class = "input-form"></p>
 					<p class = "form-body">Last Name
-					<input type = "text" name = "ln" data-validation="length required alphanumeric" data-validation-length="max16" class = "input-form"></p>
+					<input type = "text" name = "ln" data-validation="required length alphanumeric" data-validation-length="max16" class = "input-form"></p>
 					
 					<p class = "form-body">Contact Information
 					<input type = "text" name = "c_info" data-validation="length required alphanumeric" data-validation-length="max64" data-validation-allowing="(-@.)" class = "input-form"></p>
