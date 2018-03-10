@@ -15,8 +15,6 @@
 		<link rel = "icon" href = "images/logo.png">
 		<link rel = "stylesheet" href = "css/bootstrap.min.css" crossorigin = "anonymous">
 		<link rel = "stylesheet" href = "css/design.css">
-		<script src = "js/bootstrap.min.js"></script>
-		<script src = "js/jquery.min.js"></script>
 	</head>
 	
 	<body>

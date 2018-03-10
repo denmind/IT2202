@@ -203,6 +203,11 @@ ul{
 	border-top-right-radius: 10px;
 	border-top-left-radius: 10px;
 }
+.top-form div{
+	text-align: center;
+	padding: 1vh;
+	font-style: italic;
+}
 .top-form p,.warn-form p{
 	font-weight: bolder;
 	font-size: 30px;

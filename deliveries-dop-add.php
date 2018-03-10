@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <?php
 	session_start();
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$database = "2101_final_project";
-
-	$link = mysqli_connect($servername,$username,$password,$database);
 	
-	$fq = "SELECT f_id,f_lastName,f_firstName FROM faculty WHERE f_department = 'Delivery & Transportation'";
+	require 'sql_connect.php';
 	
-	$fset = mysqli_query($link,$fq);
+	$fq = "SELECT d.*, f.f_id, f.f_firstName, f.f_lastName
+		   FROM delivery d
+		   JOIN faculty f
+		   ON f.f_id = d.d_Id
+		   ORDER BY d_deliverySchedule DESC";
+	
+	$cq = "SELECT *
+		   FROM client
+		   ORDER BY c_LastName"; 
+	
+	$fset = mysqli_query($conn,$fq);
+	$cset = mysqli_query($conn,$cq);
+	
 ?>
 <html>
 	<head>
@@ -48,21 +54,31 @@
 			</div>
 		</nav>
 		<div class = "div-form">
-			<form method = "post" autocomplete = "off" action = "add-delivery.php" onsubmit = "return check();">
-				
+			<form method = "post" autocomplete = "off" action = "add-dop.php" onsubmit = "return check();">
 				<div class = "top-form">
-					<p class = "form-header">Order Information</p>
+					<p class = "form-header">Delivery Order Products</p>
 				</div>
 				<div class = "mid-form">
-					<p class = "form-body">Faculty Id
-					<select name = "f_id" class = "input-form">
-						<option>- - - - - - - - - - - -</option>
-						<?php 
-							while($var = mysqli_fetch_assoc($fset)){
-								echo "<option value = '{$var["f_id"]}'>{$var["f_lastName"]}, {$var["f_firstName"]}</option>";
-							}
-						?>
-					</select>	
+					<p class = "form-body">Delivery schedule / Employee assigned
+						<select name = "d_Id" class = "input-form" data-validation="required">
+							<option></option>
+							<?php 
+								while($var = mysqli_fetch_assoc($fset)){
+									echo "<option value = '{$var["d_Id"]}'>{$var["d_deliverySchedule"]} [{$var["d_status"]}]  {$var["f_lastName"]}, {$var["f_firstName"]}</option>";
+								}
+							?>
+						</select>
+					</p>
+					<p class = "form-body">Who is the client?
+						<select name = "c_Id" class = "input-form" data-validation="required">
+							<option></option>
+							<?php 
+								while($var = mysqli_fetch_assoc($cset)){
+									echo "<option value = '{$var["c_Id"]}'>{$var["c_LastName"]}, {$var["c_FirstName"]}</option>";
+								}
+							?>
+						</select>
+					</p>
 				</div>
 				<div class = "bot-form">
 					<input type = "submit" value = "Submit Form" class = "input-submit">
@@ -72,3 +88,7 @@
 	</body>
 	</body>
 </html>
+<script src = "js/confirm-form.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.form-validator.js"></script>
+<script src="js/validate.js"></script>

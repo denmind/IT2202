@@ -65,7 +65,7 @@
 					</a>
 					<a href = "deliveries-dop-add.php" class = "bloke">
 						<div class = "container">
-							<img class = "bloke-img" src = "images/dop-add.png" alt = "Add a delivery order" title = "Add a delivery order">
+							<img class = "bloke-img" src = "images/dop-add.png" alt = "Add products for a delivery order" title = "Add products for a delivery order">
 							<div class="overlay">
 								<div class="text">Add a delivery order</div>
 							 </div>

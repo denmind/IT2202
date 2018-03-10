@@ -51,12 +51,13 @@
 			<form method = "post" autocomplete = "off" action = "add-delivery.php" onsubmit = "return check();">
 				
 				<div class = "top-form">
-					<p class = "form-header">Order Information</p>
+					<p class = "form-header">Delivery Information</p>
+					<div>*Current delivery schedule will be used</div>
 				</div>
 				<div class = "mid-form">
 					<p class = "form-body">Faculty Id
 					<select name = "f_id" class = "input-form">
-						<option>- - - - - - - - - - - -</option>
+						<option></option>
 						<?php 
 							while($var = mysqli_fetch_assoc($fset)){
 								echo "<option value = '{$var["f_id"]}'>{$var["f_lastName"]}, {$var["f_firstName"]}</option>";

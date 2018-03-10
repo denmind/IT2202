@@ -7,7 +7,7 @@
 	</head>
 </html>
 <?php
-	$require 'sql_connect.php';
+	require 'sql_connect.php';
 	
 	if ($conn){
 		$id = stripslashes($_POST["f_id"]);
