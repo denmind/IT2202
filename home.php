@@ -6,6 +6,11 @@
 	
 	require 'sql_connect.php';
 	require 'php/queries.php';
+    if(!isset($_SESSION['isLogin']) || $_SESSION['isLogin'] != true){
+        $_SESSION['isLogin'] = false;
+        header("Location:index.php");
+        exit();
+    }
 ?>
 <html>
 	<head>
@@ -43,7 +48,7 @@
 					<li><a id = "li-a" href = "production.php">Production</a></li>
 					<li><a id = "li-a" href = "inventory.php">Inventory</a></li>
 					<li><a id = "li-a" href = "docs/manual.html"><i>Help?</i></a></li>
-					<li><a id = "li-a" href = "home-profile.php"><?php echo $fl,$ln ?></a></li>;
+					<li><a id = "li-a" href = "home-profile.php">Profile</a></li>
 					<li><a id = "li-a" href = "index.php"><b>Sign Out</b></a></li>
 				</ul>
 			</div>

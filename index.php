@@ -41,7 +41,6 @@
 						Password <br><input type = "password"  class = "login-form" name = "pass" title = "Please enter your password" data-validation="required alphanumeric" maxlength="8"><br><br>
 						<input id = "go-form" title = "Login Account" type = "submit" value = "Login" >
 					</form>
-					
 				</div>
 			</div>
 		</body>
@@ -49,8 +48,13 @@
 <?php
 	/*Log-in check*/
 	}else{
-		session_start();
-		
+        session_start();
+
+        if(isset($_SESSION['isLogin']) && $_SESSION['isLogin'] == false){
+            echo "<script>alert('Please login before accessing');</script>";
+            unset($_SESSION['isLogin']);
+        }
+        
 		/**Default flag values for regular non-employee user**/
 		$_SESSION["first_name"] =  $_SESSION["last_name"] = "User";
 		$_SESSION["FLAG_VALUE"] = 0;
@@ -59,7 +63,7 @@
 		
 		if($link){
 			$_SESSION["sess"] = $usr = $_POST["user"]; //user id
-			$pass = $_POST["pass"];
+            $pass = $_POST["pass"];
 			
 			/*Redirect to  priv/reg mode*/
 			if($usr == $admin && $pass == $usr){
@@ -67,6 +71,7 @@
 			}else if ($usr == $reg_user && $pass == $usr){
 				echo "<meta http-equiv='refresh' content='0; url=home.php'/>";
 				$_SESSION["privilege"] = "All";
+                $_SESSION['isLogin'] = true;
 			}else{		
 				$pass = md5($pass);
 				
@@ -79,6 +84,7 @@
 					$var = mysqli_fetch_assoc($set);
 				    $_SESSION["first_name"] = $var["fn"];
 					$_SESSION["last_name"] = $var["ln"];
+                    $_SESSION['isLogin'] = true;
 					
 					$find_f = "SELECT f_id,f_department FROM faculty WHERE 
 							f_firstName = '{$_SESSION['first_name']}' 
@@ -91,16 +97,16 @@
 					$_SESSION["MAIN-USER-ID"] = $gd[0];
 					$_SESSION["privilege"] = $gd[1];
 					$_SESSION["FLAG_VALUE"]++;
-					
 					/*
 					echo $_SESSION["sex"];
 					echo "<div class = 'head-direct'><p>Hello {$_SESSION["first_name"]} {$_SESSION["last_name"]}</p></div>";
 					*/
 					echo "<meta http-equiv='refresh' content='0; url=home.php'/>";
 				
-	}else{
-					echo "(NOT)Invalid Access";
-				}
+                }else{
+                    echo "<script>alert('(NOT)Invalid Access');</script>";
+                    echo "<meta http-equiv='refresh' content='0; url=index.php'/>";
+                }
 			}
 		}else{
 			echo "(NOT)Database error connection";

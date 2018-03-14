@@ -3,7 +3,11 @@
 	session_start(); 
 	
 	require 'sql_connect.php';
-	
+    if(!isset($_SESSION['isLogin']) || $_SESSION['isLogin'] != true){
+        $_SESSION['isLogin'] = false;
+        header("Location:index.php");
+        exit();
+    }
 	$pq = "SELECT * FROM products WHERE status = 'In-use' ORDER BY p_name";
 	$cq = "SELECT orders.o_Id,orders.o_orderDateTime,client.c_Id,client.c_LastName,client.c_FirstName 
 		FROM orders  

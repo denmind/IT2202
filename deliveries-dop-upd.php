@@ -2,7 +2,11 @@
 <?php 
 	session_start();
 	require 'sql_connect.php';
-	
+    if(!isset($_SESSION['isLogin']) || $_SESSION['isLogin'] != true){
+        $_SESSION['isLogin'] = false;
+        header("Location:index.php");
+        exit();
+    }
 	$query = "SELECT deo.*,d.d_deliverySchedule,c.c_FirstName,c.c_LastName
 			  FROM delivery_orders deo 
 		   	  JOIN delivery d

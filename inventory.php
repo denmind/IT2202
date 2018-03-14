@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <?php
 	session_start();
+
+    if(!isset($_SESSION['isLogin']) || $_SESSION['isLogin'] != true){
+        $_SESSION['isLogin'] = false;
+        header("Location:index.php");
+        exit();
+    }
 ?>
 <html>
 	<head>
@@ -64,7 +70,7 @@
 				</div>
 			</a>
 			
-			<?php if($_SESSION['privilege'] == 'Inventory' || $_SESSION['privilege'] == 'All'){ ?>
+			<?php if(isset($_SESSION['privilege']) && ($_SESSION['privilege'] == 'Inventory' || $_SESSION['privilege'] == 'All')){ ?>
 				<!---
 				<a href = "inventory-add-materials.php" class = "bloke">
 					<div class = "container">

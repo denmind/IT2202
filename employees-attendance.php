@@ -1,4 +1,13 @@
-<!DOCTYPE html><?php session_start(); ?><html>
+<!DOCTYPE html>
+<?php 
+    session_start(); 
+    if(!isset($_SESSION['isLogin']) || $_SESSION['isLogin'] != true){
+        $_SESSION['isLogin'] = false;
+        header("Location:index.php");
+        exit();
+    }
+?>
+<html>
 	<head>
 		<title>DFPPI Attendance</title>
 		<link rel = "icon" href = "images/logo.png">

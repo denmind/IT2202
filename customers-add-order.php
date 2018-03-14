@@ -2,7 +2,11 @@
 <?php
 	session_start();
 	require 'sql_connect.php';
-	
+    if(!isset($_SESSION['isLogin']) || $_SESSION['isLogin'] != true){
+        $_SESSION['isLogin'] = false;
+        header("Location:index.php");
+        exit();
+    }
 	$fq = "SELECT f_id,f_lastName,f_firstName FROM faculty  WHERE f_department LIKE 'Sales%'ORDER BY f_lastName";
 	$cq = "SELECT c_Id,c_LastName,c_FirstName FROM client ORDER BY c_LastName";
 	

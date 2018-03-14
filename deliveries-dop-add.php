@@ -3,7 +3,11 @@
 	session_start();
 	
 	require 'sql_connect.php';
-	
+    if(!isset($_SESSION['isLogin']) || $_SESSION['isLogin'] != true){
+        $_SESSION['isLogin'] = false;
+        header("Location:index.php");
+        exit();
+    }
 	$fq = "SELECT d.*, f.f_id, f.f_firstName, f.f_lastName
 		   FROM delivery d
 		   JOIN faculty f

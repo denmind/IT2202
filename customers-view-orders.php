@@ -8,7 +8,11 @@
 		echo "Fail to connet Database";
 		exit();
 	}
-
+    if(!isset($_SESSION['isLogin']) || $_SESSION['isLogin'] != true){
+        $_SESSION['isLogin'] = false;
+        header("Location:index.php");
+        exit();
+    }
 	//Initialize query elements
     $choice = isset($_GET['choice'])? $_GET['choice'] : 1;
     $srch = isset($_GET['srch'])? $_GET['srch'] : 1;

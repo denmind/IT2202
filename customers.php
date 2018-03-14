@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <?php
 	session_start();
+
+    if(!isset($_SESSION['isLogin']) || $_SESSION['isLogin'] != true){
+        $_SESSION['isLogin'] = false;
+        header("Location:index.php");
+        exit();
+    }
 ?>
 <html>
 	<head>
@@ -62,7 +68,7 @@
 						 </div>
 					</div>
 				</a>
-				<?php if($_SESSION['privilege'] == 'Sales & Finances' || $_SESSION['privilege'] == 'All'){ ?>
+				<?php if(isset($_SESSION['privilege']) && ($_SESSION['privilege'] == 'Sales & Finances' || $_SESSION['privilege'] == 'All')){ ?>
 					<a href = "customers-add-customer.php" class = "bloke">
 						<div class = "container">
 							<img class = "bloke-img" src = "images/add-client.png" alt = "Add customer info" title = "Add customer info">

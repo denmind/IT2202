@@ -2,6 +2,11 @@
 <?php
 	session_start();
 	require 'sql_connect.php';
+    if(!isset($_SESSION['isLogin']) || $_SESSION['isLogin'] != true){
+        $_SESSION['isLogin'] = false;
+        header("Location:index.php");
+        exit();
+    }
 	
 	if($conn && $_SESSION["FLAG_VALUE"] == 1){
 		$find = "SELECT *,(YEAR(NOW())-YEAR(f_dateOfBirth)) AS Age FROM faculty WHERE f_id = '{$_SESSION['MAIN-USER-ID']}'";

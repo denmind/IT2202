@@ -2,7 +2,11 @@
 <?php 
 	session_start();
 	require 'sql_connect.php';
-	
+    if(!isset($_SESSION['isLogin']) || $_SESSION['isLogin'] != true){
+        $_SESSION['isLogin'] = false;
+        header("Location:index.php");
+        exit();
+    }
 	/*show all records for select option*/
 	$query = "SELECT o.*,c.c_FirstName,c.c_LastName,f.f_firstName,f.f_lastName
 			FROM orders o 

@@ -2,7 +2,11 @@
 <?php 
 	session_start();
 	require 'sql_connect.php';
-	
+    if(!isset($_SESSION['isLogin']) || $_SESSION['isLogin'] != true){
+        $_SESSION['isLogin'] = false;
+        header("Location:index.php");
+        exit();
+    }
 	/*show all records for select option*/
 	$query = "SELECT * FROM client ORDER BY c_LastName";
 	

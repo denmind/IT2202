@@ -2,7 +2,11 @@
 <?php
 	session_start();
 	include("sql_connect.php");
-
+    if(!isset($_SESSION['isLogin']) || $_SESSION['isLogin'] != true){
+        $_SESSION['isLogin'] = false;
+        header("Location:index.php");
+        exit();
+    }
 	//DB connect
 	if($conn == false){
 		echo "Fail to connet Database";

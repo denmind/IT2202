@@ -2,7 +2,11 @@
 <?php 
 	session_start();
 	require 'sql_connect.php';
-	
+    if(!isset($_SESSION['isLogin']) || $_SESSION['isLogin'] != true){
+        $_SESSION['isLogin'] = false;
+        header("Location:index.php");
+        exit();
+    }
 	/*show all records for select option*/
 	$query = "SELECT sp_Id,sp_dateTimeStored,str.*,p.p_name
 			FROM storage_products strp

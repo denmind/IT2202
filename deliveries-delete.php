@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <?php 
 	session_start();
+    if(!isset($_SESSION['isLogin']) || $_SESSION['isLogin'] != true){
+        $_SESSION['isLogin'] = false;
+        header("Location:index.php");
+        exit();
+    }
 	$servername = "localhost";
 	$username = "root";
 	$password = "";

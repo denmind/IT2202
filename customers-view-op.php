@@ -3,7 +3,13 @@
 	session_start(); 
 	
 	require 'sql_connect.php';
-	
+
+    if(!isset($_SESSION['isLogin']) || $_SESSION['isLogin'] != true){
+        $_SESSION['isLogin'] = false;
+        header("Location:index.php");
+        exit();
+    }
+
 	$cq = "SELECT op_Id,op_quantity,o.o_orderDateTime,c.c_FirstName,c.c_LastName,p.p_name,ROUND((p.p_price * op_quantity),2) AS SubCost
 			FROM order_products op 
 			JOIN orders o

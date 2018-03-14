@@ -3,7 +3,11 @@
 	session_start(); 
 	
 	require 'sql_connect.php';
-	
+    if(!isset($_SESSION['isLogin']) || $_SESSION['isLogin'] != true){
+        $_SESSION['isLogin'] = false;
+        header("Location:index.php");
+        exit();
+    }
 	$view = "SELECT do_Id,d.d_deliverySchedule,d.d_status,c.c_FirstName,c.c_LastName
 			FROM delivery_orders do 
 			JOIN delivery d 
