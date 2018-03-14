@@ -187,7 +187,7 @@
 				text: 'Top 7 Most Ordered Products'
 			},
 			subtitle: {
-				text: 'Products that are highly desired by our customers'
+				text: 'Total amount ordered overall'
 			},
 			xAxis: {
 				categories: [

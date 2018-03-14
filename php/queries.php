@@ -9,7 +9,7 @@
 				GROUP BY f_department
 				ORDER BY f_department";
 	
-	$op_six = "SELECT p_name,p_type,COUNT(*) AS x
+	$op_six = "SELECT p_name,p_type,SUM(op_quantity) AS x
 			   FROM order_products op 
 			   JOIN products p
 			   ON p.p_Id = op.p_Id
