@@ -72,8 +72,8 @@
 					
 						<!--Change names-->
 						<p class = "form-body">Date-Faculty Name-Product Name
-							<select name = "ia" class = "input-form" required = "required">
-								<option value = 999></option>
+							<select name = "ia" class = "input-form" data-validation="required">
+								<option value = -999></option>
 								<?php 
 								
 									/*Change indexes*/
@@ -90,7 +90,7 @@
 				</form>
 			</div>
 		<?php
-			}else if(($_POST["ia"]) != 999){
+			}else if(($_POST["ia"]) != -999){
 				$find = "SELECT pr.*,f.f_lastName,f.f_firstName,p.p_name
 						FROM production pr
 						JOIN faculty f 
@@ -116,9 +116,9 @@
 						<p class = "form-body">ID
 						<input type = "text" name = "prdn_Id" disabled class = "input-form" maxlength = 11  value = <?php echo $r['prdn_Id']?> ></p>
 						<p class = "form-body">Production Date
-						<input type = "text" id="form_date" name = "prdn_date" required = "required" class = "input-form" maxlength = 32  value = <?php echo $r['prdn_date']?> data-date-format="yyyy-mm-dd" ></p>
+						<input type = "text" id="form_date" name = "prdn_date" data-validation="required" class = "input-form" maxlength = 32  value = <?php echo $r['prdn_date']?> data-date-format="yyyy-mm-dd" ></p>
 						<p class = "form-body">Amount to produce
-						<input type = "number" name = "prdn_quantity" required = "required" class = "input-form" maxlength = 11 value = <?php echo $r['prdn_quantity']?> ></p>	
+						<input type = "text" name = "prdn_quantity" data-validation="required number" data-validation-allowing="positive" class = "input-form" maxlength = 11 value = <?php echo $r['prdn_quantity']?> ></p>	
 						<p class = "form-body">Faculty Assignment
 							<select name = "f_id" class = "input-form">
 								<?php
@@ -139,7 +139,7 @@
 							</select>
 						</p>
 						<p class = "form-body">Product to produce
-							<select name = "p_Id" class = "input-form">
+							<select data-validation="required" name = "p_Id" class = "input-form">
 								<?php
 									$fq = "SELECT * FROM products WHERE status = 'In-use'";
 									
@@ -161,7 +161,7 @@
 							</div>
 							<div class = "warn-form"><p>PRODUCTION'S CURRENT STATUS</p>
 								<div class = "warn-main">
-									<select name = "status" class = "warn-input">
+									<select data-validation="required" name = "status" class = "warn-input">
 										<option id = 'y' value = "Not started" <?php if($r['status'] == 'Okay') echo "selected = 'selected'"?> >Not started</option>
 										<option id = 'y' value = "Started" <?php if($r['status'] == 'Started') echo "selected = 'selected'"?> >Started</option>
 										<option id = 'n' value = "Finished" <?php if($r['status'] == 'Terminated') echo "selected = 'selected'"?> >Finished</option>
@@ -174,11 +174,14 @@
 				</form>
 			</div>
 			<?php
+				}else{
+			?>
+					<meta http-equiv='refresh' content='0; url=<?php echo $_SERVER["PHP_SELF"]; ?>' />
+			<?php
 				}
 			?>
 	</body>
 </html>
-
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap-datetimepicker.min.js"></script>

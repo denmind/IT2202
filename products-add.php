@@ -49,7 +49,7 @@
 				</div>
 				<div class = "mid-form">
 					<p class = "form-body">Product Name
-					<input type = "text" name = "name" required = "required" class = "input-form" maxlength = 32 autofocus placeholder = "Inch-Strong"></p>
+					<input type = "text" name = "name" data-validation="required alphanumeric" data-validation-allowing="-(' )" class = "input-form" maxlength = 32 autofocus placeholder = "Inch-Strong"></p>
 					<p class = "form-body">Product Type
 					<select name = "type" class = "input-form">
 						<option value = "General">General</option>
@@ -59,13 +59,12 @@
 						<option value = "Sticker">Sticker</option>
 						<option value = "Post">Post</option>
 					</select>
-					<!--<input type = "text" name = "type" required = "required" class = "input-form" maxlength = 32 placeholder = "Container/Vacuum Pack/Strap/Sticker/Post"></p>-->
-					<p class = "form-body">Weight
-					<input type = "text" name = "weight" required = "required" class = "input-form" maxlength = 32 placeholder = "32"></p>
+					<p class = "form-body">Weight (lbs)
+					<input type = "text" name = "weight" data-validation="required number" data-validation-allowing="float,positive" class = "input-form" maxlength = 32 placeholder = "32"></p>
 					<p class = "form-body">Price per quantity
-					<input type = "text" name = "price" required = "required" class = "input-form" maxlength = 32 placeholder = "523"></p>
+					<input type = "text" name = "price" data-validation="required number" data-validation-allowing="float,positive" class = "input-form" maxlength = 32 placeholder = "523"></p>
 					<p class = "form-body">Product Description
-					<textarea name = "descp" required = "required" class = "input-form" maxlength = 128 placeholder = "Long-lasting and durable"></textarea></p>
+					<textarea name = "descp" data-validation="required alphanumeric" data-validation-allowing="-(' )" class = "input-form" maxlength = 128 placeholder = "Long-lasting and durable"></textarea></p>
 				</div>
 				<div class = "bot-form">
 					<input type = "submit" value = "Submit Form" class = "input-submit">
@@ -74,3 +73,7 @@
 		</div>
 	</body>
 </html>
+<script src = "js/confirm-form.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.form-validator.js"></script>
+<script src="js/validate.js"></script>

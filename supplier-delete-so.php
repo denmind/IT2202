@@ -120,9 +120,9 @@
 						<p class = "form-body">Date/Time Ordered
 						<input  type="text" name="so_DateTime" class = "input-form" id="form_datetime" value = "<?php echo $r['so_DateTime']?>" data-date-format="yyyy-mm-dd hh:ii:ss"></p>
 						<p class = "form-body">Quantity Ordered
-						<input type = "number" name = "so_quantityOrdered" class = "input-form" maxlength = 8 value = <?php echo $r['so_quantityOrdered']?> ></p>
+						<input type = "number" name = "so_quantityOrdered" data-validation="required number" data-validation-allowing"positive" class = "input-form" maxlength = 8 value = <?php echo $r['so_quantityOrdered']?> ></p>
 						<p class = "form-body">Faculty Assignment
-							<select name = "f_id" class = "input-form">
+							<select data-validation="required" name = "f_id" class = "input-form">
 								<?php
 									$fq = "SELECT * FROM faculty WHERE f_department = 'Production'";
 									
@@ -157,12 +157,9 @@
 				</form>
 			</div>
 			<?php
-				}else if($_POST["ia"] == 999){
+				}else{
 			?>
-				<div class = "warn">
-					<p>Properly select a record</p>
-					<a href = "<?php echo $_SERVER['PHP_SELF']?>">Try Again</a>
-				</div>
+					<meta http-equiv='refresh' content='0; url=<?php echo $_SERVER["PHP_SELF"]; ?>' />
 			<?php
 				}
 			?>

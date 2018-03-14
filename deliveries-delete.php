@@ -151,14 +151,15 @@
 				</form>
 			</div>
 			<?php
-				}else if($_POST["ia"] == 999){
+				}else{
 			?>
-				<div class = "warn">
-					<p>Properly select a record</p>
-					<a href = "<?php echo $_SERVER['PHP_SELF']?>">Try Again</a>
-				</div>
+					<meta http-equiv='refresh' content='0; url=<?php echo $_SERVER["PHP_SELF"]; ?>' />
 			<?php
 				}
 			?>
 	</body>
 </html>
+<script src = "js/confirm-form.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.form-validator.js"></script>
+<script src="js/validate.js"></script>

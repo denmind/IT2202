@@ -13,7 +13,7 @@
 
 	$link = mysqli_connect($servername,$username,$password,$database);
 	
-	$fQuery = "SELECT f_id,f_lastName,f_firstName FROM faculty ORDER BY f_lastName";
+	$fQuery = "SELECT f_id,f_lastName,f_firstName FROM faculty WHERE f_department='Production' ORDER BY f_lastName";
 	$pQuery = "SELECT p_Id,p_name FROM products ORDER BY p_name";
 	
 	$fset = mysqli_query($link,$fQuery);
@@ -60,9 +60,9 @@
 				</div>
 				<div class = "mid-form">
 					<p class = "form-body">Production Date
-					<input type = "date" name = "date" required = "required" class = "input-form"></p>
+					<input type = "date" name = "date" data-validation="required" class = "input-form"></p>
 					<p class = "form-body">Production Quantity
-					<input type = "text" name = "quantity" required = "required" class = "input-form" maxlength = 32 placeholder = "Amount to produce"></p>
+					<input type = "text" name = "quantity" data-validation="required number" data-validation-allowing="positive" class = "input-form" maxlength = 32 placeholder = "Amount to produce"></p>
 					<p class = "form-body">Faculty Id
 						<select class = "input-form" name = "f_id">
 							<option>- - - - - - - - - - - -</option>
@@ -91,3 +91,7 @@
 		</div>
 	</body>
 </html>
+<script src = "js/confirm-form.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.form-validator.js"></script>
+<script src="js/validate.js"></script>

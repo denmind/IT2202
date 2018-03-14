@@ -19,7 +19,7 @@
 ?>
 <html>
 	<head>
-		<title>DFPPI Employees</title>
+		<title>DFPPI Supplier</title>
 		<link rel = "icon" href = "images/logo.png">
 		<link rel = "stylesheet" href = "css/bootstrap.min.css" crossorigin = "anonymous">
 		<link rel = "stylesheet" href = "css/design.css">
@@ -58,9 +58,9 @@
 				</div>
 				<div class = "mid-form">
 					<p class = "form-body">Quantity Ordered
-					<input type = "number" name = "qo" required = "required" class = "input-form" maxlength = 32 autofocus placeholder = "Amount ordered"></p>
+					<input type = "number" name = "qo" data-validation="required number" data-validation-allowing"positive" class = "input-form" maxlength = 32 autofocus placeholder = "Amount ordered"></p>
 					<p class = "form-body">Faculty Assigned
-					<select name = "type" class = "input-form">
+					<select data-validation="required" name = "type" class = "input-form">
 						<option>- - - - - - - - - - - -</option>
 						<?php 
 							while($var = mysqli_fetch_assoc($set)){
@@ -76,5 +76,8 @@
 			</form>
 		</div>
 	</body>
-	
 </html>
+<script src = "js/confirm-form.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.form-validator.js"></script>
+<script src="js/validate.js"></script>

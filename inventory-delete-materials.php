@@ -67,8 +67,8 @@
 					
 						<!--Change names-->
 						<p class = "form-body">Isle / [Row][Column]
-							<select required name = "ia" class = "input-form" >
-								<option value = 999></option>
+							<select data-validation="required" name = "ia" class = "input-form" >
+								<option value = -999></option>
 								<?php 
 								
 									/*Change indexes*/
@@ -85,7 +85,7 @@
 				</form>
 			</div>
 		<?php
-			}else if(($_POST["ia"]) != 999){
+			}else if(($_POST["ia"]) != -999){
 				/*Change FROM .... */
 				$find = "SELECT * FROM storage WHERE s_Id = '{$_POST["ia"]}'";
 				$r = mysqli_fetch_assoc(mysqli_query($link,$find));
@@ -110,11 +110,11 @@
 						<p class = "form-body">ID
 						<input type = "text" name = "s_Id" disabled class = "input-form" maxlength = 11  value = <?php echo $r['s_Id']?> ></p>
 						<p class = "form-body">Isle Location
-						<input type = "text" name = "s_isleLoc" required = "required" class = "input-form" maxlength = 3  value = <?php echo $r['s_isleLoc']?> ></p>
+						<input type = "text" name = "s_isleLoc" data-validation="required alphanumeric" data-validation-allowing="-/" class = "input-form" maxlength = 3  value = <?php echo $r['s_isleLoc']?> ></p>
 						<p class = "form-body">Row Number
-						<input type = "number" name = "s_rowLoc" required = "required" class = "input-form" maxlength = 8 value = <?php echo $r['s_rowLoc']?> ></p>
+						<input type = "number" name = "s_rowLoc" data-validation="required number" data-validation-allowing="postive" class = "input-form" maxlength = 8 value = <?php echo $r['s_rowLoc']?> ></p>
 						<p class = "form-body">Column Number
-						<input type = "number" name = "s_colLoc" required = "required" class = "input-form" maxlength = 8 value = <?php echo $r['s_colLoc']?> ></p>
+						<input type = "number" name = "s_colLoc" data-validation="required number" data-validation-allowing="postive" class = "input-form" maxlength = 8 value = <?php echo $r['s_colLoc']?> ></p>
 					</div>
 					<div class = "bot-form">
 						<input type = "submit" value = "Submit Form" class = "input-submit">
@@ -122,14 +122,15 @@
 				</form>
 			</div>
 			<?php
-				}else if($_POST["ia"] == 999){
+				}else{
 			?>
-				<div class = "warn">
-					<p>Properly select a record</p>
-					<a href = "<?php echo $_SERVER['PHP_SELF']?>">Try Again</a>
-				</div>
+					<meta http-equiv='refresh' content='0; url=<?php echo $_SERVER["PHP_SELF"]; ?>' />
 			<?php
 				}
 			?>
 	</body>
 </html>
+<script src = "js/confirm-form.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.form-validator.js"></script>
+<script src="js/validate.js"></script>

@@ -61,9 +61,9 @@
 				</div>
 				<div class = "mid-form">
 					<p class = "form-body">Item Quantity
-					<input type = "number" name = "iq" required = "required" class = "input-form" maxlength = 11 autofocus placeholder = "Amount to store"></p>
+					<input type = "number" name = "iq" data-validation="required number" data-validation-allowing="positive" class = "input-form" maxlength = 11 autofocus placeholder = "Amount to store"></p>
 					<p class = "form-body">Inventory Area
-						<select name = "ia" class = "input-form">
+						<select data-validation="required" name = "ia" class = "input-form">
 							<option>- - - - - - - - - - - -</option>
 							<?php 
 								while($var = mysqli_fetch_assoc($set)){
@@ -73,7 +73,7 @@
 						</select>
 					</p>
 					<p class = "form-body">Product Item
-						<select name = "pi" class = "input-form">
+						<select data-validation="required" name = "pi" class = "input-form">
 							<option>- - - - - - - - - - - -</option>
 							<?php 
 								while($var = mysqli_fetch_assoc($s2)){
@@ -90,3 +90,7 @@
 		</div>
 	</body>
 </html>
+<script src = "js/confirm-form.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.form-validator.js"></script>
+<script src="js/validate.js"></script>

@@ -64,8 +64,8 @@
 					<div class = "mid-form">
 						<!--Change names-->
 						<p class = "form-body">Supplier Name
-							<select required name = "ia" class = "input-form">
-								<option value = 999></option>
+							<select data-validation="required" name = "ia" class = "input-form">
+								<option value = -999></option>
 								<?php 
 									/*Change indexes*/
 									while($var = mysqli_fetch_assoc($set)){
@@ -81,7 +81,7 @@
 				</form>
 			</div>
 		<?php
-			}else if(($_POST["ia"]) != 999){
+			}else if(($_POST["ia"]) != -999){
 				/*Change FROM .... */
 				$find = "SELECT * FROM supplier
 			WHERE supp_Id = '{$_POST["ia"]}'";
@@ -107,11 +107,11 @@
 						<p class = "form-body">ID
 						<input type = "text" name = "supp_Id" disabled class = "input-form" maxlength = 11  value = <?php echo $r['supp_Id']?> ></p>
 						<p class = "form-body">Supplier Name
-						<input  type="text" name="supp_name" class = "input-form" id="form_datetime" value = "<?php echo $r['supp_name']?>"></p>
+						<input  type="text" name="supp_name" data-validation="required alphanumeric" data-validation-allowing="&'" class = "input-form" id="form_datetime" value = "<?php echo $r['supp_name']?>"></p>
 						<p class = "form-body">Contact Info
-						<input type = "text" name = "supp_contact" class = "input-form" maxlength = 64 value = "<?php echo $r['supp_contact']?>" ></p>
+						<input type = "text" name = "supp_contact"data-validation="required alphanumeric" data-validation-allowing="&'@."  class = "input-form" maxlength = 64 value = "<?php echo $r['supp_contact']?>" ></p>
 						<p class = "form-body">Supplier's Address
-						<textarea name = "supp_address" required = "required" class = "input-form" maxlength = 128 ><?php echo $r['supp_address']?></textarea></p>
+						<textarea name = "supp_address" data-validation="required alphanumeric" data-validation-allowing="&'@.#/" required = "required" class = "input-form" maxlength = 128 ><?php echo $r['supp_address']?></textarea></p>
 						
 					</div>
 					<div class = "bot-form">
@@ -133,12 +133,9 @@
 				</form>
 			</div>
 			<?php
-				}else if($_POST["ia"] == 999){
+				}else{
 			?>
-				<div class = "warn">
-					<p>Properly select a record</p>
-					<a href = "<?php echo $_SERVER['PHP_SELF']?>">Try Again</a>
-				</div>
+					<meta http-equiv='refresh' content='0; url=<?php echo $_SERVER["PHP_SELF"]; ?>' />
 			<?php
 				}
 			?>

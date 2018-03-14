@@ -67,8 +67,8 @@
 					
 						<!--Change names-->
 						<p class = "form-body">Product Names
-							<select required name = "ia" class = "input-form" >
-								<option value = 999></option>
+							<select data-validation="required" name = "ia" class = "input-form" >
+								<option value = -999></option>
 								<?php 
 								
 									/*Change indexes*/
@@ -85,7 +85,7 @@
 				</form>
 			</div>
 		<?php
-			}else if(($_POST["ia"]) != 999){
+			}else if(($_POST["ia"]) != -999){
 				/*Change FROM .... */
 				$find = "SELECT * FROM products WHERE p_Id = '{$_POST["ia"]}'";
 				$r = mysqli_fetch_assoc(mysqli_query($link,$find));
@@ -108,15 +108,15 @@
 					<div class = "mid-form">
 						<!-- input names and indexes change-->
 						<p class = "form-body">ID
-						<input type = "text" name = "p_Id" readonly = "readonly" class = "input-form" maxlength = 11  value = <?php echo $r['p_Id']?> ></p>
+						<input type = "text" name = "p_Id" disabled class = "input-form" maxlength = 11  value = <?php echo $r['p_Id']?> ></p>
 						<p class = "form-body">Product Name 
-						<input type = "text" name = "p_name" required = "required" class = "input-form" maxlength = 32  value = <?php echo $r['p_name']?> ></p>
-						<p class = "form-body">Product Weight (kgs)
-						<input type = "number" name = "p_weight" required = "required" class = "input-form" maxlength = 8 value = <?php echo $r['p_weight']?> ></p>
+						<input type = "text" name = "p_name" data-validation="required alphanumeric" data-validation-allowing="-(' )" class = "input-form" maxlength = 32  value = <?php echo $r['p_name']?> ></p>
+						<p class = "form-body">Product Weight (lbs)
+						<input type = "number" name = "p_weight" data-validation="required number" data-validation-allowing="float,positive" class = "input-form" maxlength = 8 value = <?php echo $r['p_weight']?> ></p>
 						<p class = "form-body">Product Pricing (Php)
-						<input type = "number" name = "p_price" required = "required" class = "input-form" maxlength = 32 value = <?php echo $r['p_price']?> ></p>
+						<input type = "number" name = "p_price" data-validation="required number" data-validation-allowing="float,positive" class = "input-form" maxlength = 32 value = <?php echo $r['p_price']?> ></p>
 						<p class = "form-body">Product Type
-							<select required name = "p_type" class = "input-form">
+							<select data-validation="required" name = "p_type" class = "input-form">
 								<option value = "Container" <?php if($r['p_type'] == 'Container') echo "selected = 'selected'"?> >Container</option>
 								<option value = "Vacuum Pack" <?php if($r['p_type'] == 'Vacuum Pack') echo "selected = 'selected'"?> >Vacuum Pack</option>
 								<option value = "Strap" <?php if($r['p_type'] == 'Strap') echo "selected = 'selected'"?> >Strap</option>
@@ -126,13 +126,13 @@
 							</select>
 						</p>
 						<p class = "form-body">Product Description
-						<textarea name = "p_descp" required = "required" class = "input-form" maxlength = 128 ><?php echo $r['p_descp']?></textarea></p>
+						<textarea name = "p_descp" data-validation="required alphanumeric" data-validation-allowing="-(' )" class = "input-form" maxlength = 128 ><?php echo $r['p_descp']?></textarea></p>
 					</div>
 						<div class = "line-sep">
 						</div>
 						<div class = "warn-form"><p>PRODUCT'S CURRENT STATUS</p>
 							<div class = "warn-main">
-								<select name = "status" class = "warn-input">
+								<select name = "status" class = "warn-input" data-validation="required">
 									<option id = 'y' value = "Outdated" <?php if($r['status'] == 'Outdated') echo "selected = 'selected'"?> >Outdated</option>
 									<option id = 'n' value = "In-use" <?php if($r['status'] == 'In-use') echo "selected = 'selected'"?> >In-use</option>
 								</select>
@@ -144,14 +144,15 @@
 				</form>
 			</div>
 			<?php
-				}else if($_POST["ia"] == 999){
+				}else{
 			?>
-				<div class = "warn">
-					<p>Properly select a record</p>
-					<a href = "<?php echo $_SERVER['PHP_SELF']?>">Try Again</a>
-				</div>
+					<meta http-equiv='refresh' content='0; url=<?php echo $_SERVER["PHP_SELF"]; ?>' />
 			<?php
 				}
 			?>
 	</body>
 </html>
+<script src = "js/confirm-form.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.form-validator.js"></script>
+<script src="js/validate.js"></script>

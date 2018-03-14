@@ -49,11 +49,11 @@
 				</div>
 				<div class = "mid-form">
 					<p class = "form-body">Isle Info
-					<input type = "text" name = "isle" required = "required" class = "input-form" maxlength = 32 autofocus placeholder = "A1-9"></p>
+					<input type = "text" name = "isle" data-validation="required alphanumeric" data-validation-allowing="-/" class = "input-form" maxlength = 32 autofocus placeholder = "A1-9"></p>
 					<p class = "form-body">Row #
-					<input type = "number" name = "row" required = "required" class = "input-form" maxlength = 8 placeholder = "1"></p>
+					<input type = "number" name = "row" data-validation="required number" data-validation-allowing="postive" class = "input-form" maxlength = 8 placeholder = "1"></p>
 					<p class = "form-body">Column #
-					<input type = "number" name = "col" required = "required" class = "input-form" maxlength = 8 placeholder = "1"></p>
+					<input type = "number" name = "col" data-validation="required number" data-validation-allowing="postive" class = "input-form" maxlength = 8 placeholder = "1"></p>
 				</div>
 				<div class = "bot-form">
 					<input type = "submit" value = "Submit Form" class = "input-submit">
@@ -62,3 +62,7 @@
 		</div>
 	</body>
 </html>
+<script src = "js/confirm-form.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.form-validator.js"></script>
+<script src="js/validate.js"></script>

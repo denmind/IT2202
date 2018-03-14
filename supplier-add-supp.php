@@ -9,7 +9,7 @@
 ?>
 <html>
 	<head>
-		<title>DFPPI Add Supplier</title>
+		<title>DFPPI Supplier</title>
 		<link rel = "icon" href = "images/logo.png">
 		<link rel = "stylesheet" href = "css/bootstrap.min.css" crossorigin = "anonymous">
 		<link rel = "stylesheet" href = "css/design.css">
@@ -49,11 +49,11 @@
 				</div>
 				<div class = "mid-form">
 					<p class = "form-body">Supplier Name
-					<input type = "text" name = "name" required = "required" class = "input-form" maxlength = 64 autofocus placeholder = "Workforcely"></p>
+					<input type = "text" name = "name" data-validation="required alphanumeric" data-validation-allowing="&'" class = "input-form" maxlength = 64 autofocus placeholder = "Workforcely"></p>
 					<p class = "form-body">Supplier Contact
-					<input type = "text" name = "contact" required = "required" class = "input-form" maxlength = 64 autofocus placeholder = "mddallara@yahoo.com"></p>
+					<input type = "text" name = "contact" data-validation="required alphanumeric" data-validation-allowing="&'@." class = "input-form" maxlength = 64 autofocus placeholder = "mddallara@yahoo.com"></p>
 					<p class = "form-body">Supplier Address
-					<textarea name = "address" required = "required" class = "input-form" maxlength = 128 autofocus placeholder = "8502 N. Ohio Drive 
+					<textarea name = "address" data-validation="required alphanumeric" data-validation-allowing="&'@.#/" class = "input-form" maxlength = 128 autofocus placeholder = "8502 N. Ohio Drive 
 Bethesda, MD 20814"></textarea></p>
 				</div>
 				<div class = "bot-form">

@@ -66,8 +66,8 @@
 					
 						<!--Change names-->
 						<p class = "form-body">Storage Schedule/Location/Product Name
-							<select required name = "ia" class = "input-form" >
-								<option value = 999></option>
+							<select data-validation="required" name = "ia" class = "input-form" >
+								<option value = -999></option>
 								<?php 
 									/*Change indexes*/
 									while($var = mysqli_fetch_assoc($set)){
@@ -83,7 +83,7 @@
 				</form>
 			</div>
 		<?php
-			}else if(!empty($_POST)){
+			}else if(($_POST["ia"]) != -999){
 				/*Change FROM .... */
 				$find = "SELECT *
 						FROM storage_products strp
@@ -124,11 +124,11 @@
 						<p class = "form-body">ID
 						<input type = "text" name = "sp_Id" disabled autofocus class = "input-form" maxlength = 11  value = <?php echo $r['sp_Id']?> ></p>
 						<p class = "form-body">Quantity Stored
-						<input type = "number" name = "sp_quantity" required="required" autofocus class = "input-form" maxlength = 11  value = <?php echo $r['sp_quantity']?> ></p>
+						<input type = "number" name = "sp_quantity" data-validation="required number" data-validation-allowing="positive" autofocus class = "input-form" maxlength = 11  value = <?php echo $r['sp_quantity']?> ></p>
 						<p class = "form-body">Storage Schedule
-						<input type = "text" name = "sp_dateTimeStored" id="form_datetime"  required = "required" class = "input-form" maxlength = 32  value = "<?php echo $r['sp_dateTimeStored']?>" data-date-format="yyyy-mm-dd hh:ii:ss" ></p>
+						<input type = "text" name = "sp_dateTimeStored" id="form_datetime"  class = "input-form" maxlength = 32  value = "<?php echo $r['sp_dateTimeStored']?>" data-date-format="yyyy-mm-dd hh:ii:ss" ></p>
 						<p class = "form-body">Designated Storage
-							<select name = "s_Id" class = "input-form">
+							<select data-validation="required" name = "s_Id" class = "input-form">
 								<?php
 									while($key = mysqli_fetch_assoc($storage)){
 								?>
@@ -147,7 +147,7 @@
 							</select>
 						</p>
 						<p class = "form-body">Product Stored
-							<select name = "p_Id" class = "input-form">
+							<select data-validation="required" name = "p_Id" class = "input-form">
 								<?php
 									while($key = mysqli_fetch_assoc($products)){
 								?>
@@ -170,6 +170,10 @@
 					</div>
 				</form>
 			</div>
+			<?php
+				}else{
+			?>
+					<meta http-equiv='refresh' content='0; url=<?php echo $_SERVER["PHP_SELF"]; ?>' />
 			<?php
 				}
 			?>
