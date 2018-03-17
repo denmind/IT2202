@@ -1,7 +1,7 @@
 <!---Icons made by Google Material Design, Elegant Font, FreePik, Chanut Industries from flaticon.com--->
 <!DOCTYPE html>
 <?php
-	
+	session_start();
 	/*Change to desired administrator username and password used for log-in*/
 	$admin = "exec";
 	
@@ -9,8 +9,17 @@
 	$reg_user = "user";
 	
 	if(empty($_POST)){
-		if(!empty($_SESSION))
-			session_destroy();
+		if(!empty($_SESSION)){
+            if(isset($_SESSION['isLogin']) && $_SESSION['isLogin'] == false){
+                echo "<script>alert('Please login before accessing');</script>";
+                session_destroy();
+            }
+            if(isset($_GET['logout']) && $_GET['logout'] == 'true'){
+                session_destroy();
+                header('location:index.php');
+                exit();
+            }
+        }
 ?>
 	<html>
 		<head>
@@ -48,13 +57,6 @@
 <?php
 	/*Log-in check*/
 	}else{
-        session_start();
-
-        if(isset($_SESSION['isLogin']) && $_SESSION['isLogin'] == false){
-            echo "<script>alert('Please login before accessing');</script>";
-            unset($_SESSION['isLogin']);
-        }
-        
 		/**Default flag values for regular non-employee user**/
 		$_SESSION["first_name"] =  $_SESSION["last_name"] = "User";
 		$_SESSION["FLAG_VALUE"] = 0;

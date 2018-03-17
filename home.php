@@ -49,7 +49,7 @@
 					<li><a id = "li-a" href = "inventory.php">Inventory</a></li>
 					<li><a id = "li-a" href = "docs/manual.html"><i>Help?</i></a></li>
 					<li><a id = "li-a" href = "home-profile.php">Profile</a></li>
-					<li><a id = "li-a" href = "index.php"><b>Sign Out</b></a></li>
+					<li><a id = "li-a" href = "index.php?logout=true"><b>Sign Out</b></a></li>
 				</ul>
 			</div>
 		</nav>
