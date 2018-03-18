@@ -1,5 +1,13 @@
 <?php
 	require '../sql_connect.php';
+
+	session_start();
+
+    if(!isset($_SESSION['isPriv']) || $_SESSION['isPriv'] != true){
+        $_SESSION['isPriv'] = false;
+        header("Location:../index.php");
+        exit();
+    }
 	
 	$sql = "SELECT * FROM users";
 	
@@ -24,7 +32,7 @@
 			  <li><a href="account-non.php">No accounts</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-			  <li><a href="../"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+			  <li><a href="../index.php?logout=true"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
 			</ul>
 		  </div>
 		</nav> 

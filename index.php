@@ -10,7 +10,7 @@
 	
 	if(empty($_POST)){
 		if(!empty($_SESSION)){
-            if(isset($_SESSION['isLogin']) && $_SESSION['isLogin'] == false){
+            if((isset($_SESSION['isLogin']) && $_SESSION['isLogin'] == false) || (isset($_SESSION['isPriv']) && $_SESSION['isPriv']) == false){
                 echo "<script>alert('Please login before accessing');</script>";
                 session_destroy();
             }
@@ -70,6 +70,7 @@
 			/*Redirect to  priv/reg mode*/
 			if($usr == $admin && $pass == $usr){
 				echo "<meta http-equiv='refresh' content='0; url=priv/'/>";
+                $_SESSION["isPriv"] = true;
 			}else if ($usr == $reg_user && $pass == $usr){
 				echo "<meta http-equiv='refresh' content='0; url=home.php'/>";
 				$_SESSION["privilege"] = "All";

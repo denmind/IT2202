@@ -38,13 +38,13 @@
 							<div class="form-group">
 								<label class="control-label col-sm-2" for="fn">Firstname: </label>
 								<div class="col-sm-10">
-								  <input type="text" class="form-control" name="fn" data-validation="required alphanumeric" maxlength="8" placeholder="Enter First Name">
+								  <input type="text" class="form-control" name="fn" data-validation="required alphanumeric" maxlength="10" placeholder="Enter First Name">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-sm-2" for="ln">Lastname: </label>
 								<div class="col-sm-10">
-								  <input type="text" class="form-control" name="ln" data-validation="required alphanumeric" maxlength="8" placeholder="Enter Last Name">
+								  <input type="text" class="form-control" name="ln" data-validation="required alphanumeric" maxlength="10" placeholder="Enter Last Name">
 								</div>
 							</div>
 							<div class="form-group">
