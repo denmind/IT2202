@@ -1,57 +1,29 @@
 <!DOCTYPE html>
 <?php
-	session_start();
-	include("sql_connect.php");
+	session_start(); 
+	
+	require 'sql_connect.php';
     if(!isset($_SESSION['isLogin']) || $_SESSION['isLogin'] != true){
         $_SESSION['isLogin'] = false;
         header("Location:index.php");
         exit();
     }
-	//DB connect
-	if($conn == false){
-		echo "Fail to connet Database";
-		exit();
-	}
 
-	//Initialize query elements
-    $choice = isset($_GET['choice'])? $_GET['choice'] : 1;
-    $srch = isset($_GET['srch'])? $_GET['srch'] : 1;
+    $view = "SELECT *, ROUND((so.so_quantityOrdered * rm.rm_pricePerUnit), 2) As Total
+    FROM supply_orders so
+    JOIN raw_materials rm
+    ON so.so_Id = rm.so_Id
+    ORDER BY so.so_Id";
 
-	//Initialize Page elements
-	$numberOfRows = 10;
-	$page = isset($_GET['page']) ? $_GET['page'] : 1;
-	$limit = ($page - 1) * $numberOfRows;
-	
-	//Initialize Order
-	$col = isset($_GET['order']) ? $_GET['order'] : "so_Id";
-	$dir = isset($_GET['direction']) ? $_GET['direction'] : "ASC";
-	
-	
-	//Main query
-	$query = "SELECT * FROM supply_orders WHERE {$choice} = '{$srch}' ORDER BY {$col} {$dir} LIMIT {$limit}, {$numberOfRows}";
-	$result = mysqli_query($conn, $query);
-	
-	//Query Check
-	if(!$result){
-		echo "Wrong Query has accepted.<br>";
-		echo mysqli_error($conn);
-		exit();
-	}
-	
-	//Get number of pages
-	$query2 = "SELECT COUNT(*) as rowCount FROM supply_orders WHERE {$choice} = '{$srch}';";
-	$result2 = mysqli_query($conn, $query2);
-	$totalRows = mysqli_fetch_row($result2);
-	$numberOfPages = ceil($totalRows[0] / $numberOfRows);
+    $result = mysqli_query($conn, $view);
 ?>
 <html>
 	<head>
 		<title>DFPPI Employees</title>
 		<link rel = "icon" href = "images/logo.png">
+		<link rel="stylesheet" href="css/jquery.dataTables.css">
 		<link rel = "stylesheet" href = "css/bootstrap.min.css" crossorigin = "anonymous">
 		<link rel = "stylesheet" href = "css/design.css">
-		<script src = "js/bootstrap.min.js"></script>
-		<script src = "js/jquery.min.js"></script>
 	</head>
 	<body>
 		<div class = "ultra-banner">
@@ -78,77 +50,160 @@
 				</ul>
 			</div>
 		</nav>
-		<div class = "main-view">
-			<div class = "top-div">
-				<form action = "supplier-view-so.php" method = "get" onsubmit = "return check();" autocomplete="off">
-					<p class = "form-body">Search by : 
-					<select id = "choice" name = "choice">
-                    <option value="so_Id">Supply Order Id</option>
-					<option value="f_Id">Employee Id</option>
-					</select>
-					<input type = "text" id = "srch" name = "srch" class = "input-srch" maxlength = 128 autofocus placeholder = "Francis" required>
-					</p>
-
-					<input id = "submit" type = "submit" value = "Search">
-				</form>
-			</div>
-			<div class = "bot-div">
-            <?php
-
-                //Create Table
-                echo "<table class= 'table-set' border='1' cellspacing='1' cellpadding='3' style='width:100%;font-size:20;'>";
-                
-                //Table head & Toggle direction
-                $ndir = ($col == "so_Id" && $dir == "ASC") ? "DESC" : "ASC";
-                echo "<th><a href='supplier-view-so.php?choice={$choice}&srch={$srch}&direction={$ndir}&order=so_Id&page={$page}'>Supply Order Id</a></th>"; 
-                
-                $ndir = ($col == "so_DateTime" && $dir == "ASC") ? "DESC" : "ASC";
-                echo "<th><a href='supplier-view-so.php?choice={$choice}&srch={$srch}&direction={$ndir}&order=so_DateTime&page={$page}'>Order Date Time</a></th>"; 
-                
-                $ndir = ($col == "so_quantityOrdered" && $dir == "ASC") ? "DESC" : "ASC";
-                echo "<th><a href='supplier-view-so.php?choice={$choice}&srch={$srch}&direction={$ndir}&order=so_quantityOrdered&page={$page}'>Quantity Ordered</a></th>";
-                
-                echo "<th>Employee Id</th>";
-                
-                //Create Table content
-                while($row = mysqli_fetch_assoc($result)){
-                    echo "<tr>";
-                    echo "<td>{$row["so_Id"]}</td>";
-                    echo "<td>{$row["so_DateTime"]}</td>";
-                    echo "<td>{$row["so_quantityOrdered"]}</td>";
-                    echo "<td><a href='employees-view.php?choice=f_id&srch={$row['f_Id']}'>{$row['f_Id']}</a></td>";
-                    echo "</tr>";
-                }
-
-                echo "</table>";
-            ?>
-            <div class = 'pagination'>
-                <ul>
-                <?php 
-                    //Create Pagination
-                    for($i = 1; $i <= $numberOfPages; $i++){
-                        echo "<li><a href='supplier-view-so.php?choice={$choice}&srch={$srch}&direction={$dir}&order={$col}&page={$i}'>{$i}</a></li>"; 
-                    }
-                ?>
-                </ul>
-            </div>
-			</div>
-		</div>
+		<div class = "div-form" id="viewTableOnly">
+			<table id="table" class="display">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Order Date Time</th>
+						<th>Quanity</th>
+						<th>Status</th>
+                        <th>Faculty</th>
+                        <th>Supplier</th>
+                        <th>Material Name</th>
+                        <th>Total Price</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+						while($key = mysqli_fetch_assoc($result)){
+							echo "<tr>";
+							echo "<td>{$key['so_Id']}</td>";
+							echo "<td>{$key['so_DateTime']}</td>";
+                            echo "<td>{$key['so_quantityOrdered']}</td>";
+                            echo "<td>{$key['status']}</td>";
+                            echo "<td><button class='btn btn-primary btn-small' data-faculty='{$key['f_Id']}'>
+						<span class='glyphicon glyphicon-eye-open'></span>
+						</button></td>";
+                            echo "<td><button class='btn btn-warning btn-small' data-supplier='{$key['rm_Id']}'>
+						<span class='glyphicon glyphicon-eye-open'></span>
+						</button></td>";
+                            echo "<td>{$key['rm_name']}</td>";
+							echo "<td>{$key['Total']}</td>";
+							echo "</tr>";
+						}
+					?>
+				</tbody>
+			</table>
+        </div>
+        <!-- START OF MODAL SECTION -->
+        <div class="modal fade" tabindex="-1" role="dialog" id = "modal">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id = "title"></h4>
+              </div>
+              <div class="modal-body">
+                <h4 id = 'message'></h4>
+                <table class='table table-condensed table-bordered'>
+                    <thead id = "modalHead">
+                    </thead>
+                    <tbody id = "modalBody">
+                        <!--Data Displayed-->
+                    </tbody>
+                </table>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!-- END OF MODAL SECTION -->
 	</body>
 </html>
-<script src="js/jquery.min.js"></script>
+<script src="js/jquery.js"></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+<script src="js/jquery.dataTables.js"></script>
+<script src="js/ourTable.js"></script>
 <script>
-function check(){
-    var choice = $('#choice').val();    
-    var srch = $('#srch').val();
+//javascript here
+    //for faculty
+$('.btn-primary').on('click', function(){
+	var fn = $(this).data('faculty');
+	$.ajax({
+		url : 'ViewProcess/getFaculty.php',
+		method : 'POST',
+		data : {faculty : fn},
+		dataType : 'json',
+		success: function(result){
+			var row = "";
+			var title = "Faculty Info";
+			var head = "<th>#</th><th>Full Name</th><th>Gender</th><th>Contact No.</th><th>Email</th><th>Language</th><th>Position</th>";
+
+			$('#modalBody').empty();
+			$('#modalHead').empty();
+			$('#message').empty();
+            $('#title').empty();
+
+			if(result.length == 0){
+				var message = "This faculty doesn't exist!";
+				$('#message').append(message);
+			}else{
+				$("#modalHead").append(head);
+                for(var x=0; x < result.length; x++){
+                    
+                    var full = result[x].f_firstName;
+                    var name = full.concat(" ", result[x].f_midInitial, ". ", result[x].f_lastName);
+                    
+                    row = "<tr>";
+                    row += "<td>"+result[x].f_id+"</td>";
+                    row += "<td>"+name+"</td>";
+                    row += "<td>"+result[x].f_sex+"</td>";
+                    row += "<td>"+result[x].f_mobileNo+"</td>";
+                    row += "<td>"+result[x].f_email+"</td>";
+                    row += "<td>"+result[x].f_langSpoken+"</td>";
+                    row += "<td>"+result[x].f_position+"</td>";
+                    row += "</tr>";
+                    $('#modalBody').append(row);
+                }
+			}
+            $('#title').append(title);
+			$('#modal').modal('show');
+		}
+	});
+});
     
-    if(choice == "so_Id" || choice == "f_Id"){
-        if(!$.isNumeric(srch)) {
-            alert('Please input correctly.');
-            return false;
-        }
-    }
-    
-    return true;
-}
+    //for client
+$('.btn-warning').on('click', function(){
+	var rn = $(this).data('supplier');
+	$.ajax({
+		url : 'ViewProcess/getSupplier.php',
+		method : 'POST',
+		data : {rm : rn},
+		dataType : 'json',
+		success: function(result){
+			var row = "";
+			var title = "Supplier Info";
+			var head = "<th>#</th><th>Name</th><th>Address</th><th>Contact</th><th>Status</th>";
+
+			$('#modalBody').empty();
+			$('#modalHead').empty();
+			$('#message').empty();
+            $('#title').empty();
+
+			if(result.length == 0){
+				var message = "This client doesn't exist!";
+				$('#message').append(message);
+			}else{
+				$("#modalHead").append(head);
+				for(var x=0; x < result.length; x++){
+					row = "<tr>";
+					row += "<td>"+result[x].supp_Id+"</td>";
+                    row += "<td>"+result[x].supp_name+"</td>";
+                    row += "<td>"+result[x].supp_address+"</td>";
+                    row += "<td>"+result[x].supp_contact+"</td>";
+                    row += "<td>"+result[x].supp_stat+"</td>";
+					row += "</tr>";
+					$('#modalBody').append(row);
+				}
+			}
+            $('#title').append(title);
+			$('#modal').modal('show');
+		}
+	});
+});
 </script>

@@ -61,7 +61,7 @@
 					 </div>
 				</div>
 			</a>
-			<a href = "inventory-view-items.php" class = "bloke">
+			<a href = "inventory-view-materials.php" class = "bloke">
 				<div class = "container">
 					<img class = "bloke-img" src = "images/warehouse.png" alt = "View stored items" title = "View stored items">
 					<div class="overlay">

@@ -1,57 +1,27 @@
 <!DOCTYPE html>
 <?php
 	session_start();
-	include("sql_connect.php");
+	
+    require 'sql_connect.php';
     if(!isset($_SESSION['isLogin']) || $_SESSION['isLogin'] != true){
         $_SESSION['isLogin'] = false;
         header("Location:index.php");
         exit();
     }
-	//DB connect
-	if($conn == false){
-		echo "Fail to connet Database";
-		exit();
-	}
+    $view = "SELECT *
+    FROM faculty f
+    WHERE f.f_status = 'Okay'
+    ORDER BY f.f_id";
 
-	//Initialize query elements
-    $choice = isset($_GET['choice'])? $_GET['choice'] : 1;
-    $srch = isset($_GET['srch'])? $_GET['srch'] : 1;
-
-	//Initialize Page elements
-	$numberOfRows = 10;
-	$page = isset($_GET['page']) ? $_GET['page'] : 1;
-	$limit = ($page - 1) * $numberOfRows;
-	
-	//Initialize Order
-	$col = isset($_GET['order']) ? $_GET['order'] : "f_id";
-	$dir = isset($_GET['direction']) ? $_GET['direction'] : "ASC";
-	
-	
-	//Main query
-	$query = "SELECT * FROM faculty WHERE {$choice} = '{$srch}' ORDER BY {$col} {$dir} LIMIT {$limit}, {$numberOfRows}";
-	$result = mysqli_query($conn, $query);
-	
-	//Query Check
-	if(!$result){
-		echo "Wrong Query has accepted.<br>";
-		echo mysqli_error($conn);
-		exit();
-	}
-	
-	//Get number of pages
-	$query2 = "SELECT COUNT(*) as rowCount FROM faculty WHERE {$choice} = '{$srch}';";
-	$result2 = mysqli_query($conn, $query2);
-	$totalRows = mysqli_fetch_row($result2);
-	$numberOfPages = ceil($totalRows[0] / $numberOfRows);
+    $result = mysqli_query($conn, $view);
 ?>
 <html>
 	<head>
 		<title>DFPPI View Employees</title>
 		<link rel = "icon" href = "images/logo.png">
+		<link rel="stylesheet" href="css/jquery.dataTables.css">
 		<link rel = "stylesheet" href = "css/bootstrap.min.css" crossorigin = "anonymous">
 		<link rel = "stylesheet" href = "css/design.css">
-		<script src = "js/bootstrap.min.js"></script>
-		<script src = "js/jquery.min.js"></script>
 	</head>
 	
 	<body>
@@ -79,123 +49,58 @@
 				</ul>
 			</div>
 		</nav>
-		<div class = "main-view">
-			<div class = "top-div">
-				<form action = "employees-view.php" method = "get" onsubmit = "return check();" autocomplete="off">
-					<p class = "form-body">Search by : 
-					<select id = "choice" name = "choice">
-                    <option value="f_id">Employee Id</option>
-					<option value="f_firstName">First name</option>
-					<option value="f_lastName">Last name</option>
-					<option value="f_dateHired">Status</option>
-                    <option value="YEAR(f_dateOfBirth)">Year Born</option>
-                    <option value="f_position">Position</option>
-                    <option value="f_salary">Salary</option>
-                    <option value="f_department">Department</option>
-					</select>
-					<input type = "text" id = "srch" name = "srch" class = "input-srch" maxlength = 128 autofocus placeholder = "Francis" required>
-					</p>
-
-					<input id = "submit" type = "submit" value = "Search">
-				</form>
-			</div>
-			<div class = "bot-div">
-				<?php
-					//Create Table
-					echo "<table class= 'table-set'  >";
-					
-					//Table head & Toggle direction
-					$ndir = ($col == "f_id" && $dir == "ASC") ? "DESC" : "ASC";
-					echo "<th><a href='employees-view.php?choice={$choice}&srch={$srch}&direction={$ndir}&order=f_id&page={$page}'>Employee Id</a></th>"; 
-					
-					$ndir = ($col == "f_firstName" && $dir == "ASC") ? "DESC" : "ASC";
-					echo "<th><a href='employees-view.php?choice={$choice}&srch={$srch}&direction={$ndir}&order=f_firstName&page={$page}'>First Name</a></th>"; 
-					
-					echo "<th>Middle Initial</th>";
-					
-					$ndir = ($col == "f_lastName" && $dir == "ASC") ? "DESC" : "ASC";
-					echo "<th><a href='employees-view.php?choice={$choice}&srch={$srch}&direction={$ndir}&order=f_lastName&page={$page}'>Last Name</a></th>"; 
-					
-					$ndir = ($col == "f_dateHired" && $dir == "ASC") ? "DESC" : "ASC";
-					echo "<th><a href='employees-view.php?choice={$choice}&srch={$srch}&direction={$ndir}&order=f_dateHired&page={$page}'>Date Hired</a></th>";
-
-					echo "<th>Gender</th>";
-					
-					echo "<th>Religion</th>";
-					
-					echo "<th>Address</th>";
-					
-					echo "<th>Mobile No.</th>";
-					
-					echo "<th>E-mail</th>";
-					
-					$ndir = ($col == "f_dateOfBirth" && $dir == "ASC") ? "DESC" : "ASC";
-					echo "<th><a href='employees-view.php?choice={$choice}&srch={$srch}&direction={$ndir}&order=f_dateOfBirth&page={$page}'>Date of Birth</a></th>";
-					
-					echo "<th>Place Born</th>";
-					
-					echo "<th>Civil Status</th>";
-					
-					echo "<th>Language Spoken</th>";
-					
-					echo "<th>Position</th>";
-					
-					$ndir = ($col == "f_salary" && $dir == "ASC") ? "DESC" : "ASC";
-					echo "<th><a href='employees-view.php?choice={$choice}&srch={$srch}&direction={$ndir}&order=f_salary&page={$page}'>Salary</a></th>";
-					
-					echo "<th>Department</th>";
-
-					//Create Table content
-					while($row = mysqli_fetch_assoc($result)){
-						echo "<tr>";
-						echo "<td>{$row["f_id"]}</td>";
-						echo "<td>{$row["f_firstName"]}</td>";
-						echo "<td>{$row["f_midInitial"]}</td>";
-						echo "<td>{$row["f_lastName"]}</td>";
-						echo "<td>{$row["f_dateHired"]}</td>";
-						echo "<td>{$row["f_sex"]}</td>";
-						echo "<td>{$row["f_religion"]}</td>";
-						echo "<td>{$row["f_address"]}</td>";
-						echo "<td>{$row["f_mobileNo"]}</td>";
-						echo "<td>{$row["f_email"]}</td>";
-						echo "<td>{$row["f_dateOfBirth"]}</td>";
-						echo "<td>{$row["f_placeOfBirth"]}</td>";
-						echo "<td>{$row["f_civilStatus"]}</td>";
-						echo "<td>{$row["f_langSpoken"]}</td>";
-						echo "<td>{$row["f_position"]}</td>";
-						echo "<td>{$row["f_salary"]}</td>";
-						echo "<td>{$row["f_department"]}</td>";
-						echo "</tr>";
-					}
-
-					echo "</table>";
-				?>
-				<div class = 'pagination'>
-					<ul>
-					<?php 
-						//Create Pagination
-						for($i = 1; $i <= $numberOfPages; $i++){
-							echo "<li><a href='employees-view.php?choice={$choice}&srch={$srch}&direction={$dir}&order={$col}&page={$i}'>{$i}</a></li>"; 
+		<div id="viewTableOnly">
+			<table id="table" class="display">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>First Name</th>
+                        <th>Middle Initial</th>
+						<th>Last Name</th>
+						<th>Date Hired</th>
+                        <th>Gender</th>
+                        <th>Religion</th>
+                        <th>Address</th>
+                        <th>Contact No.</th>
+                        <th>Email</th>
+                        <th>Date of Birth</th>
+                        <th>Place Born</th>
+                        <th>Civil Status</th>
+                        <th>Language</th>
+                        <th>Position</th>
+                        <th>Salary</th>
+                        <th>Department</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+						while($key = mysqli_fetch_assoc($result)){
+							echo "<tr>";
+							echo "<td>{$key['f_id']}</td>";
+							echo "<td>{$key['f_firstName']}</td>";
+                            echo "<td>{$key['f_midInitial']}</td>";
+							echo "<td>{$key['f_lastName']}</td>";
+							echo "<td>{$key['f_dateHired']}</td>";
+                            echo "<td>{$key['f_sex']}</td>";
+                            echo "<td>{$key['f_religion']}</td>";
+                            echo "<td>{$key['f_address']}</td>";
+                            echo "<td>{$key['f_mobileNo']}</td>";
+                            echo "<td>{$key['f_email']}</td>";
+                            echo "<td>{$key['f_dateOfBirth']}</td>";
+                            echo "<td>{$key['f_placeOfBirth']}</td>";
+                            echo "<td>{$key['f_civilStatus']}</td>";
+                            echo "<td>{$key['f_langSpoken']}</td>";
+                            echo "<td>{$key['f_position']}</td>";
+                            echo "<td>{$key['f_salary']}</td>";
+                            echo "<td>{$key['f_department']}</td>";
+							echo "</tr>";
 						}
 					?>
-					</ul>
-				</div>
-			</div>
-		</div>
+				</tbody>
+			</table>
+        </div>
 	</body>
 </html>
-<script>
-function check(){
-    var choice = $('#choice').val();    
-    var srch = $('#srch').val();
-    
-    if(choice == "f_salary" || choice == "YEAR(f_dateOfBirth)" || choice == "f_id"){
-        if(!$.isNumeric(srch)) {
-            alert('Please input correctly.');
-            return false;
-        }
-    }
-    
-    return true;
-}
-</script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.dataTables.js"></script>
+<script src="js/ourTable.js"></script>
