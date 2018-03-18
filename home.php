@@ -6,6 +6,7 @@
 	
 	require 'sql_connect.php';
 	require 'php/queries.php';
+	
     if(!isset($_SESSION['isLogin']) || $_SESSION['isLogin'] != true){
         $_SESSION['isLogin'] = false;
         header("Location:index.php");

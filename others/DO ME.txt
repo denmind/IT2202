@@ -1,10 +1,9 @@
-Validation and Clean-ups
-Priv mode
 Make sure business operation works
 Documentation
-CRUD delivery orders
-
 
 DONE:
 View Profile
 Data Visualization (Charts)
+Validation and Clean-ups
+Priv mode
+CRUD delivery orders

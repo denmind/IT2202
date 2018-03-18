@@ -24,7 +24,7 @@
 ?>
 <html>
 	<head>
-		<title>DFPPI Add Order Products</title>
+		<title>DFPPI View Order Products</title>
 		<link rel = "icon" href = "images/logo.png">
 		<link rel="stylesheet" href="css/jquery.dataTables.css">
 		<link rel = "stylesheet" href = "css/bootstrap.min.css" crossorigin = "anonymous">

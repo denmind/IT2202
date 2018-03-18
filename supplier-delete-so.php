@@ -120,7 +120,7 @@
 						<p class = "form-body">Date/Time Ordered
 						<input  type="text" name="so_DateTime" class = "input-form" id="form_datetime" value = "<?php echo $r['so_DateTime']?>" data-date-format="yyyy-mm-dd hh:ii:ss"></p>
 						<p class = "form-body">Quantity Ordered
-						<input type = "number" name = "so_quantityOrdered" data-validation="required number" data-validation-allowing"positive" class = "input-form" maxlength = 8 value = <?php echo $r['so_quantityOrdered']?> ></p>
+						<input type = "number" name = "so_quantityOrdered" data-validation="required number" data-validation-allowing="positive" class = "input-form" maxlength = 8 value = <?php echo $r['so_quantityOrdered']?> ></p>
 						<p class = "form-body">Faculty Assignment
 							<select data-validation="required" name = "f_id" class = "input-form">
 								<?php
@@ -169,3 +169,5 @@
 <script src="js/jquery.js"></script>
 <script src="js/jquery.form-validator.js"></script>
 <script src="js/validate.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
