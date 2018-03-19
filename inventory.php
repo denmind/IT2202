@@ -44,7 +44,6 @@
 			</div>
 		</nav>
 		<div class = "choices">
-			<!---
 			<a href = "inventory-view-raw.php" class = "bloke">
 				<div class = "container">
 					<img class = "bloke-img" src = "images/tape.png" alt = "View materials" title = "View materials">
@@ -52,7 +51,7 @@
 							<div class="text">View materials</div>
 					 </div>
 				</div>
-			</a>-->
+			</a>
 			<a href = "inventory-view-items.php" class = "bloke">
 				<div class = "container">
 					<img class = "bloke-img" src = "images/storage.png" alt = "View stored items" title = "View stored items">
@@ -69,10 +68,8 @@
 					 </div>
 				</div>
 			</a>
-			
 			<?php if(isset($_SESSION['privilege']) && ($_SESSION['privilege'] == 'Inventory' || $_SESSION['privilege'] == 'All')){ ?>
-				<!---
-				<a href = "inventory-add-materials.php" class = "bloke">
+				<a href = "inventory-add-raw.php" class = "bloke">
 					<div class = "container">
 						<img class = "bloke-img" src = "images/tape-add.png" alt = "Add material" title = "Add material">
 						<div class="overlay">
@@ -87,7 +84,7 @@
 								<div class="text">Add storage location info</div>
 						 </div>
 					</div>
-				</a>-->
+				</a>
 				<a href = "inventory-add-items.php" class = "bloke">
 					<div class = "container">
 						<img class = "bloke-img" src = "images/cart-add.png" alt = "Add item to storage" title = "Add item to storage">
@@ -96,7 +93,6 @@
 						 </div>
 					</div>
 				</a>
-				<!---
 				<a href = "inventory-delete-raw.php" class = "bloke">
 					<div class = "container">
 						<img class = "bloke-img" src = "images/tape-min.png" alt = "Add material" title = "Add material">
@@ -104,7 +100,7 @@
 								<div class="text">Update materials info</div>
 						 </div>
 					</div>
-				</a>-->
+				</a>
 				<a href = "inventory-delete-materials.php" class = "bloke">
 					<div class = "container">
 						<img class = "bloke-img" src = "images/round-delete.png" alt = "Update material info" title = "Update material info">

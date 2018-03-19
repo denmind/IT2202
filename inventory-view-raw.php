@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php
+<?php 
 	session_start(); 
 	
 	require 'sql_connect.php';
@@ -9,22 +9,21 @@
         exit();
     }
 
-    $view = "SELECT *, ROUND((so.so_quantityOrdered * rm.rm_pricePerUnit), 2) As Total
-    FROM supply_orders so
-    JOIN faculty f
-	ON f.f_Id = so.f_Id
-    ORDER BY so_Id";
+    $view = "SELECT *
+    FROM storage s
+    ORDER BY s.s_Id DESC";
 
     $result = mysqli_query($conn, $view);
 ?>
 <html>
 	<head>
-		<title>DFPPI Employees</title>
+		<title>DFPPI Inventory</title>
 		<link rel = "icon" href = "images/logo.png">
 		<link rel="stylesheet" href="css/jquery.dataTables.css">
 		<link rel = "stylesheet" href = "css/bootstrap.min.css" crossorigin = "anonymous">
 		<link rel = "stylesheet" href = "css/design.css">
 	</head>
+	
 	<body>
 		<div class = "ultra-banner">
 			<div class = "left-ub">
@@ -55,62 +54,25 @@
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Order Date Time</th>
-						<th>Quanity</th>
-						<th>Status</th>
-                        <th>Faculty</th>
-                        <th>Supplier</th>
-                        <th>Material Name</th>
-                        <th>Total Price</th>
+						<th>Isle Location</th>
+						<th>Row Location</th>
+						<th>Col Location</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php
 						while($key = mysqli_fetch_assoc($result)){
 							echo "<tr>";
-							echo "<td>{$key['so_Id']}</td>";
-							echo "<td>{$key['so_DateTime']}</td>";
-                            echo "<td>{$key['so_quantityOrdered']}</td>";
-                            echo "<td>{$key['status']}</td>";
-                            echo "<td><button class='btn btn-primary btn-small' data-faculty='{$key['f_Id']}'>
-						<span class='glyphicon glyphicon-eye-open'></span>
-						</button></td>";
-                            echo "<td><button class='btn btn-warning btn-small' data-supplier='{$key['rm_Id']}'>
-						<span class='glyphicon glyphicon-eye-open'></span>
-						</button></td>";
+							echo "<td>{$key['s_Id']}</td>";
+							echo "<td>{$key['s_isleLoc']}</td>";
+							echo "<td>{$key['s_rowLoc']}</td>";
+							echo "<td>{$key['s_colLoc']}</td>";
 							echo "</tr>";
 						}
 					?>
 				</tbody>
 			</table>
         </div>
-        <!-- START OF MODAL SECTION -->
-        <div class="modal fade" tabindex="-1" role="dialog" id = "modal">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id = "title"></h4>
-              </div>
-              <div class="modal-body">
-                <h4 id = 'message'></h4>
-                <table class='table table-condensed table-bordered'>
-                    <thead id = "modalHead">
-                    </thead>
-                    <tbody id = "modalBody">
-                        <!--Data Displayed-->
-                    </tbody>
-                </table>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-        <!-- END OF MODAL SECTION -->
 	</body>
 </html>
 <script src="js/jquery.js"></script>
@@ -166,17 +128,17 @@ $('.btn-primary').on('click', function(){
 });
     
     //for client
-$('.btn-warning').on('click', function(){
-	var rn = $(this).data('supplier');
+$('.btn-danger').on('click', function(){
+	var cn = $(this).data('client');
 	$.ajax({
-		url : 'ViewProcess/getSupplier.php',
+		url : 'ViewProcess/getClient.php',
 		method : 'POST',
-		data : {rm : rn},
+		data : {client : cn},
 		dataType : 'json',
 		success: function(result){
 			var row = "";
-			var title = "Supplier Info";
-			var head = "<th>#</th><th>Name</th><th>Address</th><th>Contact</th><th>Status</th>";
+			var title = "Client Info";
+			var head = "<th>#</th><th>First Name</th><th>Last Name</th><th>Contact  No.</th>";
 
 			$('#modalBody').empty();
 			$('#modalHead').empty();
@@ -190,11 +152,10 @@ $('.btn-warning').on('click', function(){
 				$("#modalHead").append(head);
 				for(var x=0; x < result.length; x++){
 					row = "<tr>";
-					row += "<td>"+result[x].supp_Id+"</td>";
-                    row += "<td>"+result[x].supp_name+"</td>";
-                    row += "<td>"+result[x].supp_address+"</td>";
-                    row += "<td>"+result[x].supp_contact+"</td>";
-                    row += "<td>"+result[x].supp_stat+"</td>";
+					row += "<td>"+result[x].c_Id+"</td>";
+                    row += "<td>"+result[x].c_FirstName+"</td>";
+                    row += "<td>"+result[x].c_LastName+"</td>";
+                    row += "<td>"+result[x].c_contactInfo+"</td>";
 					row += "</tr>";
 					$('#modalBody').append(row);
 				}

@@ -10,15 +10,14 @@
 	require 'sql_connect.php';
 	
 	if ($conn){
-		$name = stripslashes($_POST["name"]);
-		$desc = stripslashes($_POST["descp"]);
-		$ty = stripslashes($_POST["type"]);
-		$we = stripslashes($_POST["weight"]);
-		$price = stripslashes($_POST["price"]);
 		
-		$query = "INSERT INTO `products` 
-				  (`p_Id`, `p_name`, `p_descp`, `p_type`, `p_weight`, `p_price`)
-				  VALUES (NULL, '{$name}', '{$desc}', '{$ty}', '{$we}', '{$price}')";
+		$_POST['status'] = "In-use";
+		
+		$query = "INSERT INTO `raw_materials` 
+		(`rm_Id`, `rm_quantity`, `rm_name`, `rm_descp`, `rm_pricePerUnit`, `rm_type`, `status`, `s_Id`, `p_Id`) 
+		VALUES (NULL, '{$_POST['rm_quantity']}', '{$_POST['rm_name']}', '{$_POST['rm_descp']}', 
+		'{$_POST['rm_pricePerUnit']}', '{$_POST['rm_type']}', '{$_POST['status']}', 
+		'{$_POST['s_Id']}', '{$_POST['s_Id']}')";
 				
 				  
 		echo (mysqli_query($conn,$query)) ? "Submit Success!" : "Failure in submission!";

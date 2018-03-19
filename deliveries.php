@@ -56,7 +56,15 @@
 					<div class = "container">
 						<img class = "bloke-img" src = "images/dop-view.png" alt = "View/Search for a delivery order" title = "View/Search for a delivery order">
 						<div class="overlay">
-							<div class="text">View/Search for a delivery order</div>
+							<div class="text">View/Search delivery order</div>
+						 </div>
+					</div>
+				</a>
+				<a href = "deliveries-stp-view.php" class = "bloke">
+					<div class = "container">
+						<img class = "bloke-img" src = "images/delivery-cart.png" alt = "View/Search for a delivery order" title = "View/Search for a delivery order">
+						<div class="overlay">
+							<div class="text">View/Search delivery order products</div>
 						 </div>
 					</div>
 				</a>
@@ -77,11 +85,19 @@
 							 </div>
 						</div>
 					</a>
+					<a href = "deliveries-stp-add.php" class = "bloke">
+						<div class = "container">
+							<img class = "bloke-img" src = "images/add-stp.png" alt = "Add products for a delivery order" title = "Add products for a delivery order">
+							<div class="overlay">
+								<div class="text">Add products for delivery</div>
+							 </div>
+						</div>
+					</a>
 					<a href = "deliveries-delete.php" class = "bloke">
 						<div class = "container">
 							<img class = "bloke-img" src = "images/round-delete.png" alt = "Update schedules" title = "Remove schedules">
 							<div class="overlay">
-								<div class="text">Update schedules</div>
+								<div class="text">Update delivery schedules</div>
 							 </div>
 						</div>
 					</a>
@@ -89,7 +105,15 @@
 						<div class = "container">
 							<img class = "bloke-img" src = "images/dop-min.png" alt = "Update a delivery order" title = "Update a delivery order">
 							<div class="overlay">
-								<div class="text">Update a delivery order</div>
+								<div class="text">Update delivery order</div>
+							 </div>
+						</div>
+					</a>
+					<a href = "deliveries-stp-upd.php" class = "bloke">
+						<div class = "container">
+							<img class = "bloke-img" src = "images/remove-stp.png" alt = "Update a delivery order" title = "Update a delivery order">
+							<div class="overlay">
+								<div class="text">Update delivery order details</div>
 							 </div>
 						</div>
 					</a>

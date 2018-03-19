@@ -3,7 +3,7 @@
 	<head>
 		<title>DFPPI Delivery</title>
 		<link rel = "icon" href = "images/logo.png">
-		<meta http-equiv="refresh" content="1; url=customers.php" />
+		<meta http-equiv="refresh" content="1; url=deliveries.php" />
 	</head>
 </html>
 <?php
