@@ -8,12 +8,12 @@
         header("Location:index.php");
         exit();
     }
-	$fq = "SELECT * FROM storage ORDER BY s_isleLoc";
+	$sq = "SELECT * FROM storage ORDER BY s_isleLoc";
 	
-	$cq = "SELECT * FROM delivery ORDER BY d_deliverySchedule DESC"; 
+	$dq = "SELECT * FROM delivery ORDER BY d_deliverySchedule DESC"; 
 	
-	$fset = mysqli_query($conn,$fq);
-	$cset = mysqli_query($conn,$cq);
+	$sres = mysqli_query($conn,$sq);
+	$dres = mysqli_query($conn,$dq);
 	
 ?>
 <html>
@@ -21,7 +21,9 @@
 		<title>DFPPI | Delivery Order Products</title>
 		<link rel = "icon" href = "images/logo.png">
 		<link rel = "stylesheet" href = "css/bootstrap.min.css" crossorigin = "anonymous">
+		<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
 		<link rel = "stylesheet" href = "css/design.css">
+		
 		<script src = "js/bootstrap.min.js"></script>
 		<script src = "js/jquery.min.js"></script>
 	</head>
@@ -52,27 +54,33 @@
 			</div>
 		</nav>
 		<div class = "div-form">
-			<form method = "post" autocomplete = "off" action = "add-dop.php" onsubmit = "return check();">
+			<form method = "post" autocomplete = "off" action = "add-stp.php" onsubmit = "return check();">
 				<div class = "top-form">
 					<p class = "form-header">Delivery Order Products</p>
 				</div>
 				<div class = "mid-form">
-					<p class = "form-body">Delivery schedule / Employee assigned
-						<select name = "d_Id" class = "input-form" data-validation="required">
+					<p class = "form-body">Quantity
+					<input type = "text" name = "sdp_quantity" data-validation="required number" data-validation-allowing="positive" class = "input-form" maxlength = 32 autofocus></p>
+					<p class = "form-body">Gross Weight
+					<input type = "text" name = "sdp_weight" data-validation="required number" data-validation-allowing="positive float" class = "input-form" maxlength = 32></p>
+					<p class = "form-body">When was it placed to delivery?
+					<input  type="text" name="sdp_date" class = "input-form" id="form_datetime" data-date-format="yyyy-mm-dd"></p>
+					<p class = "form-body">Supplier ID
+						<select name = "s_Id" class = "input-form" data-validation="required">
 							<option></option>
 							<?php 
-								while($var = mysqli_fetch_assoc($fset)){
-									echo "<option value = '{$var["d_Id"]}'>{$var["d_deliverySchedule"]} [{$var["d_status"]}]  {$var["f_lastName"]}, {$var["f_firstName"]}</option>";
+								while($var = mysqli_fetch_assoc($sres)){
+									echo "<option value = '{$var["s_Id"]}'>{$var["s_isleLoc"]} / {$var["s_rowLoc"]}-{$var["s_colLoc"]}</option>";
 								}
 							?>
 						</select>
 					</p>
-					<p class = "form-body">Who is the client?
-						<select name = "c_Id" class = "input-form" data-validation="required">
+					<p class = "form-body">Delivery ID
+						<select name = "d_Id" class = "input-form" data-validation="required">
 							<option></option>
 							<?php 
-								while($var = mysqli_fetch_assoc($cset)){
-									echo "<option value = '{$var["c_Id"]}'>{$var["c_LastName"]}, {$var["c_FirstName"]}</option>";
+								while($var = mysqli_fetch_assoc($dres)){
+									echo "<option value = '{$var["d_Id"]}'>{$var["d_deliverySchedule"]} [{$var["d_status"]}]</option>";
 								}
 							?>
 						</select>
@@ -90,3 +98,16 @@
 <script src="js/jquery.js"></script>
 <script src="js/jquery.form-validator.js"></script>
 <script src="js/validate.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script>
+$('#form_datetime').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    });
+</script>

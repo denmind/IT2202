@@ -6,16 +6,11 @@
         header("Location:index.php");
         exit();
     }
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$database = "2101_final_project";
-
-	$link = mysqli_connect($servername,$username,$password,$database);
+	require 'sql_connect.php';
 	
 	$query = "SELECT supp_Id,supp_name FROM supplier ORDER BY supp_name";
 	
-	$set = mysqli_query($link,$query);
+	$set = mysqli_query($conn,$query);
 ?>
 <html>
 	<head>
@@ -85,7 +80,7 @@
 				/*Change FROM .... */
 				$find = "SELECT * FROM supplier
 			WHERE supp_Id = '{$_POST["ia"]}'";
-				$r = mysqli_fetch_assoc(mysqli_query($link,$find));
+				$r = mysqli_fetch_assoc(mysqli_query($conn,$find));
 		?>
 			<div class = "div-form">
 				<!--action-->

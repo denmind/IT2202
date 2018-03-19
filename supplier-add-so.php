@@ -14,8 +14,16 @@
 	$link = mysqli_connect($servername,$username,$password,$database);
 	
 	$query = "SELECT f_id,f_lastName,f_firstName FROM faculty WHERE f_department = 'Production' ORDER BY f_lastName ";
+	$rq = "SELECT rm_Id,rm_name,rm_type
+			FROM raw_materials
+			ORDER BY rm_name";
+	$sq = "SELECT supp_Id,supp_name
+			FROM supplier
+			ORDER BY supp_name";
 	
 	$set = mysqli_query($link,$query);
+	$mres = mysqli_query($link,$rq);
+	$sres = mysqli_query($link,$sq);
 ?>
 <html>
 	<head>
@@ -24,8 +32,6 @@
 		<link rel = "stylesheet" href = "css/bootstrap.min.css" crossorigin = "anonymous">
 		<link rel = "stylesheet" href = "css/design.css">
 		<script src = "js/bootstrap.min.js"></script>
-		<script src = "js/jquery.min.js"></script>
-	</head>
 	<body>
 		<div class = "ultra-banner">
 			<div class = "left-ub">
@@ -58,16 +64,36 @@
 				</div>
 				<div class = "mid-form">
 					<p class = "form-body">Quantity Ordered
-					<input type = "number" name = "qo" data-validation="required number" data-validation-allowing"positive" class = "input-form" maxlength = 32 autofocus placeholder = "Amount ordered"></p>
+					<input type = "number" name = "so_quantityOrdered" data-validation="required number" data-validation-allowing="positive" class = "input-form" maxlength = 32 autofocus placeholder = "Amount ordered"></p>
 					<p class = "form-body">Faculty Assigned
-					<select data-validation="required" name = "type" class = "input-form">
-						<option>- - - - - - - - - - - -</option>
-						<?php 
-							while($var = mysqli_fetch_assoc($set)){
-								echo "<option value = '{$var["f_id"]}'>{$var["f_lastName"]},{$var["f_firstName"]}</option>";
-							}
-						?>
-					</select>
+						<select data-validation="required" name = "f_id" class = "input-form">
+							<option>- - - - - - - - - - - -</option>
+							<?php 
+								while($var = mysqli_fetch_assoc($set)){
+									echo "<option value = '{$var["f_id"]}'>{$var["f_lastName"]},{$var["f_firstName"]}</option>";
+								}
+							?>
+						</select>
+					</p>
+					<p class = "form-body">Material Ordered
+						<select data-validation="required" name = "rm_Id" class = "input-form">
+							<option>- - - - - - - - - - - -</option>
+							<?php 
+								while($var = mysqli_fetch_assoc($mres)){
+									echo "<option value = '{$var["rm_Id"]}'>{$var["rm_name"]} [{$var["rm_type"]}]</option>";
+								}
+							?>
+						</select>
+					</p>
+					<p class = "form-body">Who is the supplier?
+						<select data-validation="required" name = "supp_Id" class = "input-form">
+							<option>- - - - - - - - - - - -</option>
+							<?php 
+								while($var = mysqli_fetch_assoc($sres)){
+									echo "<option value = '{$var["supp_Id"]}'>{$var["supp_name"]}</option>";
+								}
+							?>
+						</select>
 					</p>
 				</div>
 				<div class = "bot-form">

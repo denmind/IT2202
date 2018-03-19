@@ -6,12 +6,7 @@
         header("Location:index.php");
         exit();
     }
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$database = "2101_final_project";
-
-	$link = mysqli_connect($servername,$username,$password,$database);
+	require 'sql_connect.php';
 	
 	$query = "SELECT so.*,f.f_lastName,f.f_firstName
 			FROM supply_orders so
@@ -19,7 +14,7 @@
 			ON f.f_id = so.f_Id
 			ORDER BY so_DateTime DESC";
 	
-	$set = mysqli_query($link,$query);
+	$set = mysqli_query($conn,$query);
 ?>
 <html>
 	<head>
@@ -96,7 +91,7 @@
 				WHERE so_Id = '{$_POST["ia"]}'
 				ORDER BY so_DateTime DESC ";
 				
-				$r = mysqli_fetch_assoc(mysqli_query($link,$find));
+				$r = mysqli_fetch_assoc(mysqli_query($conn,$find));
 		?>
 			<div class = "div-form">
 				<!--action-->
@@ -126,7 +121,7 @@
 								<?php
 									$fq = "SELECT * FROM faculty WHERE f_department = 'Production'";
 									
-									$fr = mysqli_query($link,$fq);
+									$fr = mysqli_query($conn,$fq);
 									
 									while($key = mysqli_fetch_assoc($fr)){
 								?>
@@ -134,6 +129,51 @@
 											<!--Display faculty names-->
 											<?php echo $key['f_firstName'];?>
 											<?php echo $key['f_lastName'];?>
+										</option>
+								<?php
+									}
+								?>
+							</select>
+						</p>
+						<p class = "form-body">Who is the supplier?
+							<select data-validation="required" name = "supp_Id" class = "input-form">
+								<?php
+									$fq = "SELECT supp_Id,supp_name
+											FROM supplier
+											ORDER BY supp_name";
+									
+									$fr = mysqli_query($conn,$fq);
+									
+									while($key = mysqli_fetch_assoc($fr)){
+								?>
+										<option value = "<?php echo $key['supp_Id']?>" <?php if($key['supp_Id'] == $r['supp_Id']) echo 'selected = "selected"'?>  >	
+											<!--Display faculty names-->
+											<?php echo $key['supp_name'];?>
+										</option>
+								<?php
+									}
+								?>
+							</select>
+						</p>
+						<p class = "form-body">Material ordered
+							<select data-validation="required" name = "rm_Id" class = "input-form">
+								<?php
+									$fq = "SELECT rm_Id,rm_name,rm_type
+											FROM raw_materials
+											ORDER BY rm_name";
+									
+									$fr = mysqli_query($conn,$fq);
+									
+									while($key = mysqli_fetch_assoc($fr)){
+								?>
+										<option value = "<?php echo $key['rm_Id']?>" <?php if($key['rm_Id'] == $r['rm_Id']) echo 'selected = "selected"'?>  >	
+											<!--Display faculty names-->
+											<?php 
+												echo $key['rm_name'];
+												echo " [";
+												echo $key['rm_type'];
+												echo "]";
+											?>
 										</option>
 								<?php
 									}
@@ -171,3 +211,14 @@
 <script src="js/validate.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap-datetimepicker.min.js"></script>
+<script>
+$('#form_datetime').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    });
+</script>

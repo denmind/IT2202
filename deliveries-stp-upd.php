@@ -7,13 +7,13 @@
         header("Location:index.php");
         exit();
     }
-	$query = "SELECT deo.*,d.d_deliverySchedule,c.c_FirstName,c.c_LastName
-			  FROM delivery_orders deo 
-		   	  JOIN delivery d
-			  ON deo.d_Id = d.d_Id
-			  JOIN client c 
-			  ON c.c_Id = deo.c_Id
-			  ORDER BY do_Id DESC";
+	$query = "SELECT sdp.*,p.p_name
+			FROM storage_delivery_products sdp
+			JOIN storage_products sp
+			ON sdp.s_Id = sp.s_Id
+			JOIN products p
+			ON p.p_Id = sp.p_Id
+			ORDER BY sdp_date DESC";
 	
 	$set = mysqli_query($conn,$query);
 ?>
@@ -22,10 +22,11 @@
 		<title>DFPPI | Delivery Orders</title>
 		<link rel = "icon" href = "images/logo.png">
 		<link rel = "stylesheet" href = "css/bootstrap.min.css" crossorigin = "anonymous">
+		<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
 		<link rel = "stylesheet" href = "css/design.css">
+		
 		<script src = "js/bootstrap.min.js"></script>
-		<script src = "js/jquery.min.js"></script>	
-		<script src = "js/confirm-form.js"></script>
+		<script src = "js/jquery.min.js"></script>
 	</head>
 	
 	<body>
@@ -59,15 +60,15 @@
 			<div class = "div-form">
 				<form method = "post" autocomplete = "off" action = <?php echo $_SERVER["PHP_SELF"]?> >
 					<div class = "top-form">
-						<p class = "form-header">Find delivery order</p>
+						<p class = "form-header">Find delivery order products</p>
 					</div>
 					<div class = "mid-form">
-						<p class = "form-body">Delivery orders
+						<p class = "form-body">Delivery order products
 							<select name = "ia" class = "input-form" data-validation="required">
 								<option value = -999></option>
 								<?php 
 									while($var = mysqli_fetch_assoc($set)){
-										echo "<option value = {$var["do_Id"]}>[{$var["d_deliverySchedule"]}] {$var["c_LastName"]}, {$var["c_FirstName"]}</option>";
+										echo "<option value = {$var["sdp_Id"]}>[{$var["sdp_date"]}] {$var["sdp_quantity"]}pcs  of {$var["p_name"]}";
 									}
 								?>
 							</select>
@@ -83,7 +84,13 @@
 				
 				$xid =  $_POST["ia"];
 						
-				$find = "SELECT * FROM delivery_orders WHERE do_Id = {$xid}";
+				$find = "SELECT sdp.*,p.p_name
+						FROM storage_delivery_products sdp
+						JOIN storage_products sp
+						ON sdp.s_Id = sp.s_Id
+						JOIN products p
+						ON p.p_Id = sp.p_Id
+						WHERE sdp_Id = {$xid}";
 						
 				$dlist = "SELECT d.*,f.f_firstName,f.f_lastName
 						  FROM delivery d
@@ -91,27 +98,35 @@
 						  ON f.f_id = d.f_id
 						  ORDER BY d_deliverySchedule DESC";
 				
-				$clist = "SELECT * FROM client";
+				$slist = "SELECT *
+						FROM storage
+						ORDER BY s_isleLoc";
 				
 				$r = mysqli_fetch_assoc(mysqli_query($conn,$find));
 				$d = mysqli_query($conn,$dlist);
-				$c = mysqli_query($conn,$clist);
+				$s = mysqli_query($conn,$slist);
 		?>
 			<div class = "div-form">
 				<form method = "post" autocomplete = "off" action = "remove-stp.php" >
 					<div class = "top-form">
 						<?php	
 							echo "<p class = 'form-header'>";
-							echo "Delivery Order #{$xid}";
+							echo "[{$r["sdp_date"]}] {$r["sdp_quantity"]}pcs  of {$r["p_name"]}";
 							echo "</p>";
 							$_SESSION["edit-id"] = $xid;
 						?>
 					</div>
 					<div class = "mid-form">
 						<p class = "form-body">ID
-						<input type = "text" name = "do_Id" disabled class = "input-form" maxlength = 11  value = <?php echo $xid?> ></p>
+						<input type = "text" name = "sdp_Id" disabled class = "input-form" maxlength = 11  value = <?php echo $xid?> ></p>
+						<p class = "form-body">Quantity
+						<input type = "text" name = "sdp_quantity" data-validation="required number" data-validation-allowing="positve" class = "input-form" maxlength = 11  value = <?php echo $r['sdp_quantity']?> ></p>
+						<p class = "form-body">Gross Weight
+						<input type = "text" name = "sdp_weight" data-validation="required number" data-validation-allowing="positve float" class = "input-form" maxlength = 11  value = <?php echo $r['sdp_weight']?> ></p>
+						<p class = "form-body">When was it placed to delivery?
+						<input  type="text" name="sdp_date" class = "input-form" id="form_datetime" value = "<?php echo $r['sdp_date']?>" data-date-format="yyyy-mm-dd"></p>
 						<!--Delivery's select status-->
-						<p class = "form-body">Delivery Schedule
+						<p class = "form-body">Delivery Schedule /Faculty Assigned
 						<select name = "d_Id" class = "input-form" data-validation="required">
 							<option></option>
 							<?php 
@@ -123,13 +138,13 @@
 							?>
 						</select>
 					</p>
-					<p class = "form-body">Who is the client?
-						<select name = "c_Id" class = "input-form" data-validation="required">
+					<p class = "form-body">Storage ID
+						<select name = "s_Id" class = "input-form" data-validation="required">
 							<option></option>
 							<?php 
-								while($var = mysqli_fetch_assoc($c)){
+								while($var = mysqli_fetch_assoc($s)){
 							?>
-									<option value = "<?php echo $var['c_Id']?>" <?php if($var['c_Id'] == $r['c_Id']) echo 'selected = "selected"'?> ><?php echo "{$var["c_LastName"]}, {$var["c_FirstName"]}";  ?></option>;
+									<option value = "<?php echo $var['s_Id']?>" <?php if($var['s_Id'] == $r['s_Id']) echo 'selected = "selected"'?> ><?php echo "{$var["s_isleLoc"]} {$var["s_rowLoc"]}-{$var["s_colLoc"]}";  ?></option>;
 							<?php
 								}
 							?>
@@ -154,3 +169,16 @@
 <script src="js/jquery.js"></script>
 <script src="js/jquery.form-validator.js"></script>
 <script src="js/validate.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script>
+$('#form_datetime').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    });
+</script>

@@ -16,6 +16,8 @@
 								`so_DateTime` = '{$_POST["so_DateTime"]}', 
 								`so_quantityOrdered` = '{$_POST["so_quantityOrdered"]}',
 								`f_id` = '{$_POST["f_id"]}',
+								`supp_Id` = '{$_POST["supp_Id"]}',
+								`rm_Id` = '{$_POST["rm_Id"]}',
 								`status` = '{$_POST["status"]}'
 								WHERE so_Id = {$_SESSION['edit-id']}";
 								

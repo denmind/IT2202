@@ -12,9 +12,10 @@
 		
 		if ($conn){
 
-			$query = "INSERT INTO `delivery_orders` 
-					(`do_Id`, `d_Id`, `c_Id`) VALUES 
-					(NULL, '{$_POST['d_Id']}', '{$_POST['c_Id']}')";
+			$query = "INSERT INTO `storage_delivery_products` 
+			(`sdp_Id`, `sdp_quantity`, `sdp_weight`, `sdp_date`, `s_Id`, `d_Id`)
+			VALUES (NULL, '{$_POST['sdp_quantity']}', '{$_POST['sdp_weight']}', '{$_POST['sdp_date']}',
+			'{$_POST['s_Id']}', '{$_POST['d_Id']}')";
 					
 			echo (mysqli_query($conn,$query)) ? "Submit Success!" : "Failure in submission!";
 			

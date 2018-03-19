@@ -11,12 +11,15 @@
 				require 'sql_connect.php';
 				
 				if ($conn){
-					$change_q = "UPDATE `delivery_orders` SET 
-								`d_Id` = '{$_POST['d_Id']}', 
-								`c_Id` = '{$_POST['c_Id']}'
-								WHERE do_Id = {$_SESSION['edit-id']}";
+					$query = "UPDATE `storage_delivery_products` SET 
+								`sdp_quantity` = '{$_POST['sdp_quantity']}', 
+								`sdp_weight` = '{$_POST['sdp_weight']}', 
+								`sdp_date` = '{$_POST['sdp_date']}', 
+								`s_Id` = '{$_POST['s_Id']}',
+								`d_Id` = '{$_POST['d_Id']}'
+								WHERE sdp_Id = {$_SESSION['edit-id']}";
 								
-					echo (mysqli_query($conn,$change_q)) ? "Edit Success!" : "Failure in editing!";
+					echo (mysqli_query($conn,$query)) ? "Edit Success!" : "Failure in editing!";
 					
 					$_POST = array();
 					mysqli_close($conn);
