@@ -79,7 +79,7 @@
 								<div class="text">Add materials info</div>
 						 </div>
 					</div>
-				</a>-->
+				</a>
 				<a href = "inventory-add-materials.php" class = "bloke">
 					<div class = "container">
 						<img class = "bloke-img" src = "images/round-add.png" alt = "Add material" title = "Add material">
@@ -87,7 +87,7 @@
 								<div class="text">Add storage location info</div>
 						 </div>
 					</div>
-				</a>
+				</a>-->
 				<a href = "inventory-add-items.php" class = "bloke">
 					<div class = "container">
 						<img class = "bloke-img" src = "images/cart-add.png" alt = "Add item to storage" title = "Add item to storage">

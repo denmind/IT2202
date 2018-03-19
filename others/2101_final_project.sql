@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 08, 2018 at 07:29 PM
--- Server version: 10.1.26-MariaDB
--- PHP Version: 7.1.8
+-- Host: localhost
+-- 생성 시간: 18-03-19 00:51
+-- 서버 버전: 10.1.26-MariaDB
+-- PHP 버전: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `2101_final_project`
+-- 데이터베이스: `2101_final_project`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `client`
+-- 테이블 구조 `client`
 --
 
 CREATE TABLE `client` (
@@ -36,7 +36,7 @@ CREATE TABLE `client` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `client`
+-- 테이블의 덤프 데이터 `client`
 --
 
 INSERT INTO `client` (`c_Id`, `c_FirstName`, `c_LastName`, `c_contactInfo`) VALUES
@@ -71,13 +71,13 @@ INSERT INTO `client` (`c_Id`, `c_FirstName`, `c_LastName`, `c_contactInfo`) VALU
 (56, 'Johnny', 'Mckinley', '09191213546'),
 (57, 'Peter', 'Porter', 'peters.porter@aol.com'),
 (58, 'Richard', 'Philipps', '+1-202-555-0103'),
-(59, 'Mark', 'Valdermann', '1-2305-1221'),
-(60, 'Darwin', 'Caboyo', 'dcaboyo@yahoo.com');
+(59, '', '', ''),
+(60, '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `delivery`
+-- 테이블 구조 `delivery`
 --
 
 CREATE TABLE `delivery` (
@@ -88,7 +88,7 @@ CREATE TABLE `delivery` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `delivery`
+-- 테이블의 덤프 데이터 `delivery`
 --
 
 INSERT INTO `delivery` (`d_Id`, `d_deliverySchedule`, `d_status`, `f_id`) VALUES
@@ -114,12 +114,12 @@ INSERT INTO `delivery` (`d_Id`, `d_deliverySchedule`, `d_status`, `f_id`) VALUES
 (20, '2017-10-09', 'Not started', 19),
 (26, '2018-02-11', 'Not started', 4),
 (27, '2018-02-16', 'Finished', 19),
-(28, '2018-02-23', 'Not started', 19);
+(28, '2018-02-23', 'Finished', 19);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `delivery_orders`
+-- 테이블 구조 `delivery_orders`
 --
 
 CREATE TABLE `delivery_orders` (
@@ -129,7 +129,7 @@ CREATE TABLE `delivery_orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `delivery_orders`
+-- 테이블의 덤프 데이터 `delivery_orders`
 --
 
 INSERT INTO `delivery_orders` (`do_Id`, `d_Id`, `c_Id`) VALUES
@@ -177,7 +177,7 @@ INSERT INTO `delivery_orders` (`do_Id`, `d_Id`, `c_Id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `faculty`
+-- 테이블 구조 `faculty`
 --
 
 CREATE TABLE `faculty` (
@@ -202,7 +202,7 @@ CREATE TABLE `faculty` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `faculty`
+-- 테이블의 덤프 데이터 `faculty`
 --
 
 INSERT INTO `faculty` (`f_id`, `f_firstName`, `f_midInitial`, `f_lastName`, `f_dateHired`, `f_sex`, `f_religion`, `f_address`, `f_mobileNo`, `f_email`, `f_dateOfBirth`, `f_placeOfBirth`, `f_civilStatus`, `f_langSpoken`, `f_position`, `f_salary`, `f_department`, `f_status`) VALUES
@@ -226,14 +226,16 @@ INSERT INTO `faculty` (`f_id`, `f_firstName`, `f_midInitial`, `f_lastName`, `f_d
 (18, 'Leah', 'C', 'Barnes', '2017-10-18', 'Female', 'Buddhism', '18 Vale St. \r\nBurbank, IL 60459', '(772) 836-4053', 'nicktrig@verizon.net', '1976-09-15', 'Modesto,California', 'Divorced', 'English', 'Assistant Director', 7678, 'Human Resources', 'Okay'),
 (19, 'Wyatt', 'B', 'Brianston', '2017-10-12', 'Male', 'Sikhism', '630 E. Selby St. \r\nMadisonville, KY 42431', '(699) 700-5914', 'ehood@optonline.net', '1973-11-15', 'Chesapeake,Virginia', 'Widowed', 'English,French', 'Driver', 873, 'Delivery & Transportation', 'Okay'),
 (20, 'Elizabeth', 'A', 'Dylan', '2017-10-04', 'Female', 'Baptist', '7553 Miller St. \r\nStamford, CT 06902', '(894) 517-5277', 'storerm@sbcglobal.net', '1975-12-05', 'Mesa,Arizona', 'Married', 'English,German', 'Cashier', 1330, 'Sales & Finances', 'Okay'),
-(21, 'Anthony', 'J', 'Caboyo', '2018-02-06', 'Male', 'Roman', 'Hidden Valley, Barangay Talamban, Cebu City, Cebu 6000', '+6394216709', 'fcaboyo@gmail.com', '1998-07-24', 'General', 'Single', 'Filipino,', 'Intern', 5000, 'Sales & Finances', 'Okay'),
+(21, 'Francis', 'J', 'Caboyo', '2018-02-06', 'Male', 'Roman', 'Hidden Valley, Barangay Talamban, Cebu City, Cebu 6000', '+6394216709', 'fcaboyo@gmail.com', '1998-07-24', 'General', 'Single', 'Filipino,', 'Intern', 5000, 'Human Resources', 'Okay'),
 (29, 'Teresa', 'F', 'Beal', '2018-02-09', 'Female', 'Islam', '514 S. Magnolia St.\r\nOrlando, FL 32806', '989-596-2502', 'tbeal@gmail.com', '1995-12-02', 'Wyoming', 'Married', 'English', 'Manager', 32267, 'Human Resources', 'Okay'),
-(30, 'Chris', 'M', 'Marlon', '2018-03-02', 'Male', 'Christian', '940 N. El Dorado St.\r\nHyde Park, MA 02136', '+1-202-555-0138', 'marlonchris@ymail.com', '1988-02-28', 'Pond, New Jersey', 'Married', 'English', 'Distributor', 1200, 'Sales & Finances', 'Okay');
+(30, 'Chris', 'M', 'Marlon', '2018-03-02', 'Male', 'Christian', '940 N. El Dorado St.\r\nHyde Park, MA 02136', '+1-202-555-0138', 'marlonchris@ymail.com', '1988-02-28', 'Pond, New Jersey', 'Married', 'English', 'Distributor', 1200, 'Sales & Finances', 'Okay'),
+(31, '', '', '', '2018-03-14', '', '', '', '', '', '0000-00-00', '', '', '', '', 0, '', 'Okay'),
+(32, 'Sample', 'N', 'ame', '2018-03-14', 'Male', 'None', 'USC Talamban', '41', 'ch@gmail.com', '1997-02-19', 'Aad', 'Single', 'English', 'Intern', 1234, 'Inventory', 'Okay');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `faculty_attendance`
+-- 테이블 구조 `faculty_attendance`
 --
 
 CREATE TABLE `faculty_attendance` (
@@ -244,7 +246,7 @@ CREATE TABLE `faculty_attendance` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `faculty_attendance`
+-- 테이블의 덤프 데이터 `faculty_attendance`
 --
 
 INSERT INTO `faculty_attendance` (`fa_Id`, `fa_In`, `fa_Out`, `f_Id`) VALUES
@@ -292,7 +294,7 @@ INSERT INTO `faculty_attendance` (`fa_Id`, `fa_In`, `fa_Out`, `f_Id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orders`
+-- 테이블 구조 `orders`
 --
 
 CREATE TABLE `orders` (
@@ -305,7 +307,7 @@ CREATE TABLE `orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `orders`
+-- 테이블의 덤프 데이터 `orders`
 --
 
 INSERT INTO `orders` (`o_Id`, `o_orderDateTime`, `o_addressOfDelivery`, `c_Id`, `f_Id`, `o_status`) VALUES
@@ -358,13 +360,12 @@ INSERT INTO `orders` (`o_Id`, `o_orderDateTime`, `o_addressOfDelivery`, `c_Id`, 
 (47, '2018-02-28', '148 Catherine Street\r\nWaynesboro, PA 17268', 5, 15, 'Not started'),
 (48, '2018-03-02', '7633 Lafayette Street\r\nLos Banos, CA 93635', 10, 15, 'Not started'),
 (49, '2018-03-02', '53 South Cardinal St.\r\nChester, PA 19013', 18, 20, 'Not started'),
-(50, '2018-03-02', '870 Crowfield Road', 14, 11, 'Not started'),
-(51, '2018-03-08', '#34 Sampaloc St., General Santos City, General Santos', 60, 15, 'Not started');
+(50, '2018-03-02', '870 Crowfield Road', 14, 11, 'Not started');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_products`
+-- 테이블 구조 `order_products`
 --
 
 CREATE TABLE `order_products` (
@@ -375,7 +376,7 @@ CREATE TABLE `order_products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `order_products`
+-- 테이블의 덤프 데이터 `order_products`
 --
 
 INSERT INTO `order_products` (`op_Id`, `op_quantity`, `o_Id`, `p_Id`) VALUES
@@ -419,13 +420,12 @@ INSERT INTO `order_products` (`op_Id`, `op_quantity`, `o_Id`, `p_Id`) VALUES
 (38, 34, 23, 17),
 (39, 49, 38, 5),
 (40, 41, 12, 6),
-(41, 32, 1, 16),
-(42, 125, 51, 20);
+(41, 32, 1, 16);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `production`
+-- 테이블 구조 `production`
 --
 
 CREATE TABLE `production` (
@@ -438,7 +438,7 @@ CREATE TABLE `production` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `production`
+-- 테이블의 덤프 데이터 `production`
 --
 
 INSERT INTO `production` (`prdn_Id`, `prdn_date`, `prdn_quantity`, `status`, `f_Id`, `p_Id`) VALUES
@@ -487,7 +487,7 @@ INSERT INTO `production` (`prdn_Id`, `prdn_date`, `prdn_quantity`, `status`, `f_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- 테이블 구조 `products`
 --
 
 CREATE TABLE `products` (
@@ -501,7 +501,7 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `products`
+-- 테이블의 덤프 데이터 `products`
 --
 
 INSERT INTO `products` (`p_Id`, `p_name`, `p_descp`, `p_type`, `p_weight`, `p_price`, `status`) VALUES
@@ -532,7 +532,7 @@ INSERT INTO `products` (`p_Id`, `p_name`, `p_descp`, `p_type`, `p_weight`, `p_pr
 -- --------------------------------------------------------
 
 --
--- Table structure for table `raw_materials`
+-- 테이블 구조 `raw_materials`
 --
 
 CREATE TABLE `raw_materials` (
@@ -544,61 +544,59 @@ CREATE TABLE `raw_materials` (
   `rm_type` enum('Lumber/Wood Fiber','Adhesives','Inks','Paraffin','Polyethylene','Polyoxymethylene','Polypropylene') NOT NULL,
   `status` enum('Outdated','In-use','','') NOT NULL,
   `s_Id` int(11) NOT NULL,
-  `so_id` int(11) NOT NULL,
-  `supp_Id` int(11) NOT NULL,
   `p_Id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `raw_materials`
+-- 테이블의 덤프 데이터 `raw_materials`
 --
 
-INSERT INTO `raw_materials` (`rm_Id`, `rm_quantity`, `rm_name`, `rm_descp`, `rm_pricePerUnit`, `rm_type`, `status`, `s_Id`, `so_id`, `supp_Id`, `p_Id`) VALUES
-(1, 62, 'Bam-It', 'Low priced', 657.6, 'Lumber/Wood Fiber', 'Outdated', 8, 4, 6, 3),
-(2, 90, 'Vilais', 'High quality', 9.08, 'Lumber/Wood Fiber', 'Outdated', 7, 30, 14, 5),
-(3, 21, 'Zathdex', 'Industrial usage', 232.81, 'Adhesives', 'Outdated', 11, 2, 11, 14),
-(4, 77, 'An-Strong', 'Extremely weather resistant', 772.8, 'Inks', 'Outdated', 11, 18, 12, 14),
-(5, 72, 'Toughdex', 'Durable and Versatile', 473.92, 'Paraffin', 'Outdated', 4, 23, 5, 12),
-(6, 19, 'Stan-Lam', 'Water and Grease Proof', 155.74, 'Polyethylene', 'Outdated', 4, 24, 8, 2),
-(7, 44, 'Zottex', 'Long lasting', 826.91, 'Polyoxymethylene', 'Outdated', 16, 25, 14, 10),
-(8, 51, 'Toughlux', 'Environmentally safe', 23.76, 'Polypropylene', 'Outdated', 12, 35, 11, 4),
-(9, 31, 'Hotphase', 'Child and Animal Friendly', 954.09, 'Polypropylene', 'Outdated', 17, 14, 6, 6),
-(10, 64, 'Goodron', 'CFC Free', 323.84, 'Polyoxymethylene', 'Outdated', 14, 20, 9, 15),
-(11, 35, 'Ranity', 'No poisonous materials', 544.79, 'Polyethylene', 'Outdated', 13, 27, 7, 14),
-(12, 45, 'Lightcore', 'Exclusive material', 165.4, 'Paraffin', 'Outdated', 10, 37, 3, 1),
-(13, 72, 'Sao Traxwarm', 'Export Quality', 491.58, 'Inks', 'Outdated', 6, 39, 19, 18),
-(14, 52, 'Hold Eco', 'Not for home use', 960.74, 'Adhesives', 'Outdated', 5, 15, 3, 10),
-(15, 22, 'K-tom', 'Tamper resistant', 522.08, 'Lumber/Wood Fiber', 'Outdated', 19, 9, 5, 10),
-(16, 86, 'U-warm', 'Low priced', 740.4, 'Lumber/Wood Fiber', 'Outdated', 3, 18, 17, 18),
-(17, 40, 'Voyastock', 'High quality', 1.64, 'Adhesives', 'Outdated', 16, 39, 10, 12),
-(18, 49, 'Damfresh', 'Industrial usage', 653.41, 'Inks', 'Outdated', 16, 39, 11, 15),
-(19, 11, 'Plusla', 'Extremely weather resistant', 330.67, 'Paraffin', 'Outdated', 6, 23, 19, 19),
-(20, 23, 'Finlab', 'Durable and Versatile', 114.43, 'Polyethylene', 'Outdated', 17, 1, 10, 8),
-(21, 45, 'Trust Ozestring', 'Water and Grease Proof', 89.54, 'Polyoxymethylene', 'Outdated', 2, 10, 19, 19),
-(22, 93, 'Dento-Tech', 'Long lasting', 803.72, 'Polypropylene', 'Outdated', 5, 29, 18, 8),
-(23, 27, 'Unalight', 'Tamper resistant', 131.75, 'Polyoxymethylene', 'Outdated', 17, 36, 19, 1),
-(24, 47, 'Vaiafan', 'Environmentally safe', 156.08, 'Polyethylene', 'Outdated', 7, 13, 12, 19),
-(25, 7, 'Tam-Tam', 'Child and Animal Friendly', 442.06, 'Paraffin', 'Outdated', 20, 26, 6, 9),
-(26, 37, 'Subdox', 'CFC Free', 532.09, 'Inks', 'Outdated', 11, 5, 20, 11),
-(27, 81, 'Spansaildom', 'No poisonous materials', 404.39, 'Adhesives', 'Outdated', 12, 28, 15, 14),
-(28, 30, 'Y- Tantex', 'Exclusive material', 349.67, 'Lumber/Wood Fiber', 'Outdated', 17, 7, 6, 20),
-(29, 3, 'Freshtough', 'Export Quality', 200.19, 'Adhesives', 'Outdated', 18, 38, 1, 6),
-(30, 50, 'X-lux', 'Not for home use', 515.21, 'Inks', 'Outdated', 2, 36, 5, 9),
-(31, 59, 'Arline Cochran', 'No poisonous materials', 579.93, 'Paraffin', 'Outdated', 3, 36, 3, 1),
-(32, 75, 'Scorpion Ivory', 'CFC Free', 619.8, 'Polyethylene', 'Outdated', 17, 16, 9, 15),
-(33, 69, 'Breeze Outstanding', 'Exclusive material', 456.06, 'Polyoxymethylene', 'Outdated', 4, 26, 12, 2),
-(34, 73, 'Autopsy Cloudy', 'Child and Animal Friendly', 301.61, 'Polypropylene', 'Outdated', 7, 30, 14, 8),
-(35, 75, 'Silly Hammer', 'Export Quality', 579.68, 'Polyoxymethylene', 'Outdated', 13, 23, 18, 15),
-(36, 99, 'Modern Cold Iron', 'Not for home use', 762.85, 'Polyethylene', 'Outdated', 17, 35, 19, 19),
-(37, 8, 'Fixlane', 'Tamper resistant', 489.78, 'Paraffin', 'Outdated', 4, 22, 4, 4),
-(38, 54, 'Itfax', 'Long lasting', 46.47, 'Inks', 'Outdated', 12, 38, 18, 13),
-(39, 57, 'Indifase', 'Water and Grease Proof', 873.94, 'Adhesives', 'Outdated', 13, 29, 11, 14),
-(40, 86, 'Indidom', 'Durable and Versatile', 170.54, 'Lumber/Wood Fiber', 'Outdated', 5, 32, 4, 12);
+INSERT INTO `raw_materials` (`rm_Id`, `rm_quantity`, `rm_name`, `rm_descp`, `rm_pricePerUnit`, `rm_type`, `status`, `s_Id`, `p_Id`) VALUES
+(1, 62, 'Bam-It', 'Low priced', 657.6, 'Lumber/Wood Fiber', 'Outdated', 8, 3),
+(2, 90, 'Vilais', 'High quality', 9.08, 'Lumber/Wood Fiber', 'Outdated', 7, 5),
+(3, 21, 'Zathdex', 'Industrial usage', 232.81, 'Adhesives', 'Outdated', 11, 14),
+(4, 77, 'An-Strong', 'Extremely weather resistant', 772.8, 'Inks', 'Outdated', 11, 14),
+(5, 72, 'Toughdex', 'Durable and Versatile', 473.92, 'Paraffin', 'Outdated', 4, 12),
+(6, 19, 'Stan-Lam', 'Water and Grease Proof', 155.74, 'Polyethylene', 'Outdated', 4, 2),
+(7, 44, 'Zottex', 'Long lasting', 826.91, 'Polyoxymethylene', 'Outdated', 16, 10),
+(8, 51, 'Toughlux', 'Environmentally safe', 23.76, 'Polypropylene', 'Outdated', 12, 4),
+(9, 31, 'Hotphase', 'Child and Animal Friendly', 954.09, 'Polypropylene', 'Outdated', 17, 6),
+(10, 64, 'Goodron', 'CFC Free', 323.84, 'Polyoxymethylene', 'Outdated', 14, 15),
+(11, 35, 'Ranity', 'No poisonous materials', 544.79, 'Polyethylene', 'Outdated', 13, 14),
+(12, 45, 'Lightcore', 'Exclusive material', 165.4, 'Paraffin', 'Outdated', 10, 1),
+(13, 72, 'Sao Traxwarm', 'Export Quality', 491.58, 'Inks', 'Outdated', 6, 18),
+(14, 52, 'Hold Eco', 'Not for home use', 960.74, 'Adhesives', 'Outdated', 5, 10),
+(15, 22, 'K-tom', 'Tamper resistant', 522.08, 'Lumber/Wood Fiber', 'Outdated', 19, 10),
+(16, 86, 'U-warm', 'Low priced', 740.4, 'Lumber/Wood Fiber', 'Outdated', 3, 18),
+(17, 40, 'Voyastock', 'High quality', 1.64, 'Adhesives', 'Outdated', 16, 12),
+(18, 49, 'Damfresh', 'Industrial usage', 653.41, 'Inks', 'Outdated', 16, 15),
+(19, 11, 'Plusla', 'Extremely weather resistant', 330.67, 'Paraffin', 'Outdated', 6, 19),
+(20, 23, 'Finlab', 'Durable and Versatile', 114.43, 'Polyethylene', 'Outdated', 17, 8),
+(21, 45, 'Trust Ozestring', 'Water and Grease Proof', 89.54, 'Polyoxymethylene', 'Outdated', 2, 19),
+(22, 93, 'Dento-Tech', 'Long lasting', 803.72, 'Polypropylene', 'Outdated', 5, 8),
+(23, 27, 'Unalight', 'Tamper resistant', 131.75, 'Polyoxymethylene', 'Outdated', 17, 1),
+(24, 47, 'Vaiafan', 'Environmentally safe', 156.08, 'Polyethylene', 'Outdated', 7, 19),
+(25, 7, 'Tam-Tam', 'Child and Animal Friendly', 442.06, 'Paraffin', 'Outdated', 20, 9),
+(26, 37, 'Subdox', 'CFC Free', 532.09, 'Inks', 'Outdated', 11, 11),
+(27, 81, 'Spansaildom', 'No poisonous materials', 404.39, 'Adhesives', 'Outdated', 12, 14),
+(28, 30, 'Y- Tantex', 'Exclusive material', 349.67, 'Lumber/Wood Fiber', 'Outdated', 17, 20),
+(29, 3, 'Freshtough', 'Export Quality', 200.19, 'Adhesives', 'Outdated', 18, 6),
+(30, 50, 'X-lux', 'Not for home use', 515.21, 'Inks', 'Outdated', 2, 9),
+(31, 59, 'Arline Cochran', 'No poisonous materials', 579.93, 'Paraffin', 'Outdated', 3, 1),
+(32, 75, 'Scorpion Ivory', 'CFC Free', 619.8, 'Polyethylene', 'Outdated', 17, 15),
+(33, 69, 'Breeze Outstanding', 'Exclusive material', 456.06, 'Polyoxymethylene', 'Outdated', 4, 2),
+(34, 73, 'Autopsy Cloudy', 'Child and Animal Friendly', 301.61, 'Polypropylene', 'Outdated', 7, 8),
+(35, 75, 'Silly Hammer', 'Export Quality', 579.68, 'Polyoxymethylene', 'Outdated', 13, 15),
+(36, 99, 'Modern Cold Iron', 'Not for home use', 762.85, 'Polyethylene', 'Outdated', 17, 19),
+(37, 8, 'Fixlane', 'Tamper resistant', 489.78, 'Paraffin', 'Outdated', 4, 4),
+(38, 54, 'Itfax', 'Long lasting', 46.47, 'Inks', 'Outdated', 12, 13),
+(39, 57, 'Indifase', 'Water and Grease Proof', 873.94, 'Adhesives', 'Outdated', 13, 14),
+(40, 86, 'Indidom', 'Durable and Versatile', 170.54, 'Lumber/Wood Fiber', 'Outdated', 5, 12);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `storage`
+-- 테이블 구조 `storage`
 --
 
 CREATE TABLE `storage` (
@@ -609,7 +607,7 @@ CREATE TABLE `storage` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `storage`
+-- 테이블의 덤프 데이터 `storage`
 --
 
 INSERT INTO `storage` (`s_Id`, `s_isleLoc`, `s_rowLoc`, `s_colLoc`) VALUES
@@ -638,7 +636,7 @@ INSERT INTO `storage` (`s_Id`, `s_isleLoc`, `s_rowLoc`, `s_colLoc`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `storage_delivery_products`
+-- 테이블 구조 `storage_delivery_products`
 --
 
 CREATE TABLE `storage_delivery_products` (
@@ -651,7 +649,7 @@ CREATE TABLE `storage_delivery_products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `storage_delivery_products`
+-- 테이블의 덤프 데이터 `storage_delivery_products`
 --
 
 INSERT INTO `storage_delivery_products` (`sdp_Id`, `sdp_quantity`, `sdp_weight`, `sdp_dateTime`, `s_Id`, `d_Id`) VALUES
@@ -699,7 +697,7 @@ INSERT INTO `storage_delivery_products` (`sdp_Id`, `sdp_quantity`, `sdp_weight`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `storage_products`
+-- 테이블 구조 `storage_products`
 --
 
 CREATE TABLE `storage_products` (
@@ -711,7 +709,7 @@ CREATE TABLE `storage_products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `storage_products`
+-- 테이블의 덤프 데이터 `storage_products`
 --
 
 INSERT INTO `storage_products` (`sp_Id`, `sp_quantity`, `sp_dateTimeStored`, `s_Id`, `p_Id`) VALUES
@@ -730,7 +728,7 @@ INSERT INTO `storage_products` (`sp_Id`, `sp_quantity`, `sp_dateTimeStored`, `s_
 (12, 88, '2017-10-06 17:36:21', 6, 19),
 (13, 93, '2017-10-30 07:17:20', 8, 6),
 (14, 49, '2017-10-05 08:18:16', 12, 12),
-(15, 52, '2017-10-27 11:25:23', 11, 10),
+(15, 78, '2017-10-27 11:25:23', 11, 10),
 (16, 79, '2017-10-20 07:17:27', 7, 6),
 (17, 6, '2017-10-04 06:16:21', 10, 5),
 (18, 17, '2017-10-12 14:19:27', 10, 19),
@@ -760,7 +758,7 @@ INSERT INTO `storage_products` (`sp_Id`, `sp_quantity`, `sp_dateTimeStored`, `s_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `supplier`
+-- 테이블 구조 `supplier`
 --
 
 CREATE TABLE `supplier` (
@@ -772,7 +770,7 @@ CREATE TABLE `supplier` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `supplier`
+-- 테이블의 덤프 데이터 `supplier`
 --
 
 INSERT INTO `supplier` (`supp_Id`, `supp_name`, `supp_address`, `supp_contact`, `supp_stat`) VALUES
@@ -803,7 +801,7 @@ INSERT INTO `supplier` (`supp_Id`, `supp_name`, `supp_address`, `supp_contact`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `supply_orders`
+-- 테이블 구조 `supply_orders`
 --
 
 CREATE TABLE `supply_orders` (
@@ -812,78 +810,78 @@ CREATE TABLE `supply_orders` (
   `so_quantityOrdered` int(11) NOT NULL,
   `status` enum('Not started','Finished') NOT NULL,
   `f_Id` int(11) NOT NULL,
-  `p_Id` int(11) NOT NULL,
-  `supp_Id` int(11) NOT NULL
+  `supp_Id` int(11) NOT NULL,
+  `rm_Id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `supply_orders`
+-- 테이블의 덤프 데이터 `supply_orders`
 --
 
-INSERT INTO `supply_orders` (`so_Id`, `so_DateTime`, `so_quantityOrdered`, `status`, `f_Id`, `p_Id`, `supp_Id`) VALUES
-(1, '2017-10-05 09:22:18', 38, 'Not started', 5, 0, 0),
-(2, '2017-10-13 08:19:19', 22, 'Not started', 5, 0, 0),
-(3, '2017-10-14 07:14:20', 96, 'Not started', 5, 0, 0),
-(4, '2017-10-20 12:20:21', 13, 'Not started', 5, 0, 0),
-(5, '2017-10-21 14:18:23', 60, 'Not started', 5, 0, 0),
-(6, '2017-10-19 06:17:19', 80, 'Not started', 5, 0, 0),
-(7, '2017-10-07 16:25:25', 62, 'Not started', 5, 0, 0),
-(8, '2017-10-03 08:26:25', 27, 'Not started', 5, 0, 0),
-(9, '2017-10-10 08:19:22', 61, 'Not started', 8, 0, 0),
-(10, '2017-10-05 10:21:21', 17, 'Not started', 8, 0, 0),
-(11, '2017-10-05 10:21:20', 60, 'Not started', 8, 0, 0),
-(12, '2017-10-19 15:27:21', 25, 'Not started', 8, 0, 0),
-(13, '2017-10-17 12:26:28', 43, 'Not started', 8, 0, 0),
-(14, '2017-10-04 15:28:19', 71, 'Not started', 8, 0, 0),
-(15, '2017-10-05 10:25:23', 4, 'Not started', 8, 0, 0),
-(16, '2017-10-20 15:32:26', 48, 'Not started', 8, 0, 0),
-(17, '2017-10-25 12:17:16', 61, 'Not started', 9, 0, 0),
-(18, '2017-10-21 13:23:23', 74, 'Not started', 11, 0, 0),
-(19, '2017-10-09 15:27:25', 18, 'Not started', 11, 0, 0),
-(20, '2017-10-07 16:29:26', 68, 'Not started', 11, 0, 0),
-(21, '2017-10-25 14:25:28', 1, 'Not started', 11, 0, 0),
-(22, '2017-10-24 17:23:20', 20, 'Not started', 11, 0, 0),
-(23, '2017-10-02 09:26:28', 53, 'Not started', 11, 0, 0),
-(24, '2017-10-30 14:30:30', 96, 'Not started', 11, 0, 0),
-(25, '2017-10-07 11:27:27', 47, 'Not started', 15, 0, 0),
-(26, '2017-10-19 10:24:17', 18, 'Not started', 15, 0, 0),
-(27, '2017-10-26 09:18:23', 51, 'Not started', 15, 0, 0),
-(28, '2017-10-14 13:29:20', 59, 'Not started', 15, 0, 0),
-(29, '2017-10-05 13:27:24', 13, 'Not started', 15, 0, 0),
-(30, '2017-10-09 10:08:12', 37, 'Not started', 15, 0, 0),
-(31, '2017-10-20 13:27:27', 11, 'Not started', 15, 0, 0),
-(32, '2017-10-03 06:15:15', 11, 'Not started', 15, 0, 0),
-(33, '2017-10-11 12:21:17', 54, 'Not started', 20, 0, 0),
-(34, '2017-10-08 11:24:27', 11, 'Not started', 20, 0, 0),
-(35, '2017-10-10 11:21:21', 27, 'Not started', 20, 0, 0),
-(36, '2017-10-24 08:20:19', 3, 'Not started', 20, 0, 0),
-(37, '2017-10-19 13:22:20', 87, 'Not started', 20, 0, 0),
-(38, '2017-10-07 14:27:27', 42, 'Not started', 20, 0, 0),
-(39, '2017-10-04 13:27:26', 61, 'Not started', 20, 0, 0),
-(40, '2017-10-19 10:27:18', 44, 'Not started', 20, 0, 0),
-(41, '2018-02-08 15:14:40', 23, 'Not started', 11, 0, 0),
-(42, '2018-02-08 15:18:14', 132, 'Not started', 10, 0, 0),
-(43, '2018-03-02 23:18:57', 3, 'Not started', 12, 0, 0);
+INSERT INTO `supply_orders` (`so_Id`, `so_DateTime`, `so_quantityOrdered`, `status`, `f_Id`, `supp_Id`, `rm_Id`) VALUES
+(1, '2017-10-05 09:22:18', 38, 'Not started', 5, 2, 2),
+(2, '2017-10-13 08:19:19', 22, 'Not started', 5, 2, 2),
+(3, '2017-10-14 07:14:20', 96, 'Not started', 5, 2, 2),
+(4, '2017-10-20 12:20:21', 13, 'Not started', 5, 2, 2),
+(5, '2017-10-21 14:18:23', 60, 'Not started', 5, 2, 2),
+(6, '2017-10-19 06:17:19', 80, 'Not started', 5, 2, 2),
+(7, '2017-10-07 16:25:25', 62, 'Not started', 5, 2, 2),
+(8, '2017-10-03 08:26:25', 27, 'Not started', 5, 2, 2),
+(9, '2017-10-10 08:19:22', 61, 'Not started', 8, 2, 2),
+(10, '2017-10-05 10:21:21', 17, 'Not started', 8, 2, 2),
+(11, '2017-10-05 10:21:20', 60, 'Not started', 8, 2, 2),
+(12, '2017-10-19 15:27:21', 25, 'Not started', 8, 2, 2),
+(13, '2017-10-17 12:26:28', 43, 'Not started', 8, 2, 2),
+(14, '2017-10-04 15:28:19', 71, 'Not started', 8, 2, 2),
+(15, '2017-10-05 10:25:23', 4, 'Not started', 8, 2, 2),
+(16, '2017-10-20 15:32:26', 48, 'Not started', 8, 2, 2),
+(17, '2017-10-25 12:17:16', 61, 'Not started', 9, 2, 2),
+(18, '2017-10-21 13:23:23', 74, 'Not started', 11, 2, 2),
+(19, '2017-10-09 15:27:25', 18, 'Not started', 11, 2, 2),
+(20, '2017-10-07 16:29:26', 68, 'Not started', 11, 2, 2),
+(21, '2017-10-25 14:25:28', 1, 'Not started', 11, 2, 2),
+(22, '2017-10-24 17:23:20', 20, 'Not started', 11, 2, 2),
+(23, '2017-10-02 09:26:28', 53, 'Not started', 11, 2, 2),
+(24, '2017-10-30 14:30:30', 96, 'Not started', 11, 2, 2),
+(25, '2017-10-07 11:27:27', 47, 'Not started', 15, 2, 2),
+(26, '2017-10-19 10:24:17', 18, 'Not started', 15, 2, 2),
+(27, '2017-10-26 09:18:23', 51, 'Not started', 15, 2, 2),
+(28, '2017-10-14 13:29:20', 59, 'Not started', 15, 2, 2),
+(29, '2017-10-05 13:27:24', 13, 'Not started', 15, 2, 2),
+(30, '2017-10-09 10:08:12', 37, 'Not started', 15, 2, 2),
+(31, '2017-10-20 13:27:27', 11, 'Not started', 15, 2, 2),
+(32, '2017-10-03 06:15:15', 11, 'Not started', 15, 2, 2),
+(33, '2017-10-11 12:21:17', 54, 'Not started', 20, 2, 2),
+(34, '2017-10-08 11:24:27', 11, 'Not started', 20, 2, 2),
+(35, '2017-10-10 11:21:21', 27, 'Not started', 20, 2, 2),
+(36, '2017-10-24 08:20:19', 3, 'Not started', 20, 2, 2),
+(37, '2017-10-19 13:22:20', 87, 'Not started', 20, 2, 2),
+(38, '2017-10-07 14:27:27', 42, 'Not started', 20, 2, 2),
+(39, '2017-10-04 13:27:26', 61, 'Not started', 20, 2, 2),
+(40, '2017-10-19 10:27:18', 44, 'Not started', 20, 2, 2),
+(41, '2018-02-08 15:14:40', 23, 'Not started', 11, 2, 2),
+(42, '2018-02-08 15:18:14', 132, 'Not started', 10, 2, 2),
+(43, '2018-03-02 23:18:57', 3, 'Not started', 12, 2, 2);
 
 --
--- Indexes for dumped tables
+-- 덤프된 테이블의 인덱스
 --
 
 --
--- Indexes for table `client`
+-- 테이블의 인덱스 `client`
 --
 ALTER TABLE `client`
   ADD PRIMARY KEY (`c_Id`);
 
 --
--- Indexes for table `delivery`
+-- 테이블의 인덱스 `delivery`
 --
 ALTER TABLE `delivery`
   ADD PRIMARY KEY (`d_Id`),
   ADD KEY `d_f_Id` (`f_id`);
 
 --
--- Indexes for table `delivery_orders`
+-- 테이블의 인덱스 `delivery_orders`
 --
 ALTER TABLE `delivery_orders`
   ADD PRIMARY KEY (`do_Id`),
@@ -891,20 +889,20 @@ ALTER TABLE `delivery_orders`
   ADD KEY `do_c_Id` (`c_Id`);
 
 --
--- Indexes for table `faculty`
+-- 테이블의 인덱스 `faculty`
 --
 ALTER TABLE `faculty`
   ADD PRIMARY KEY (`f_id`);
 
 --
--- Indexes for table `faculty_attendance`
+-- 테이블의 인덱스 `faculty_attendance`
 --
 ALTER TABLE `faculty_attendance`
   ADD PRIMARY KEY (`fa_Id`),
   ADD KEY `fa_f_Id` (`f_Id`);
 
 --
--- Indexes for table `orders`
+-- 테이블의 인덱스 `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`o_Id`),
@@ -912,7 +910,7 @@ ALTER TABLE `orders`
   ADD KEY `o_f_Id` (`f_Id`);
 
 --
--- Indexes for table `order_products`
+-- 테이블의 인덱스 `order_products`
 --
 ALTER TABLE `order_products`
   ADD PRIMARY KEY (`op_Id`),
@@ -920,7 +918,7 @@ ALTER TABLE `order_products`
   ADD KEY `op_p_id` (`p_Id`);
 
 --
--- Indexes for table `production`
+-- 테이블의 인덱스 `production`
 --
 ALTER TABLE `production`
   ADD PRIMARY KEY (`prdn_Id`),
@@ -928,29 +926,27 @@ ALTER TABLE `production`
   ADD KEY `prdn_p_Id` (`p_Id`);
 
 --
--- Indexes for table `products`
+-- 테이블의 인덱스 `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`p_Id`);
 
 --
--- Indexes for table `raw_materials`
+-- 테이블의 인덱스 `raw_materials`
 --
 ALTER TABLE `raw_materials`
   ADD PRIMARY KEY (`rm_Id`),
   ADD KEY `rm_p_Id` (`p_Id`),
-  ADD KEY `rm_supp_Id` (`supp_Id`),
-  ADD KEY `rm_s_Id` (`s_Id`),
-  ADD KEY `rm_so_id` (`so_id`);
+  ADD KEY `rm_s_Id` (`s_Id`);
 
 --
--- Indexes for table `storage`
+-- 테이블의 인덱스 `storage`
 --
 ALTER TABLE `storage`
   ADD PRIMARY KEY (`s_Id`);
 
 --
--- Indexes for table `storage_delivery_products`
+-- 테이블의 인덱스 `storage_delivery_products`
 --
 ALTER TABLE `storage_delivery_products`
   ADD PRIMARY KEY (`sdp_Id`),
@@ -958,7 +954,7 @@ ALTER TABLE `storage_delivery_products`
   ADD KEY `sdp_d_Id` (`d_Id`);
 
 --
--- Indexes for table `storage_products`
+-- 테이블의 인덱스 `storage_products`
 --
 ALTER TABLE `storage_products`
   ADD PRIMARY KEY (`sp_Id`),
@@ -966,169 +962,186 @@ ALTER TABLE `storage_products`
   ADD KEY `sp_p_Id` (`p_Id`);
 
 --
--- Indexes for table `supplier`
+-- 테이블의 인덱스 `supplier`
 --
 ALTER TABLE `supplier`
   ADD PRIMARY KEY (`supp_Id`);
 
 --
--- Indexes for table `supply_orders`
+-- 테이블의 인덱스 `supply_orders`
 --
 ALTER TABLE `supply_orders`
   ADD PRIMARY KEY (`so_Id`),
-  ADD KEY `so_f_Id` (`f_Id`);
+  ADD KEY `so_f_Id` (`f_Id`),
+  ADD KEY `so_supp_Id` (`supp_Id`),
+  ADD KEY `so_rm_Id` (`rm_Id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- 덤프된 테이블의 AUTO_INCREMENT
 --
 
 --
--- AUTO_INCREMENT for table `client`
+-- 테이블의 AUTO_INCREMENT `client`
 --
 ALTER TABLE `client`
   MODIFY `c_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+
 --
--- AUTO_INCREMENT for table `delivery`
+-- 테이블의 AUTO_INCREMENT `delivery`
 --
 ALTER TABLE `delivery`
   MODIFY `d_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
 --
--- AUTO_INCREMENT for table `delivery_orders`
+-- 테이블의 AUTO_INCREMENT `delivery_orders`
 --
 ALTER TABLE `delivery_orders`
   MODIFY `do_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
 --
--- AUTO_INCREMENT for table `faculty`
+-- 테이블의 AUTO_INCREMENT `faculty`
 --
 ALTER TABLE `faculty`
-  MODIFY `f_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `f_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
 --
--- AUTO_INCREMENT for table `faculty_attendance`
+-- 테이블의 AUTO_INCREMENT `faculty_attendance`
 --
 ALTER TABLE `faculty_attendance`
   MODIFY `fa_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
 --
--- AUTO_INCREMENT for table `orders`
+-- 테이블의 AUTO_INCREMENT `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `o_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `o_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
 --
--- AUTO_INCREMENT for table `order_products`
+-- 테이블의 AUTO_INCREMENT `order_products`
 --
 ALTER TABLE `order_products`
-  MODIFY `op_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `op_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
 --
--- AUTO_INCREMENT for table `production`
+-- 테이블의 AUTO_INCREMENT `production`
 --
 ALTER TABLE `production`
   MODIFY `prdn_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
 --
--- AUTO_INCREMENT for table `products`
+-- 테이블의 AUTO_INCREMENT `products`
 --
 ALTER TABLE `products`
   MODIFY `p_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
 --
--- AUTO_INCREMENT for table `raw_materials`
+-- 테이블의 AUTO_INCREMENT `raw_materials`
 --
 ALTER TABLE `raw_materials`
   MODIFY `rm_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
 --
--- AUTO_INCREMENT for table `storage`
+-- 테이블의 AUTO_INCREMENT `storage`
 --
 ALTER TABLE `storage`
   MODIFY `s_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
 --
--- AUTO_INCREMENT for table `storage_delivery_products`
+-- 테이블의 AUTO_INCREMENT `storage_delivery_products`
 --
 ALTER TABLE `storage_delivery_products`
   MODIFY `sdp_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
 --
--- AUTO_INCREMENT for table `storage_products`
+-- 테이블의 AUTO_INCREMENT `storage_products`
 --
 ALTER TABLE `storage_products`
   MODIFY `sp_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
 --
--- AUTO_INCREMENT for table `supplier`
+-- 테이블의 AUTO_INCREMENT `supplier`
 --
 ALTER TABLE `supplier`
   MODIFY `supp_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
 --
--- AUTO_INCREMENT for table `supply_orders`
+-- 테이블의 AUTO_INCREMENT `supply_orders`
 --
 ALTER TABLE `supply_orders`
   MODIFY `so_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
 --
--- Constraints for dumped tables
+-- 덤프된 테이블의 제약사항
 --
 
 --
--- Constraints for table `delivery`
+-- 테이블의 제약사항 `delivery`
 --
 ALTER TABLE `delivery`
   ADD CONSTRAINT `d_f_Id` FOREIGN KEY (`f_id`) REFERENCES `faculty` (`f_id`);
 
 --
--- Constraints for table `delivery_orders`
+-- 테이블의 제약사항 `delivery_orders`
 --
 ALTER TABLE `delivery_orders`
   ADD CONSTRAINT `do_c_Id` FOREIGN KEY (`c_Id`) REFERENCES `client` (`c_Id`),
   ADD CONSTRAINT `do_d_Id` FOREIGN KEY (`d_Id`) REFERENCES `delivery` (`d_Id`);
 
 --
--- Constraints for table `faculty_attendance`
+-- 테이블의 제약사항 `faculty_attendance`
 --
 ALTER TABLE `faculty_attendance`
   ADD CONSTRAINT `fa_f_Id` FOREIGN KEY (`f_Id`) REFERENCES `faculty` (`f_id`);
 
 --
--- Constraints for table `orders`
+-- 테이블의 제약사항 `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `o_c_Id` FOREIGN KEY (`c_Id`) REFERENCES `client` (`c_Id`),
   ADD CONSTRAINT `o_f_Id` FOREIGN KEY (`f_Id`) REFERENCES `faculty` (`f_id`);
 
 --
--- Constraints for table `order_products`
+-- 테이블의 제약사항 `order_products`
 --
 ALTER TABLE `order_products`
   ADD CONSTRAINT `op_o_id` FOREIGN KEY (`o_Id`) REFERENCES `orders` (`o_Id`),
   ADD CONSTRAINT `op_p_id` FOREIGN KEY (`p_Id`) REFERENCES `products` (`p_Id`);
 
 --
--- Constraints for table `production`
+-- 테이블의 제약사항 `production`
 --
 ALTER TABLE `production`
   ADD CONSTRAINT `prdn_f_Id` FOREIGN KEY (`f_Id`) REFERENCES `faculty` (`f_id`),
   ADD CONSTRAINT `prdn_p_Id` FOREIGN KEY (`p_Id`) REFERENCES `products` (`p_Id`);
 
 --
--- Constraints for table `raw_materials`
+-- 테이블의 제약사항 `raw_materials`
 --
 ALTER TABLE `raw_materials`
   ADD CONSTRAINT `rm_p_Id` FOREIGN KEY (`p_Id`) REFERENCES `products` (`p_Id`),
-  ADD CONSTRAINT `rm_s_Id` FOREIGN KEY (`s_Id`) REFERENCES `storage` (`s_Id`),
-  ADD CONSTRAINT `rm_so_id` FOREIGN KEY (`so_id`) REFERENCES `supply_orders` (`so_Id`),
-  ADD CONSTRAINT `rm_supp_Id` FOREIGN KEY (`supp_Id`) REFERENCES `supplier` (`supp_Id`);
+  ADD CONSTRAINT `rm_s_Id` FOREIGN KEY (`s_Id`) REFERENCES `storage` (`s_Id`);
 
 --
--- Constraints for table `storage_delivery_products`
+-- 테이블의 제약사항 `storage_delivery_products`
 --
 ALTER TABLE `storage_delivery_products`
   ADD CONSTRAINT `sdp_d_Id` FOREIGN KEY (`d_Id`) REFERENCES `delivery` (`d_Id`),
   ADD CONSTRAINT `sdp_s_Id` FOREIGN KEY (`s_Id`) REFERENCES `storage` (`s_Id`);
 
 --
--- Constraints for table `storage_products`
+-- 테이블의 제약사항 `storage_products`
 --
 ALTER TABLE `storage_products`
   ADD CONSTRAINT `sp_p_Id` FOREIGN KEY (`p_Id`) REFERENCES `products` (`p_Id`),
   ADD CONSTRAINT `sp_s_Id` FOREIGN KEY (`s_Id`) REFERENCES `storage` (`s_Id`);
 
 --
--- Constraints for table `supply_orders`
+-- 테이블의 제약사항 `supply_orders`
 --
 ALTER TABLE `supply_orders`
-  ADD CONSTRAINT `so_f_Id` FOREIGN KEY (`f_Id`) REFERENCES `faculty` (`f_id`);
+  ADD CONSTRAINT `so_f_Id` FOREIGN KEY (`f_Id`) REFERENCES `faculty` (`f_id`),
+  ADD CONSTRAINT `so_rm_Id` FOREIGN KEY (`rm_Id`) REFERENCES `raw_materials` (`rm_Id`),
+  ADD CONSTRAINT `so_supp_Id` FOREIGN KEY (`supp_Id`) REFERENCES `supplier` (`supp_Id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

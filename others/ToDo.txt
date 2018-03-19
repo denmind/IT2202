@@ -1,0 +1,7 @@
+Validation in business process
+
+Views
+  - deliveries production inventory
+(storage_delivery_product, raw_material)
+
+Database between 
