@@ -13,7 +13,7 @@
 		if ($conn){
 
 			$query = "INSERT INTO `storage_delivery_products` 
-			(`sdp_Id`, `sdp_quantity`, `sdp_weight`, `sdp_date`, `s_Id`, `d_Id`)
+			(`sdp_Id`, `sdp_quantity`, `sdp_weight`, `sdp_dateTime`, `s_Id`, `d_Id`)
 			VALUES (NULL, '{$_POST['sdp_quantity']}', '{$_POST['sdp_weight']}', '{$_POST['sdp_date']}',
 			'{$_POST['s_Id']}', '{$_POST['d_Id']}')";
 					

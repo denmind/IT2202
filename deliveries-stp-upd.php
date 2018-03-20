@@ -13,7 +13,7 @@
 			ON sdp.s_Id = sp.s_Id
 			JOIN products p
 			ON p.p_Id = sp.p_Id
-			ORDER BY sdp_date DESC";
+			ORDER BY sdp_dateTime DESC";
 	
 	$set = mysqli_query($conn,$query);
 ?>
@@ -68,7 +68,8 @@
 								<option value = -999></option>
 								<?php 
 									while($var = mysqli_fetch_assoc($set)){
-										echo "<option value = {$var["sdp_Id"]}>[{$var["sdp_date"]}] {$var["sdp_quantity"]}pcs  of {$var["p_name"]}";
+										echo "<option value = {$var["sdp_Id"]}>[{$var["sdp_dateTime"]}] {$var["sdp_quantity"]}pcs  of {$var["p_name"]}
+                                        </option>";
 									}
 								?>
 							</select>
@@ -111,7 +112,7 @@
 					<div class = "top-form">
 						<?php	
 							echo "<p class = 'form-header'>";
-							echo "[{$r["sdp_date"]}] {$r["sdp_quantity"]}pcs  of {$r["p_name"]}";
+							echo "[{$r["sdp_dateTime"]}] {$r["sdp_quantity"]}pcs  of {$r["p_name"]}";
 							echo "</p>";
 							$_SESSION["edit-id"] = $xid;
 						?>
@@ -124,7 +125,7 @@
 						<p class = "form-body">Gross Weight
 						<input type = "text" name = "sdp_weight" data-validation="required number" data-validation-allowing="positve float" class = "input-form" maxlength = 11  value = <?php echo $r['sdp_weight']?> ></p>
 						<p class = "form-body">When was it placed to delivery?
-						<input  type="text" name="sdp_date" class = "input-form" id="form_datetime" value = "<?php echo $r['sdp_date']?>" data-date-format="yyyy-mm-dd"></p>
+						<input  type="text" name="sdp_date" class = "input-form" id="form_datetime" value = "<?php echo $r['sdp_dateTime']?>" data-date-format="yyyy-mm-dd"></p>
 						<!--Delivery's select status-->
 						<p class = "form-body">Delivery Schedule /Faculty Assigned
 						<select name = "d_Id" class = "input-form" data-validation="required">

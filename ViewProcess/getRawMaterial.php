@@ -2,8 +2,8 @@
 require '../sql_connect.php';
 
 $sql = "SELECT *
-FROM products p
-WHERE p.p_Id = '{$_POST['product']}'
+FROM raw_materials rm
+WHERE rm_Id = '{$_POST['raw_materials']}'
 LIMIT 1";
 
 $result = mysqli_query($conn, $sql);

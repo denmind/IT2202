@@ -9,10 +9,10 @@
         exit();
     }
 
-    $view = "SELECT *, ROUND((so.so_quantityOrdered * rm.rm_pricePerUnit), 2) As Total
+    $view = "SELECT *, ROUND((so.so_quantityOrdered * rm.rm_pricePerUnit), 2) As Total, so.status AS so_status
     FROM supply_orders so
-    JOIN faculty f
-	ON f.f_Id = so.f_Id
+    JOIN raw_materials rm
+	ON rm.rm_Id = so.rm_Id
     ORDER BY so_Id";
 
     $result = mysqli_query($conn, $view);
@@ -71,13 +71,15 @@
 							echo "<td>{$key['so_Id']}</td>";
 							echo "<td>{$key['so_DateTime']}</td>";
                             echo "<td>{$key['so_quantityOrdered']}</td>";
-                            echo "<td>{$key['status']}</td>";
+                            echo "<td>{$key['so_status']}</td>";
                             echo "<td><button class='btn btn-primary btn-small' data-faculty='{$key['f_Id']}'>
 						<span class='glyphicon glyphicon-eye-open'></span>
 						</button></td>";
-                            echo "<td><button class='btn btn-warning btn-small' data-supplier='{$key['rm_Id']}'>
+                            echo "<td><button class='btn btn-warning btn-small' data-supplier='{$key['supp_Id']}'>
 						<span class='glyphicon glyphicon-eye-open'></span>
 						</button></td>";
+                            echo "<td>{$key['rm_name']}</td>";
+                            echo "<td>{$key['Total']}</td>";
 							echo "</tr>";
 						}
 					?>
@@ -165,13 +167,13 @@ $('.btn-primary').on('click', function(){
 	});
 });
     
-    //for client
+    //for supplier
 $('.btn-warning').on('click', function(){
-	var rn = $(this).data('supplier');
+	var sn = $(this).data('supplier');
 	$.ajax({
 		url : 'ViewProcess/getSupplier.php',
 		method : 'POST',
-		data : {rm : rn},
+		data : {supplier : sn},
 		dataType : 'json',
 		success: function(result){
 			var row = "";

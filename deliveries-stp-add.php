@@ -65,7 +65,7 @@
 					<input type = "text" name = "sdp_weight" data-validation="required number" data-validation-allowing="positive float" class = "input-form" maxlength = 32></p>
 					<p class = "form-body">When was it placed to delivery?
 					<input  type="text" name="sdp_date" class = "input-form" id="form_datetime" data-date-format="yyyy-mm-dd"></p>
-					<p class = "form-body">Supplier ID
+					<p class = "form-body">Storage Location
 						<select name = "s_Id" class = "input-form" data-validation="required">
 							<option></option>
 							<?php 
@@ -91,8 +91,7 @@
 				</div>
 			</form>
 		</div>
-	</body>
-	</body>
+    </body>
 </html>
 <script src = "js/confirm-form.js"></script>
 <script src="js/jquery.js"></script>

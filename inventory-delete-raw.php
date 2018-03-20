@@ -184,6 +184,16 @@
 					<textarea name = "rm_descp" id="area" data-validation = "required alphanumeric"  data-validation-allowing=" "
 					class = "input-form" maxlength = 128><?php echo $r['rm_descp']?></textarea></p>
 					</div>
+						<div class = "line-sep">
+						</div>
+						<div class = "warn-form"><p>Raw Material'S CURRENT STATUS</p>
+							<div class = "warn-main">
+								<select name = "state" class = "warn-input">
+									<option id = 'y' value = "In-use" <?php if($r['status'] == 'In-use') echo "selected = 'selected'"?> >In-use</option>
+									<option id = 'n' value = "Outdated" <?php if($r['status'] == 'Outdated') echo "selected = 'selected'"?> >Outdated</option>
+								</select>
+							</div>
+						</div>
 					<div class = "bot-form">
 						<input type = "submit" value = "Submit Form" class = "input-submit">
 					</div>

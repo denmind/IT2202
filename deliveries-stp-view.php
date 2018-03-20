@@ -8,13 +8,13 @@
         header("Location:index.php");
         exit();
     }
-	$view = "SELECT do_Id,d.d_deliverySchedule,d.d_status,c.c_FirstName,c.c_LastName
-			FROM delivery_orders do 
-			JOIN delivery d 
-			ON d.d_Id = do.d_Id
-			JOIN client c 
-			ON c.c_Id = do.c_Id 
-			ORDER BY d.d_deliverySchedule DESC";
+	$view = "SELECT *
+    FROM storage_delivery_products sdp
+    JOIN delivery d 
+    ON d.d_Id = sdp.d_Id
+    JOIN storage s
+    ON s.s_Id = sdp.s_Id
+    ORDER BY d.d_Id DESC";
 		
 	$result= mysqli_query($conn,$view);
 ?>
@@ -57,26 +57,28 @@
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Client First Name</th>
-						<th>Client Last Name</th>
-						<th>Delivery Schedule</th>
+						<th>Quantity</th>
+						<th>Moved date</th>
 						<th>Status</th>
+						<th>Storage</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php
 						while($key = mysqli_fetch_assoc($result)){
+                            $s = $key['s_isleLoc']." - ".$key['s_rowLoc']." - ".$key['s_colLoc'];
 							echo "<tr>";
-							echo "<td>{$key['do_Id']}</td>";
-							echo "<td>{$key['c_FirstName']}</td>";
-							echo "<td>{$key['c_LastName']}</td>";
-							echo "<td>{$key['d_deliverySchedule']}</td>";
-							echo "<td>{$key['d_status']}</td>";
+							echo "<td>{$key['sdp_Id']}</td>";
+							echo "<td>{$key['sdp_quantity']}</td>";
+							echo "<td>{$key['sdp_dateTime']}</td>";
+                            echo "<td>{$key['d_status']}</td>";
+                            echo "<td>{$s}</td>";
 							echo "</tr>";
 						}
 					?>
 				</tbody>
 			</table>
+        </div>
 	</body>
 </html>
 <script src="js/jquery.js"></script>

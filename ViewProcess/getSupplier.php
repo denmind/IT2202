@@ -2,10 +2,8 @@
 require '../sql_connect.php';
 
 $sql = "SELECT *
-FROM raw_materials rm
-JOIN supplier s
-ON rm.supp_Id = s.supp_Id
-WHERE rm_Id = '{$_POST['rm']}'
+FROM supplier supp
+WHERE supp_Id = '{$_POST['supplier']}'
 LIMIT 1";
 
 $result = mysqli_query($conn, $sql);

@@ -18,6 +18,7 @@
 					`rm_pricePerUnit` = '{$_POST["rm_pricePerUnit"]}',
 					`rm_type` = '{$_POST["rm_type"]}', 
 					`rm_descp` = '{$_POST["rm_descp"]}',
+                    `status` = '{$_POST["state"]}',
 					`p_Id` = '{$_POST["p_Id"]}', 
 					`s_Id` = '{$_POST["s_Id"]}' 
 					WHERE `rm_Id` = {$_SESSION["edit-id"]}";
