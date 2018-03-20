@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- 생성 시간: 18-03-19 00:51
+-- 생성 시간: 18-03-20 17:59
 -- 서버 버전: 10.1.26-MariaDB
 -- PHP 버전: 7.1.9
 
@@ -114,7 +114,8 @@ INSERT INTO `delivery` (`d_Id`, `d_deliverySchedule`, `d_status`, `f_id`) VALUES
 (20, '2017-10-09', 'Not started', 19),
 (26, '2018-02-11', 'Not started', 4),
 (27, '2018-02-16', 'Finished', 19),
-(28, '2018-02-23', 'Finished', 19);
+(28, '2018-02-23', 'Finished', 19),
+(29, '2018-03-20', 'Not started', 4);
 
 -- --------------------------------------------------------
 
@@ -172,7 +173,8 @@ INSERT INTO `delivery_orders` (`do_Id`, `d_Id`, `c_Id`) VALUES
 (37, 10, 14),
 (38, 1, 2),
 (39, 6, 3),
-(40, 18, 2);
+(40, 18, 2),
+(41, 13, 19);
 
 -- --------------------------------------------------------
 
@@ -552,46 +554,46 @@ CREATE TABLE `raw_materials` (
 --
 
 INSERT INTO `raw_materials` (`rm_Id`, `rm_quantity`, `rm_name`, `rm_descp`, `rm_pricePerUnit`, `rm_type`, `status`, `s_Id`, `p_Id`) VALUES
-(1, 62, 'Bam-It', 'Low priced', 657.6, 'Lumber/Wood Fiber', 'Outdated', 8, 3),
-(2, 90, 'Vilais', 'High quality', 9.08, 'Lumber/Wood Fiber', 'Outdated', 7, 5),
-(3, 21, 'Zathdex', 'Industrial usage', 232.81, 'Adhesives', 'Outdated', 11, 14),
-(4, 77, 'An-Strong', 'Extremely weather resistant', 772.8, 'Inks', 'Outdated', 11, 14),
-(5, 72, 'Toughdex', 'Durable and Versatile', 473.92, 'Paraffin', 'Outdated', 4, 12),
-(6, 19, 'Stan-Lam', 'Water and Grease Proof', 155.74, 'Polyethylene', 'Outdated', 4, 2),
-(7, 44, 'Zottex', 'Long lasting', 826.91, 'Polyoxymethylene', 'Outdated', 16, 10),
-(8, 51, 'Toughlux', 'Environmentally safe', 23.76, 'Polypropylene', 'Outdated', 12, 4),
-(9, 31, 'Hotphase', 'Child and Animal Friendly', 954.09, 'Polypropylene', 'Outdated', 17, 6),
-(10, 64, 'Goodron', 'CFC Free', 323.84, 'Polyoxymethylene', 'Outdated', 14, 15),
-(11, 35, 'Ranity', 'No poisonous materials', 544.79, 'Polyethylene', 'Outdated', 13, 14),
-(12, 45, 'Lightcore', 'Exclusive material', 165.4, 'Paraffin', 'Outdated', 10, 1),
-(13, 72, 'Sao Traxwarm', 'Export Quality', 491.58, 'Inks', 'Outdated', 6, 18),
-(14, 52, 'Hold Eco', 'Not for home use', 960.74, 'Adhesives', 'Outdated', 5, 10),
-(15, 22, 'K-tom', 'Tamper resistant', 522.08, 'Lumber/Wood Fiber', 'Outdated', 19, 10),
-(16, 86, 'U-warm', 'Low priced', 740.4, 'Lumber/Wood Fiber', 'Outdated', 3, 18),
-(17, 40, 'Voyastock', 'High quality', 1.64, 'Adhesives', 'Outdated', 16, 12),
-(18, 49, 'Damfresh', 'Industrial usage', 653.41, 'Inks', 'Outdated', 16, 15),
-(19, 11, 'Plusla', 'Extremely weather resistant', 330.67, 'Paraffin', 'Outdated', 6, 19),
-(20, 23, 'Finlab', 'Durable and Versatile', 114.43, 'Polyethylene', 'Outdated', 17, 8),
-(21, 45, 'Trust Ozestring', 'Water and Grease Proof', 89.54, 'Polyoxymethylene', 'Outdated', 2, 19),
-(22, 93, 'Dento-Tech', 'Long lasting', 803.72, 'Polypropylene', 'Outdated', 5, 8),
-(23, 27, 'Unalight', 'Tamper resistant', 131.75, 'Polyoxymethylene', 'Outdated', 17, 1),
-(24, 47, 'Vaiafan', 'Environmentally safe', 156.08, 'Polyethylene', 'Outdated', 7, 19),
-(25, 7, 'Tam-Tam', 'Child and Animal Friendly', 442.06, 'Paraffin', 'Outdated', 20, 9),
-(26, 37, 'Subdox', 'CFC Free', 532.09, 'Inks', 'Outdated', 11, 11),
-(27, 81, 'Spansaildom', 'No poisonous materials', 404.39, 'Adhesives', 'Outdated', 12, 14),
-(28, 30, 'Y- Tantex', 'Exclusive material', 349.67, 'Lumber/Wood Fiber', 'Outdated', 17, 20),
-(29, 3, 'Freshtough', 'Export Quality', 200.19, 'Adhesives', 'Outdated', 18, 6),
-(30, 50, 'X-lux', 'Not for home use', 515.21, 'Inks', 'Outdated', 2, 9),
-(31, 59, 'Arline Cochran', 'No poisonous materials', 579.93, 'Paraffin', 'Outdated', 3, 1),
-(32, 75, 'Scorpion Ivory', 'CFC Free', 619.8, 'Polyethylene', 'Outdated', 17, 15),
-(33, 69, 'Breeze Outstanding', 'Exclusive material', 456.06, 'Polyoxymethylene', 'Outdated', 4, 2),
-(34, 73, 'Autopsy Cloudy', 'Child and Animal Friendly', 301.61, 'Polypropylene', 'Outdated', 7, 8),
-(35, 75, 'Silly Hammer', 'Export Quality', 579.68, 'Polyoxymethylene', 'Outdated', 13, 15),
-(36, 99, 'Modern Cold Iron', 'Not for home use', 762.85, 'Polyethylene', 'Outdated', 17, 19),
-(37, 8, 'Fixlane', 'Tamper resistant', 489.78, 'Paraffin', 'Outdated', 4, 4),
-(38, 54, 'Itfax', 'Long lasting', 46.47, 'Inks', 'Outdated', 12, 13),
-(39, 57, 'Indifase', 'Water and Grease Proof', 873.94, 'Adhesives', 'Outdated', 13, 14),
-(40, 86, 'Indidom', 'Durable and Versatile', 170.54, 'Lumber/Wood Fiber', 'Outdated', 5, 12);
+(1, 62, 'Bam-It', 'Low priced', 657.6, 'Lumber/Wood Fiber', 'In-use', 8, 3),
+(2, 90, 'Vilais', 'High quality', 9.08, 'Lumber/Wood Fiber', 'In-use', 7, 5),
+(3, 59, 'Arline', 'No poisonous materials', 579.93, 'Paraffin', 'Outdated', 3, 1),
+(4, 77, 'An-Strong', 'Extremely weather resistant', 772.8, 'Inks', 'In-use', 11, 14),
+(5, 72, 'Toughdex', 'Durable and Versatile', 473.92, 'Paraffin', 'In-use', 4, 12),
+(6, 19, 'Stan-Lam', 'Water and Grease Proof', 155.74, 'Polyethylene', 'In-use', 4, 2),
+(7, 44, 'Zottex', 'Long lasting', 826.91, 'Polyoxymethylene', 'In-use', 16, 10),
+(8, 51, 'Toughlux', 'Environmentally safe', 23.76, 'Polypropylene', 'In-use', 12, 4),
+(9, 31, 'Hotphase', 'Child and Animal Friendly', 954.09, 'Polypropylene', 'In-use', 17, 6),
+(10, 64, 'Goodron', 'CFC Free', 323.84, 'Polyoxymethylene', 'In-use', 14, 15),
+(11, 77, 'An-Strong', 'Extremely weather resistant', 772.8, 'Inks', 'Outdated', 11, 14),
+(12, 45, 'Lightcore', 'Exclusive material', 165.4, 'Paraffin', 'In-use', 10, 1),
+(13, 72, 'Sao Traxwarm', 'Export Quality', 491.58, 'Inks', 'In-use', 6, 18),
+(14, 52, 'Hold Eco', 'Not for home use', 960.74, 'Adhesives', 'In-use', 5, 10),
+(15, 22, 'K-tom', 'Tamper resistant', 522.08, 'Lumber/Wood Fiber', 'In-use', 19, 10),
+(16, 86, 'U-warm', 'Low priced', 740.4, 'Lumber/Wood Fiber', 'In-use', 3, 18),
+(17, 40, 'Voyastock', 'High quality', 1.64, 'Adhesives', 'In-use', 16, 12),
+(18, 49, 'Damfresh', 'Industrial usage', 653.41, 'Inks', 'In-use', 16, 15),
+(19, 11, 'Plusla', 'Extremely weather resistant', 330.67, 'Paraffin', 'In-use', 6, 19),
+(20, 23, 'Finlab', 'Durable and Versatile', 114.43, 'Polyethylene', 'In-use', 17, 8),
+(21, 45, 'Trust Ozestring', 'Water and Grease Proof', 89.54, 'Polyoxymethylene', 'In-use', 2, 19),
+(22, 93, 'Dento-Tech', 'Long lasting', 803.72, 'Polypropylene', 'In-use', 5, 8),
+(23, 27, 'Unalight', 'Tamper resistant', 131.75, 'Polyoxymethylene', 'In-use', 17, 1),
+(24, 47, 'Vaiafan', 'Environmentally safe', 156.08, 'Polyethylene', 'In-use', 7, 19),
+(25, 7, 'Tam-Tam', 'Child and Animal Friendly', 442.06, 'Paraffin', 'In-use', 20, 9),
+(26, 37, 'Subdox', 'CFC Free', 532.09, 'Inks', 'In-use', 11, 11),
+(27, 81, 'Spansaildom', 'No poisonous materials', 404.39, 'Adhesives', 'In-use', 12, 14),
+(28, 30, 'Y- Tantex', 'Exclusive material', 349.67, 'Lumber/Wood Fiber', 'In-use', 17, 20),
+(29, 3, 'Freshtough', 'Export Quality', 200.19, 'Adhesives', 'In-use', 18, 6),
+(30, 50, 'X-lux', 'Not for home use', 515.21, 'Inks', 'In-use', 2, 9),
+(31, 59, 'Arline Cochran', 'No poisonous materials', 579.93, 'Paraffin', 'In-use', 3, 1),
+(32, 75, 'Scorpion Ivory', 'CFC Free', 619.8, 'Polyethylene', 'In-use', 17, 15),
+(33, 69, 'Breeze Outstanding', 'Exclusive material', 456.06, 'Polyoxymethylene', 'In-use', 4, 2),
+(34, 73, 'Autopsy Cloudy', 'Child and Animal Friendly', 301.61, 'Polypropylene', 'In-use', 7, 8),
+(35, 75, 'Silly Hammer', 'Export Quality', 579.68, 'Polyoxymethylene', 'In-use', 13, 15),
+(36, 99, 'Modern Cold Iron', 'Not for home use', 762.85, 'Polyethylene', 'In-use', 17, 19),
+(37, 8, 'Fixlane', 'Tamper resistant', 489.78, 'Paraffin', 'In-use', 4, 4),
+(38, 54, 'Itfax', 'Long lasting', 46.47, 'Inks', 'In-use', 12, 13),
+(39, 57, 'Indifase', 'Water and Grease Proof', 873.94, 'Adhesives', 'In-use', 13, 14),
+(40, 86, 'Indidom', 'Durable and Versatile', 170.54, 'Lumber/Wood Fiber', 'In-use', 5, 12);
 
 -- --------------------------------------------------------
 
@@ -990,13 +992,13 @@ ALTER TABLE `client`
 -- 테이블의 AUTO_INCREMENT `delivery`
 --
 ALTER TABLE `delivery`
-  MODIFY `d_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `d_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- 테이블의 AUTO_INCREMENT `delivery_orders`
 --
 ALTER TABLE `delivery_orders`
-  MODIFY `do_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `do_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- 테이블의 AUTO_INCREMENT `faculty`
